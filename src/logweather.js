@@ -1,7 +1,7 @@
 const schedule = require('node-schedule');
-const https = require('https')
-const http = require('http')
-const fs = require('fs')
+const https = require('https');
+const http = require('http');
+const fs = require('fs');
 
 const STREET = require("./TempParsers/streetTempParser");
 const YANDEX = require("./TempParsers/yandexTempParser");
