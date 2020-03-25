@@ -1,0 +1,18 @@
+{
+  "name": "logweather",
+  "version": "1.0.0",
+  "description": "scrapper for weather forecasts",
+  "main": "logweather.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "logweather"
+  ],
+  "author": "Dr_Hard",
+  "license": "ISC",
+  "dependencies": {
+    "jsdom": "^16.2.1",
+    "node-schedule": "^1.3.2"
+  }
+}
