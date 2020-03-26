@@ -3,14 +3,14 @@ const https = require('https');
 const http = require('http');
 const fs = require('fs');
 
-const STREET = require("./TempParsers/streetTempParser");
-const YANDEX = require("./TempParsers/yandexTempParser");
-const GISMETEO = require("./TempParsers/gismeteoTempParser");
-const RP5 = require("./TempParsers/RP5TempParser");
-const ACCUWEATHER = require("./TempParsers/accuweatherTempParser")
-const WEATHERCOM = require("./TempParsers/weathercomTempParser")
-const GIDROMET = require("./TempParsers/gidrometTempParser")
-const YRNO = require("./TempParsers/yrnoTempParser")
+const STREET = require("./temp-parsers/street-temp-parser");
+const YANDEX = require("./temp-parsers/yandex-temp-parser");
+const GISMETEO = require("./temp-parsers/gismeteo-temp-parser");
+const RP5 = require("./temp-parsers/rp5-temp-parser");
+const ACCUWEATHER = require("./temp-parsers/accuweather-temp-parser")
+const WEATHERCOM = require("./temp-parsers/weathercom-temp-parser")
+const GIDROMET = require("./temp-parsers/gidromet-temp-parser")
+const YRNO = require("./temp-parsers/yrno-temp-parser")
 
 //получение html-страницы по url адресу
 function request(opts, cb) {
@@ -59,8 +59,17 @@ function toConsole(name, temp) {
 
 //запись данных парсинга в CSV файл
 function toCSV(name, temp) {
+	let folder = './csv'
 
-	fs.appendFile(`./csv/${name}.csv`, addDate(temp).toString(), (err) => {
+	try {
+	  if (!fs.existsSync(folder)){
+		fs.mkdirSync(folder)
+	  }
+	} catch (err) {
+	  console.error(err)
+	}
+
+	fs.appendFile(`${folder}${name}.csv`, addDate(temp).toString(), (err) => {
 		if (err) throw err;
 		console.log(`${temp} added to ${name}.csv`);
 	});
