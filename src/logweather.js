@@ -106,9 +106,9 @@ function main(outFunc) {
 	//getTempFrom(ACCUWEATHER, outFunc);
 	//getTempFrom(RP5, outFunc);
 	//getTempFrom(GISMETEO, outFunc);
-	getTempFrom(YANDEX, outFunc);
+	// getTempFrom(YANDEX, outFunc);
 	//getTempFrom(STREET, outFunc);
-	//getTempFrom(GIDROMET, outFunc);
+	getTempFrom(GIDROMET, outFunc);
 	//getTempFrom(YRNO, outFunc);
 }
 
