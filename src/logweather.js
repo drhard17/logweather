@@ -69,7 +69,7 @@ function toCSV(name, temp) {
 	  console.error(err)
 	}
 
-	fs.appendFile(`${folder}${name}.csv`, addDate(temp).toString(), (err) => {
+	fs.appendFile(`${folder}/${name}.csv`, addDate(temp).toString(), (err) => {
 		if (err) throw err;
 		console.log(`${temp} added to ${name}.csv`);
 	});
