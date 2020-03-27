@@ -35,6 +35,6 @@ module.exports = {
 		return temps;
 	},
 	avg: function(numbers) {
-		return numbers.reduce((a, x) => a + x) / numbers.length;
+		return numbers.reduce((a, x) => a + x, 0) / numbers.length;
 	},
 };
