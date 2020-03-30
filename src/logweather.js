@@ -1,4 +1,4 @@
-const schedule = require('node-schedule');
+﻿const schedule = require('node-schedule');
 const https = require('https');
 const http = require('http');
 const fs = require('fs');
@@ -95,23 +95,24 @@ function addDate(temps) {
 //запуск парсинга по расписанию
 function scheduled() {
 	let rule = new schedule.RecurrenceRule();
-	rule.minute = 25
+	rule.minute = [0, 15, 30, 45]
 	let j = schedule.scheduleJob(rule, function() {
 		main(toCSV)
 	});
+	console.log('Scheduled service running...')
 }
 
 function main(outFunc) {
-	//getTempFrom(WEATHERCOM, outFunc);
-	//getTempFrom(ACCUWEATHER, outFunc);
-	//getTempFrom(RP5, outFunc);
-	//getTempFrom(GISMETEO, outFunc);
-	// getTempFrom(YANDEX, outFunc);
+	getTempFrom(WEATHERCOM, outFunc);
+	getTempFrom(ACCUWEATHER, outFunc);
+	getTempFrom(RP5, outFunc);
+	getTempFrom(GISMETEO, outFunc);
+	getTempFrom(YANDEX, outFunc);
 	//getTempFrom(STREET, outFunc);
-	getTempFrom(GIDROMET, outFunc);
-	//getTempFrom(YRNO, outFunc);
+	//getTempFrom(GIDROMET, outFunc);
+	getTempFrom(YRNO, outFunc);
 }
 
 if (!module.parent) {
-	main(toCSV);
+	scheduled();
 }
