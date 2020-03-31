@@ -2,8 +2,8 @@ const http = require('http');
 const https = require('https');
 const fs = require('fs');
 const url = require('url');
-const jsdom = require('C:\\Users\\Dr_Hard\\node_modules\\jsdom');
-const { JSDOM } = jsdom;
+//const jsdom = require('C:\\Users\\Dr_Hard\\node_modules\\jsdom');
+//const { JSDOM } = jsdom;
 
 const hostname = '127.0.0.1';
 const port = 3000;
