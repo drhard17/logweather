@@ -2,6 +2,8 @@ const http = require('http');
 const https = require('https');
 const fs = require('fs');
 const url = require('url');
+const logw = require('./logweather.js')
+
 //const jsdom = require('C:\\Users\\Dr_Hard\\node_modules\\jsdom');
 //const { JSDOM } = jsdom;
 
@@ -20,13 +22,15 @@ const server = http.createServer((req, res) => {
 		res.end();
 
 		const { pathname, query } = url.parse(req.url, true);
-		console.log(JSON.stringify(query));
-		console.log(query.temp);
-		console.log(pathname);
-
+		//console.log(JSON.stringify(query));
+		if (query.temp) {
+			console.log(`Street temperature append: ${query.temp}`);
+			logw.toCSV('STREET', [query.temp])
+		}
+		
 	});
 })
 server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+  console.log(`Logweather server running at http://${hostname}:${port}/`);
 });
 

@@ -58,21 +58,23 @@ function toConsole(name, temp) {
 }
 
 //запись данных парсинга в CSV файл
-function toCSV(name, temp) {
-	let folder = './csv'
+module.exports = {
+	toCSV: function(name, temp) {
+		let folder = './csv'
 
-	try {
-	  if (!fs.existsSync(folder)){
-		fs.mkdirSync(folder)
-	  }
-	} catch (err) {
-	  console.error(err)
+		try {
+		if (!fs.existsSync(folder)){
+			fs.mkdirSync(folder)
+		}
+		} catch (err) {
+		console.error(err)
+		}
+
+		fs.appendFile(`${folder}/${name}.csv`, addDate(temp).toString(), (err) => {
+			if (err) throw err;
+			console.log(`${temp} added to ${name}.csv`);
+		});
 	}
-
-	fs.appendFile(`${folder}/${name}.csv`, addDate(temp).toString(), (err) => {
-		if (err) throw err;
-		console.log(`${temp} added to ${name}.csv`);
-	});
 }
 
 //сохранение страницы в html
@@ -97,9 +99,9 @@ function scheduled() {
 	let rule = new schedule.RecurrenceRule();
 	rule.minute = [0, 15, 30, 45]
 	let j = schedule.scheduleJob(rule, function() {
-		main(toCSV)
+		main(module.exports.toCSV)
 	});
-	console.log('Scheduled service running...')
+	console.log('Logweather scheduled service running...')
 }
 
 function main(outFunc) {
@@ -114,5 +116,6 @@ function main(outFunc) {
 }
 
 if (!module.parent) {
-	scheduled();
+	//scheduled();
+	getTempFrom(RP5, module.exports.toCSV)
 }
