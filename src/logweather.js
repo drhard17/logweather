@@ -116,6 +116,5 @@ function main(outFunc) {
 }
 
 if (!module.parent) {
-	//scheduled();
-	getTempFrom(RP5, module.exports.toCSV)
+	scheduled();
 }
