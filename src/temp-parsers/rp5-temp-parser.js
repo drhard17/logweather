@@ -12,11 +12,17 @@ module.exports = {
 		const dom = new JSDOM(page);
 				
 		let results = []
-		let tempString = dom.window.document.querySelector('#forecastTable > tbody > tr:nth-child(6)');
-		let temps = tempString.querySelectorAll('div.t_0')
+		let tempString
 
+		let trs = dom.window.document.querySelectorAll('#forecastTable > tbody > tr');
+		for (let tr of trs) {
+			if (tr.innerHTML.indexOf('>Temperature<') > 0) {
+				tempString = tr
+			}
+		}
+
+		let temps = tempString.querySelectorAll('div.t_0')
 		for (let temp of temps) {
-			
 			if (temp.querySelectorAll('span').length) {
 				temp.querySelector('span').remove()
 			}
