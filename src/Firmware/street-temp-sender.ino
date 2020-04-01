@@ -11,8 +11,8 @@
 #define MINUTES 60000
 
 #ifndef STASSID
-#define STASSID "" // wifi ssid
-#define STAPSK  "" //wifi password
+#define STASSID ""
+#define STAPSK  ""
 #endif
 
 const char* ssid = STASSID;
@@ -44,6 +44,8 @@ void handleRoot() {
 }
 
 void sendTemp() {
+
+  sensors.requestTemperatures();
   
   HTTPClient http;
   String getData, Link;
@@ -57,6 +59,7 @@ void sendTemp() {
   int httpCode = http.GET();
   String payload = http.getString();
   
+  Serial.println(Link);
   Serial.println(httpCode);
   Serial.println(payload);
 
@@ -85,6 +88,7 @@ void setup(void) {
   Serial.println("HTTP server started");
   
   sensors.begin(); //инициализация датчика
+  sendTemp();
 }
 
 void loop(void) {
