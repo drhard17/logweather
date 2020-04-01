@@ -73,6 +73,7 @@ module.exports = {
 		fs.appendFile(`${folder}/${name}.csv`, addDate(temp).toString(), (err) => {
 			if (err) throw err;
 			console.log(`${temp} added to ${name}.csv`);
+			console.log('')
 		});
 	}
 }
