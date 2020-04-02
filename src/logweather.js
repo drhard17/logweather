@@ -67,12 +67,11 @@ module.exports = {
 			fs.mkdirSync(folder)
 		}
 		} catch (err) {
-		console.error(err)
+			console.error(err)
 		}
 
 		fs.appendFile(`${folder}/${name}.csv`, addDate(temp).toString(), (err) => {
-			if (err) throw err;
-			console.log(`${temp} added to ${name}.csv`);
+			console.log(err || `${temp} added to ${name}.csv`);
 			console.log('')
 		});
 	}
