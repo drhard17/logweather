@@ -22,7 +22,7 @@ module.exports = {
 			.querySelector('span.styles__temperature__1VbnH')
 						
 		//console.log('Current: ' + currTemp.outerHTML)
-		console.log(this.opts.hostname)
+		//console.log(this.opts.hostname)
 		
 		let tds = dom.window.document
 			.querySelector('tbody')

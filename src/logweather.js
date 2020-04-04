@@ -1,22 +1,18 @@
 ﻿const schedule = require('node-schedule');
 const https = require('https');
-const http = require('http');
 const fs = require('fs');
 
-const STREET = require("./temp-parsers/street-temp-parser");
-const YANDEX = require("./temp-parsers/yandex-temp-parser");
-const GISMETEO = require("./temp-parsers/gismeteo-temp-parser");
-const RP5 = require("./temp-parsers/rp5-temp-parser");
-const ACCUWEATHER = require("./temp-parsers/accuweather-temp-parser")
-const WEATHERCOM = require("./temp-parsers/weathercom-temp-parser")
-const GIDROMET = require("./temp-parsers/gidromet-temp-parser")
-const YRNO = require("./temp-parsers/yrno-temp-parser")
+const config = JSON.parse(fs.readFileSync('./config.json'))
+
+//загрузка модулей парсеров
+let sites = []
+for (let siteName in config.sitesToPoll) {
+	sites.push(require(`./temp-parsers/${siteName}-temp-parser`))
+}
 
 //получение html-страницы по url адресу
 function request(opts, cb) {
-	let proto;
-	opts.port === 80 ? proto = http : proto = https
-	const req = proto.request(opts, (res) => {
+	const req = https.request(opts, (res) => {
 		if (res.statusCode != 200) {
 			cb({
 				message: "Request error",
@@ -95,26 +91,30 @@ function addDate(temps) {
 }
 
 //запуск парсинга по расписанию
-function scheduled() {
+function scheduled(minutes) {
+	if (config.pollOnce) {
+		main()
+		return
+	}
 	let rule = new schedule.RecurrenceRule();
-	rule.minute = [0, 15, 30, 45]
+	rule.minute = minutes
 	let j = schedule.scheduleJob(rule, function() {
-		main(module.exports.toCSV)
+		main()
 	});
-	console.log('Logweather scheduled service running...')
+	console.log('Logweather scheduled service running.')
+	console.log('Parse in minutes: ' + minutes)
 }
 
-function main(outFunc) {
-	getTempFrom(WEATHERCOM, outFunc);
-	getTempFrom(ACCUWEATHER, outFunc);
-	getTempFrom(RP5, outFunc);
-	getTempFrom(GISMETEO, outFunc);
-	getTempFrom(YANDEX, outFunc);
-	//getTempFrom(STREET, outFunc);
-	//getTempFrom(GIDROMET, outFunc);
-	getTempFrom(YRNO, outFunc);
+function main() {
+	let outFunc
+	config.toConsoleOnly ? outFunc = toConsole : outFunc = module.exports.toCSV
+	for (let site of sites) {
+		if (config.sitesToPoll[site.name]) {
+				getTempFrom(site, outFunc)
+			}
+	}
 }
 
 if (!module.parent) {
-	scheduled();
+	scheduled(config.pollInMinutes);
 }
