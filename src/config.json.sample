@@ -1,0 +1,16 @@
+{
+  "sitesToPoll": {
+    "ACCUWEATHER": 1,
+    "GIDROMET": 0,
+    "GISMETEO": 1,
+    "RP5": 1,
+    "WEATHERCOM": 1,
+    "YANDEX": 1,
+    "YRNO": 1
+  },
+  "pollInMinutes": [
+    0, 15, 30, 45
+  ],
+  "pollOnce": 0,
+  "toConsoleOnly": 0
+}
