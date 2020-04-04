@@ -2,8 +2,8 @@ const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 const fs = require('fs');
 
-const csvFile = './csv/STREET.csv'
-const htmlFile = './html/node.html'
+const csvFile = '../csv/STREET.csv'
+const htmlFile = './html/index.html'
 
 module.exports = {
     addTemp: function(cb) {
@@ -24,9 +24,7 @@ module.exports = {
                 div.innerHTML = 'Temperature in Opaliha: ' + temp
                 dom.window.document.body.append(div)
 
-                const head = dom.window.document.head.outerHTML
-                const body = dom.window.document.body.outerHTML
-                cb('<!DOCTYPE html>' + '<html>' + head + body + '</html>')
+                cb(dom.serialize())
             });
         });
     }

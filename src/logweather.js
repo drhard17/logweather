@@ -56,7 +56,7 @@ function toConsole(name, temp) {
 //запись данных парсинга в CSV файл
 module.exports = {
 	toCSV: function(name, temp) {
-		let folder = './csv'
+		let folder = '../csv'
 
 		try {
 		if (!fs.existsSync(folder)){
