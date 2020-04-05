@@ -13,6 +13,12 @@ module.exports = {
 	name: 'ACCUWEATHER',
 	parseFunc: function(page) {
 		const dom = new JSDOM(page);
+
+		let currentTemp = dom.window.document
+			.querySelector('div.page-subheader-wrap')
+			.querySelectorAll('span')[1]
+			.innerHTML
+
 		let results = []
 		let temps = dom.window.document
 			.querySelector('div.page-column-1')
@@ -20,6 +26,7 @@ module.exports = {
 		for (let temp of temps) {
 			results.push(parseInt(temp.innerHTML, 10))
 		}
+		results[0] = parseInt(currentTemp, 10)
 		return results;
 	}
 };
