@@ -1,18 +1,21 @@
-const http = require('http');
-const url = require('url');
+const http = require('http')
+const url = require('url')
+const fs = require('fs')
 
-const logw = require('./logweather.js')
+const output = require('./output.js')
 const htmlFormer = require('./html-former.js')
 
-const hostname = '127.0.0.1';
-const port = 3000;
+const config = JSON.parse(fs.readFileSync('./config.json'))
+
+const hostname = config.webserver.host;
+const port = config.webserver.port;
 
 const server = http.createServer((req, res) => {
 	const { pathname, query } = url.parse(req.url, true);
 	const ip = res.socket.remoteAddress
 	console.log(`${ip} connected`)
 	if (query.temp) {
-		logw.toCSV('STREET', [query.temp])
+		output.toCSV('STREET', [query.temp])
 		console.log(`${ip} added temperature`)
 	}
 	htmlFormer.addTemp((data) => {
