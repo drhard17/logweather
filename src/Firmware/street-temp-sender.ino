@@ -24,7 +24,7 @@ ESP8266WebServer server(80);
 
 void handleRoot() {
 
-  sensors.requestTemperatures(); //запрос температуры устройств
+  requestTemp(); //запрос температуры устройств
   
   String msg = "<!DOCTYPE HTML>";
   msg += "<html><head>";
@@ -33,25 +33,43 @@ void handleRoot() {
   msg += "h2 {margin-top: 50%; font-size: 50px;} h1 {font-size: 70px;}</style></head>";
   msg += "<body><h2>Hello from ESP8266!</h2>";
   msg += "<h1>Temperature is ";
-  msg += sensors.getTempCByIndex(0);
+  msg += getRoundedTemp();
+  msg += "&deg;C";
   msg += "</h1></body></html>";
   
   server.send(200, "text/html", msg);
     
   Serial.print("Temperature is: ");
-  Serial.println(sensors.getTempCByIndex(0));
+  Serial.println(getRoundedTemp());
     
+}
+
+int getRoundedTemp() {
+  double t = sensors.getTempCByIndex(0);
+  return round(t);
+}
+
+void requestTemp() {
+  int i = 0;
+  sensors.requestTemperatures();
+  delay(10);
+  if (sensors.getTempCByIndex(0) > 50 && i < 3) {
+    Serial.println('WRONG TEMP');
+    delay(50);
+    sensors.requestTemperatures();
+    i++;
+  }
 }
 
 void sendTemp() {
 
-  sensors.requestTemperatures();
+  requestTemp();
   
   HTTPClient http;
   String getData, Link;
   //GET Data
   getData = "?temp=";
-  getData += sensors.getTempCByIndex(0);
+  getData += getRoundedTemp();
   Link = "http://45.135.164.204/" + getData;
 
   http.begin(Link);
@@ -61,7 +79,7 @@ void sendTemp() {
   
   Serial.println(Link);
   Serial.println(httpCode);
-  Serial.println(payload);
+  //Serial.println(payload);
 
   http.end();  
 }
@@ -84,6 +102,12 @@ void setup(void) {
   Serial.println(WiFi.localIP());
 
   server.on("/", handleRoot);
+  server.on("/refresh", []() {
+    sendTemp();
+    delay(100);
+    handleRoot();    
+  });
+  
   server.begin();
   Serial.println("HTTP server started");
   
