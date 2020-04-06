@@ -19,7 +19,7 @@ module.exports = {
 			.textContent
 		, 10)
 		results.push(currentTemp)
-		
+
 		const dayString = Array.from(
 			dom.window.document
 			.querySelector('tr.forecastDate')
@@ -32,7 +32,7 @@ module.exports = {
 				return {[day]: cs}
 			});
 
-		const firstTemp = dayString[0].Today / 2
+		const firstTemp = (dayString[0].Today / 2) || 0
 
 		const tempString = Array.from(
 			dom.window.document
