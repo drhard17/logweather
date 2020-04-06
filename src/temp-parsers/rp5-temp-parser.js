@@ -12,6 +12,14 @@ module.exports = {
 		const dom = new JSDOM(page);
 		let results = []
 		
+		const currentTemp = parseInt(
+			dom.window.document
+			.querySelector('#archiveString')
+			.querySelector('span')
+			.textContent
+		, 10)
+		results.push(currentTemp)
+		
 		const dayString = Array.from(
 			dom.window.document
 			.querySelector('tr.forecastDate')
