@@ -44,7 +44,14 @@ function getTempFrom(site, cb) {
 			return;
 		}
 		if (config.saveHTML) output.saveHTML(site.name, siteCode)
-		const temps = site.parseFunc(siteCode)
+		
+		let temps = []
+		try {
+			temps = site.parseFunc(siteCode)
+		} catch (err) {
+			temps = ['Parse error']
+		}
+
 		cb(site.name, temps)
 	});
 }
