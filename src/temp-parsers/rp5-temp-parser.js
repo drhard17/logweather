@@ -10,25 +10,35 @@ module.exports = {
 	name: 'RP5',
 	parseFunc: function(page) {
 		const dom = new JSDOM(page);
-				
 		let results = []
-		let tempString
+		
+		const dayString = Array.from(
+			dom.window.document
+			.querySelector('tr.forecastDate')
+			.querySelectorAll('td[colspan]')
+		)
+			.map(a => {
+				let day = a.querySelector('b').textContent
+				let cs = a.getAttribute('colspan')
+				cs = parseInt(cs, 10)
+				return {[day]: cs}
+			});
 
-		let trs = dom.window.document.querySelectorAll('#forecastTable > tbody > tr');
-		for (let tr of trs) {
-			if (tr.innerHTML.indexOf('>Temperature<') > 0) {
-				tempString = tr
-			}
-		}
+		const firstTemp = dayString[0].Today / 2
 
-		let temps = tempString.querySelectorAll('div.t_0')
-		for (let temp of temps) {
-			if (temp.querySelectorAll('span').length) {
-				temp.querySelector('span').remove()
-			}
-			let t = temp.querySelector('b').innerHTML
-			results.push(parseInt(t, 10))
+		const tempString = Array.from(
+			dom.window.document
+			.querySelector('#t_temperature')
+			.parentElement
+			.parentElement
+			.querySelectorAll('td[colspan]')
+		)
+			.map(a => a.firstElementChild.textContent)
+
+		for (let i = firstTemp + 2; i < tempString.length; i += 4) {
+			const temp = tempString[i]
+			results.push(parseInt(temp, 10))
 		}
-		return results;
+		return results
 	}
 };
