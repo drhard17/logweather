@@ -43,8 +43,9 @@ function getTempFrom(site, cb) {
 			console.log(`${site.name} ${error.message}, statusCode: ${error.code}`);
 			return;
 		}
-		if (config.saveHTML) toFile(site.name, siteCode)
-		cb(site.name, site.parseFunc(siteCode))
+		if (config.saveHTML) output.saveHTML(site.name, siteCode)
+		const temps = site.parseFunc(siteCode)
+		cb(site.name, temps)
 	});
 }
 

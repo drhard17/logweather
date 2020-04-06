@@ -21,7 +21,7 @@ module.exports = {
                 const dom = new JSDOM(htmlData)
 
                 let div = dom.window.document.createElement('h2')
-                div.innerHTML = 'Temperature in Opaliha: ' + temp
+                div.innerHTML = 'Temperature in Opaliha: ' + temp + '&deg;C'
                 dom.window.document.body.append(div)
 
                 cb(dom.serialize())
@@ -33,7 +33,7 @@ module.exports = {
 function getLastTemp(data) {
 		let csvStrings = data.toString().split('\r\n')
 		let temp = csvStrings[csvStrings.length-2].split(',')[2]
-        return temp + String.fromCharCode(176)
+        return temp
 }
 
 
