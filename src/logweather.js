@@ -42,59 +42,84 @@ function request(opts, cb) {
 	});
 }
 
-//функция получения массива температур t с сайта site
+/**
+ * Функция получения массива температур с сайта site
+ * 
+ * @param {*} site 
+ * @param {(err: Error, data: any) => void} cb
+ */
 function getTempFrom(site, cb) {
+	const cbCommonData = {
+		siteName: site.name,
+		siteOpts: site.opts,
+		siteCode: null,
+		requestTime: new Date(),
+	};
+
 	request(site.opts, (error, siteCode) => {
 		if (error) {
-			error.siteName = site.name
-			errorHandler(error)
+			cb(error, cbCommonData);
 			return
 		}
-		
-		if (config.saveHTML) output.saveHTML(site.name, siteCode)
-		
-		//siteCode = fs.readFileSync('./temp-parsers/__tests__/RP5wrong.html')
+	
+		cbCommonData.siteCode = siteCode;
 
-		let temps = []
 		try {
-  		  temps = site.parseFunc(siteCode)
-		  cb(site.name, temps)
-		} catch (err) {
-			errorHandler({
-				siteName: site.name,
-				type: 'PARSER ERROR',
-				url: site.opts.hostname + site.opts.path,
-				message: err.message,
-				htmlCode: siteCode
+  		    const temps = site.parseFunc(siteCode)
+		    cb(null, {
+				temps,
+				...cbCommonData,
 			});
+		} catch (err) {
+			cb(err, cbCommonData);
 		}
 	});
 }
 
-function main() {
+function storeSiteData(site, outFunc, err, data) {
+	const siteCode = data.siteCode;
+			
+	if (err) {
+		if (siteCode != null) {
+			output.saveHTML(site.name, siteCode);
+		}
+		errorHandler(err);
+		return;
+	}
+
+	if (config.saveHTML && siteCode != null) {
+		output.saveHTML(site.name, siteCode);
+	}
+
+	outFunc(site.name, data.temps);
+}
+
+function poll() {
 	let outFunc = config.toConsoleOnly ? output.toConsole : output.toCSV
 	for (let site of sites) {
-		if (config.sitesToPoll[site.name]) {
-				getTempFrom(site, outFunc)
-			}
+		if (!config.sitesToPoll[site.name]) {
+			continue;
+		}
+		const storeCurrentSiteData = storeSiteData.bind(null, site, outFunc);
+		getTempFrom(site, storeCurrentSiteData);
 	}
 }
 
 //запуск парсинга по расписанию
-function scheduled(minutes) {
+function main() {
 	if (config.pollOnce) {
-		main()
+		poll()
 		return
 	}
 	let rule = new schedule.RecurrenceRule();
-	rule.minute = minutes //[0, 15, 30, 45]
+	rule.minute = config.pollInMinutes //[0, 15, 30, 45]
 	schedule.scheduleJob(rule, function() {
-		main()
+		poll()
 	});
 	console.log('Logweather scheduled service running.')
-	console.log('Parse in minutes: ' + minutes)
+	console.log('Parse in minutes: ' + rule.minute)
 }
 
 if (!module.parent) {
-	scheduled(config.pollInMinutes);
+	main();
 }
