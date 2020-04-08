@@ -4,6 +4,7 @@ const fs = require('fs');
 
 const output = require('./output.js')
 const config = JSON.parse(fs.readFileSync('./config.json'))
+const errorHandler = require('./error-handler').errorHandler
 
 //загрузка модулей парсеров
 let sites = []
@@ -16,8 +17,9 @@ function request(opts, cb) {
 	const req = https.request(opts, (res) => {
 		if (res.statusCode != 200) {
 			cb({
-				message: "Request error",
-				code: res.statusCode,
+				type: 'REQUEST ERROR',
+				url: opts.hostname + opts.path,
+				message: `Recieved status code ${res.statusCode}`
 			});
 			return;
 		}
@@ -32,7 +34,11 @@ function request(opts, cb) {
 
 	req.end();
 	req.on('error', (e) => {
-		cb("ERROR2");
+		cb({
+			type: 'REQUEST ERROR',
+			url: opts.hostname + opts.path,
+			message: e.message
+		});
 	});
 }
 
@@ -40,20 +46,38 @@ function request(opts, cb) {
 function getTempFrom(site, cb) {
 	request(site.opts, (error, siteCode) => {
 		if (error) {
-			console.log(`${site.name} ${error.message}, statusCode: ${error.code}`);
-			return;
+			error.siteName = site.name
+			errorHandler(error)
+			return
 		}
+		
 		if (config.saveHTML) output.saveHTML(site.name, siteCode)
 		
+		//siteCode = fs.readFileSync('./temp-parsers/__tests__/RP5wrong.html')
+
 		let temps = []
 		try {
-			temps = site.parseFunc(siteCode)
+  		  temps = site.parseFunc(siteCode)
+		  cb(site.name, temps)
 		} catch (err) {
-			temps = ['Parse error']
+			errorHandler({
+				siteName: site.name,
+				type: 'PARSER ERROR',
+				url: site.opts.hostname + site.opts.path,
+				message: err.message,
+				htmlCode: siteCode
+			});
 		}
-
-		cb(site.name, temps)
 	});
+}
+
+function main() {
+	let outFunc = config.toConsoleOnly ? output.toConsole : output.toCSV
+	for (let site of sites) {
+		if (config.sitesToPoll[site.name]) {
+				getTempFrom(site, outFunc)
+			}
+	}
 }
 
 //запуск парсинга по расписанию
@@ -64,21 +88,11 @@ function scheduled(minutes) {
 	}
 	let rule = new schedule.RecurrenceRule();
 	rule.minute = minutes //[0, 15, 30, 45]
-	let j = schedule.scheduleJob(rule, function() {
+	schedule.scheduleJob(rule, function() {
 		main()
 	});
 	console.log('Logweather scheduled service running.')
 	console.log('Parse in minutes: ' + minutes)
-}
-
-function main() {
-	let outFunc
-	config.toConsoleOnly ? outFunc = output.toConsole : outFunc = output.toCSV
-	for (let site of sites) {
-		if (config.sitesToPoll[site.name]) {
-				getTempFrom(site, outFunc)
-			}
-	}
 }
 
 if (!module.parent) {
