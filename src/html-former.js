@@ -6,25 +6,25 @@ const csvFile = '../csv/STREET.csv'
 const htmlFile = './html/index.html'
 
 module.exports = {
-    addTemp: function(cb) {
+    getHTML: function(cb) {
         fs.readFile(htmlFile, (err, htmlData) => {
             if (err) {
-                console.log(err)
+                cb(err)
                 return
             }
             fs.readFile(csvFile, (err, csvData) => {
                 if (err) {
-                    console.log(err)
+                    cb(err)
                     return
                 }
                 const temp = getLastTemp(csvData)
                 const dom = new JSDOM(htmlData)
 
-                let div = dom.window.document.createElement('h2')
-                div.innerHTML = 'Temperature in Opaliha: ' + temp + '&deg;C'
-                dom.window.document.body.append(div)
+                let tempString = dom.window.document.createElement('h2')
+                tempString.textContent = 'Temperature in Opaliha: ' + temp + '&deg;C'
+                dom.window.document.body.append(tempString)
 
-                cb(dom.serialize())
+                cb(null, dom.serialize())
             });
         });
     }
