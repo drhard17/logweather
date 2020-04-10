@@ -20,9 +20,10 @@ module.exports = {
                 const temp = getLastTemp(csvData)
                 const dom = new JSDOM(htmlData)
 
-                let tempString = dom.window.document.createElement('h2')
-                tempString.textContent = 'Temperature in Opaliha: ' + temp + '&deg;C'
-                dom.window.document.body.append(tempString)
+                //let tempHeader = dom.window.document.createElement('h2')
+                let tempHeader = dom.window.document.getElementById('tempHeader')
+                tempHeader.innerHTML = 'Temperature in Opaliha: ' + temp + '&deg;C'
+                //dom.window.document.body.querySelector('h1').after(tempHeader)
 
                 cb(null, dom.serialize())
             });
