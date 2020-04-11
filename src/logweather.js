@@ -13,12 +13,11 @@ for (let siteName in config.sitesToPoll) {
 }
 
 //получение html-страницы по url адресу
-function request(opts, cb) {
+function getSiteCode(opts, cb) {
 	const req = https.request(opts, (res) => {
 		if (res.statusCode != 200) {
 			cb({
 				type: 'REQUEST ERROR',
-				url: opts.hostname + opts.path,
 				message: `Recieved status code ${res.statusCode}`
 			});
 			return;
@@ -33,11 +32,10 @@ function request(opts, cb) {
 	});
 
 	req.end();
-	req.on('error', (e) => {
+	req.on('error', (err) => {
 		cb({
 			type: 'REQUEST ERROR',
-			url: opts.hostname + opts.path,
-			message: e.message
+			message: err.message
 		});
 	});
 }
@@ -49,19 +47,21 @@ function request(opts, cb) {
  * @param {(err: Error, data: any) => void} cb
  */
 function getTempFrom(site, cb) {
+	
 	const cbCommonData = {
+		requestTime: new Date(),
 		siteName: site.name,
 		siteOpts: site.opts,
 		siteCode: null,
-		requestTime: new Date(),
 	};
 
-	request(site.opts, (error, siteCode) => {
-		if (error) {
-			cb(error, cbCommonData);
+	getSiteCode(site.opts, (err, siteCode) => {
+		if (err) {
+			cb(err, cbCommonData);
 			return
 		}
-	
+		
+		siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
 		cbCommonData.siteCode = siteCode;
 
 		try {
@@ -71,6 +71,7 @@ function getTempFrom(site, cb) {
 				...cbCommonData,
 			});
 		} catch (err) {
+			err.type = "PARSE ERROR"
 			cb(err, cbCommonData);
 		}
 	});
@@ -83,7 +84,7 @@ function storeSiteData(site, outFunc, err, data) {
 		if (siteCode != null) {
 			output.saveHTML(site.name, siteCode);
 		}
-		errorHandler(err);
+		errorHandler(err, data);
 		return;
 	}
 

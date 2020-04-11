@@ -25,7 +25,17 @@ module.exports =  {
     },
 
     saveHTML: function (name, data) {
-        fs.writeFile(`${name}.html`, data, (err) => {
+		let folder = '../saved-html'
+
+		try {
+		if (!fs.existsSync(folder)){
+			fs.mkdirSync(folder)
+		}
+		} catch (err) {
+			console.error(err)
+		}
+
+        fs.writeFile(`${folder}/${name}.html`, data, (err) => {
             if (err) throw err;
             console.log(`Source page saved to ${name}.html`);
         });
