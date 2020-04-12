@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="./node_modules/chart.js/dist/Chart.js"></script>
-		<link rel="icon" type="image/x-icon" href="./html/favicon.ico" />
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+
+		<!--
+		<script src='./node_modules/chart.js/dist/Chart.js'></script>
+		<script src='./node_modules/moment/moment.js'></script>
+		-->
+
+		<link rel='icon' type='image/x-icon' href='./html/favicon.ico' />
 		<meta charset="utf-8">
 		<title>Logweather</title>
 		<style>
 			body {
 				text-align: center;
 				background-color: black; color: green;
-				margin-top: 20%;
+				margin-top: 0%;
 			}
 			h1 {font-size: 70px}
 			h2 {font-size: 50px}
+			div.chart-container {
+				height:5vh;
+				height: 400px;
+				width:50vw;
+				margin-left: auto;
+				margin-right: auto;
+			}
 		</style>
 	</head>
 	<body>
 		<h1>Hello from Logweather</h1>
-		<h2 id="tempHeader"></h2>
-		<canvas id="myChart" width="400" height="400"></canvas>
+		<h2 id='tempHeader'></h2>
+		<div class='chart-container'>
+			<canvas id="myChart" width="600" height="400">
+				<p>Chart error occured</p>
+			</canvas>
+		</div>
+		
+		<script src='./html/tempchart.js'></script>
 	</body>
 </html>
