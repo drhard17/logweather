@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-
+		<!--
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-
-		<!--
-		<script src='./node_modules/chart.js/dist/Chart.js'></script>
-		<script src='./node_modules/moment/moment.js'></script>
 		-->
+		<script src='./node_modules/moment/moment.js'></script>
+		<script src='./node_modules/chart.js/dist/Chart.js'></script>
 
 		<link rel='icon' type='image/x-icon' href='./html/favicon.ico' />
 		<meta charset="utf-8">
@@ -22,8 +20,6 @@
 			h1 {font-size: 70px}
 			h2 {font-size: 50px}
 			div.chart-container {
-				height:5vh;
-				height: 400px;
 				width:50vw;
 				margin-left: auto;
 				margin-right: auto;
@@ -31,7 +27,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>Hello from Logweather</h1>
+		<h1>Logweather forecast ratings</h1>
 		<h2 id='tempHeader'></h2>
 		<div class='chart-container'>
 			<canvas id="myChart" width="600" height="400">

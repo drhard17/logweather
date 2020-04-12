@@ -61,7 +61,7 @@ function getTempFrom(site, cb) {
 			return
 		}
 		
-		siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
+//		siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
 		cbCommonData.siteCode = siteCode;
 
 		try {

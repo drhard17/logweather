@@ -1,4 +1,4 @@
-var timeFormat = 'MM/DD/YYYY HH:mm';
+var timeFormat = 'DD/MM/YYYY';
 
 function newDate(days) {
     return moment().add(days, 'd').toDate();
@@ -8,94 +8,75 @@ function newDateString(days) {
     return moment('2020-04-06').add(days, 'd').format(timeFormat);
 }
 
-const dataLabels = [0, 1, 2, 3, 4, 5]
-//const dataPoints = [0, 1, 4, 9, 16, 25]
-
-
-const dataPoints = [
-    {
-        x: newDateString(0),
-        y: 4
-    }, {
-        x: newDateString(1),
-        y: 8
-    }, {
-        x: newDateString(2),
-        y: 12
-
-    }, {
-        x: newDateString(3),
-        y: 15
-
-    }, {
-        x: newDateString(4),
-        y: 8
-
-    }, {
-        x: newDateString(5),
-        y: 5
-
-    }
+const dataLabels = [
+    newDateString(0),
+    newDateString(1),
+    newDateString(2),
+    newDateString(3),
+    newDateString(4),
+    newDateString(5),
+    newDateString(6),
 ]
 
-/*
-const dataPoints = [
-    {
-        x: 0,
-        y: 4
-    }, {
-        x: 1,
-        y: 8
-    }, {
-        x: 2,
-        y: 12
-
-    }, {
-        x: 3,
-        y: 15
-
-    }, {
-        x: 4,
-        y: 8
-
-    }, {
-        x: 5,
-        y: 5
-
-    }
-]
-*/
-
+const streetPoints = [4, 8, 12, 15, 8, 5, 6]
+const yandexPoints = [8, 11, 10, 14, 8, 3, 6]
+const gismeteoPoints = [10, 7, 9, 14, 9, 3 ,5]
+const yrnoPoints = [1, 7, 7, 8, 3, 1, 4]
+const accuweatherPoints = [8, 14, 10, 14, 10, 5, 6]
 
 const config = {
     type: 'line',
     data: {
-//        labels: dataLabels,
+        labels: dataLabels,
         datasets: [{
-            label: 'Street t°C',
-            data: dataPoints,
-            borderColor: '#e74c3c',
-            backgroundColor: 'rgba(0, 0, 0, 0)',
+            label: 'Measured',
+            data: streetPoints,
+            borderColor: 'red',
+            backgroundColor: 'red',
             fill: false,
-            cubicInterpolationMode: 'monotone'
-
+            borderWidth: 4
+        }, {
+            label: 'Yandex',
+            data: yandexPoints,
+            borderColor: 'yellow',
+            borderWidth: 2
+        }, {
+            label: 'Gismeteo',
+            data: gismeteoPoints,
+            borderColor: 'purple',
+            borderWidth: 2
+        }, {
+            label: 'Yr.no',
+            data: yrnoPoints,
+            borderColor: 'cyan',
+            borderWidth: 2
+        }, {
+            label: 'Accuweather',
+            data: accuweatherPoints,
+            borderColor: 'orange',
+            borderWidth: 2
         }]
     },
     options: {
-        layout: {        },
+        layout: {
+            padding: {
+                right: 25,
+                left: 25
+            }
+        },
         legend: {
             display: true,
             position: 'top',
             labels: {
-                boxWidth: 60,
-                padding: 5,
+                boxWidth: 50,
+                padding: 10,
                 fontSize: 16
             }
         },
         responsive: true,
         title: {
             display: true,
-            text: 'Test forecast chart',
+            text: '3 days forecast accuracy evaluation for Krasnogorsk',
             fontSize: 30
         },
         tooltips: {
@@ -119,7 +100,7 @@ const config = {
                 scaleLabel: {
                     display: true,
                     labelString: 'Day',
-                    fontSize: 30
+                    fontSize: 24
                 },
                 gridLines: {
                     display: true,
@@ -136,7 +117,7 @@ const config = {
                 scaleLabel: {
                     display: true,
                     labelString: 'Temperature',
-                    fontSize: 30
+                    fontSize: 24
                 },
                 gridLines: {
                     display: true,
@@ -155,10 +136,13 @@ const config = {
 }
 
 
-const ctx = document.getElementById('myChart');
-const myChart = new Chart(ctx, config);
-Chart.defaults.global.defaultFontSize = 16;
+const ctx = document.getElementById('myChart')
+const myChart = new Chart(ctx, config)
 
+Chart.defaults.global.defaultFontSize = 16
+Chart.defaults.global.datasets.fill = false
+Chart.defaults.global.datasets.cubicInterpolationMode = 'monotone'
+Chart.defaults.global.datasets.backgroundColor = 'rgba(0, 0, 0, 0)'
 
 /*
 window.onload = function() {
@@ -178,4 +162,3 @@ Chart.Legend.prototype.afterFit = function() {
     this.height = this.height + 10;
 };
 */
-
