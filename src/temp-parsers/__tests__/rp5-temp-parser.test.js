@@ -5,8 +5,8 @@ describe('rp5-temp-parser', () => {
     let samplePage;
 
     beforeAll(()=>{
-        samplePage = fs.readFileSync(`${__dirname}/RP5t.html`, 'utf-8')
-        samplePageTwo = fs.readFileSync(`${__dirname}/RP5.html`, 'utf-8')
+        samplePage = fs.readFileSync(`${__dirname}/rp5-temp-parser/RP5t.html`, 'utf-8')
+        samplePageTwo = fs.readFileSync(`${__dirname}/rp5-temp-parser/RP5wrong.html`, 'utf-8')
     });
 
     it('should work', () => {
@@ -22,15 +22,15 @@ describe('rp5-temp-parser', () => {
         const result = parser.parseFunc(samplePage)
         expect(result).toHaveLength(7)
     });
-
+ 
     it('should return correct temperatures', () => {
         const result = parser.parseFunc(samplePage)
         expect(result).toEqual([0, 8, 10, 13, 9, 5, 3])
     });
 
-    it('should return correct temperatures', () => {
+    it('should throw an error', () => {
         const result = parser.parseFunc(samplePageTwo)
-        expect(result).toEqual([4, 7, 11, 13, 8, 7])
+        expect(result).toThrow()
     });
 });
 
