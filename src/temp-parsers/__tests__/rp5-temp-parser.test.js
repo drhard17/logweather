@@ -6,7 +6,7 @@ describe('rp5-temp-parser', () => {
 
     beforeAll(()=>{
         samplePage = fs.readFileSync(`${__dirname}/rp5-temp-parser/RP5t.html`, 'utf-8')
-        samplePageTwo = fs.readFileSync(`${__dirname}/rp5-temp-parser/RP5wrong.html`, 'utf-8')
+        wrongPage = fs.readFileSync(`${__dirname}/rp5-temp-parser/RP5wrong.html`, 'utf-8')
     });
 
     it('should work', () => {
@@ -29,8 +29,14 @@ describe('rp5-temp-parser', () => {
     });
 
     it('should throw an error', () => {
-        const result = parser.parseFunc(samplePageTwo)
-        expect(result).toThrow()
+        const foo = function () {
+            try {
+                parser.parseFunc(wrongPage)
+            } catch {
+                throw Error('Parse error')
+            }
+        }
+        expect(foo).toThrow()
     });
 });
 
