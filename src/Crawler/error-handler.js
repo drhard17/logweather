@@ -1,4 +1,3 @@
-const output = require('./output.js')
 const fs = require('fs')
 
 module.exports = {

@@ -3,7 +3,7 @@ const url = require('url')
 const fs = require('fs')
 const path = require('path')
 
-const output = require('./output.js')
+const output = require('./csv-writer.js')
 const htmlFormer = require('./html-former.js')
 
 const config = JSON.parse(fs.readFileSync('./config.json'))

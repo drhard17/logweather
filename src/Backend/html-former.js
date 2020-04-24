@@ -3,7 +3,7 @@ const { JSDOM } = jsdom;
 const fs = require('fs');
 
 const csvFile = '../csv/STREET.csv'
-const htmlFile = './html/index.html'
+const htmlFile = './frontend/index.html'
 
 module.exports = {
     getHTML: function(cb) {

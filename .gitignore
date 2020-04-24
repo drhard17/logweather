@@ -1,5 +1,8 @@
 csv
+error.log
+
+src/.drafts
+src/.vscode
 src/config.json
 src/node_modules
 saved-html
-error.log

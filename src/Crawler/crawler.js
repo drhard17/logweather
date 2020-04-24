@@ -2,7 +2,7 @@
 const https = require('https');
 const fs = require('fs');
 
-const output = require('./output.js')
+const output = require('../backend/csv-writer.js')
 const config = JSON.parse(fs.readFileSync('./config.json'))
 const errorHandler = require('./error-handler').errorHandler
 
