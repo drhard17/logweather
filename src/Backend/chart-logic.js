@@ -4,17 +4,17 @@ const dateFormat = 'YYYY-MM-DD'
 
 module.exports = {
 
- /**
-  * 
-  * @param {{service: String, time: Date, temps: Number[]}[]} data - Temperature data
-  * @param {{firstDay: Date, lastDay: Date, hour: Number, services: {name: String, depth: Number}[]}} tempRequest - request for getting chart data
-  * @returns {{service: string, depth: number, temps: number[]}[]}
-  * 
-  */
+    /**
+     * 
+     * @param {{service: String, time: Date, temps: Number[]}[]} data - Temperature data
+     * @param {{firstDay: Date, lastDay: Date, hour: Number, services: {name: String, depth: Number}[]}} tempRequest - request for getting chart data
+     * @returns {{service: string, depth: number, temps: number[]}[]}
+     * 
+     */
 
-    calculatePoints: function(data, tempRequest) {
+    calculatePoints: function (data, tempRequest) {
         const labels = getDaySequence(tempRequest.firstDay, tempRequest.lastDay)
-        const points =  tempRequest.services.map((service) => {
+        const points = tempRequest.services.map((service) => {
             const req = {
                 firstDay: moment(tempRequest.firstDay).subtract(service.depth, 'd'),
                 lastDay: moment(tempRequest.lastDay).subtract(service.depth, 'd'),
@@ -28,7 +28,10 @@ module.exports = {
                 temps: tempPoints
             }
         })
-        return {labels, points}
+        return {
+            labels,
+            points
+        }
         //return points
     }
 }
@@ -111,4 +114,3 @@ function avgRound(nums) {
 function getCalDate(ISOstring) {
     return moment(ISOstring).format(dateFormat)
 }
-
