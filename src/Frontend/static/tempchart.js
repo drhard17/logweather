@@ -1,9 +1,97 @@
-var timeFormat = 'DD/MM/YYYY';
+function getChartData(tempRequest, cb) {
+    let xhr = new XMLHttpRequest()
+    xhr.open('POST', '/getchartdata')
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType = 'json'
 
-function newDate(days) {
-    return moment().add(days, 'd').toDate();
+    const body = JSON.stringify(tempRequest)
+
+    xhr.send(body)
+    xhr.onload = function() {
+        cb(null, xhr.response)
+    }
+
+    xhr.onerror = function() {
+        cb('XHR error')
+    }
 }
 
+function formDates() {
+    const firstDay = new Date(firstDayInput.value) || new Date('2020-03-30')
+    const lastDay = new Date(lastDayInput.value) || new Date
+    tempRequest.firstDay = firstDay
+    tempRequest.lastDay = lastDay
+    if (chartAdded) {
+        updateChart()
+    }
+}
+
+const firstDayInput = document.getElementById('firstDay')
+const lastDayInput = document.getElementById('lastDay')
+const form = document.getElementById('serviceDepth')
+const addChartButton = document.getElementById('addChart')
+
+let chartAdded = false
+
+let tempRequest = {
+    firstDay: null,
+    lastDay: null,
+    hour: 14,
+    services: []
+}
+
+firstDayInput.oninput = function() {
+    formDates()
+}
+
+lastDayInput.oninput = function() {
+    formDates()
+}
+
+addChartButton.onclick = function() {
+    const service = document.getElementById('serviceSelect').value
+    const depth = parseInt(document.getElementById('depth').value, 10)
+    tempRequest.services.push({name: service, depth: depth})    
+    chartAdded = true
+    updateChart()
+}
+
+function updateChart() {
+    getChartData(tempRequest, (err, res) => {
+        if (err) {
+            alert(err)
+            return
+        }
+        console.log(JSON.stringify(res))
+        renderChart(myChart, res)
+    })
+}
+
+function renderChart(chart, chartData) {
+    config.data.labels = chartData.labels.map(date => moment(date))
+    config.data.datasets = chartData.points.map((chart) => {
+        return {
+            label: `${chart.service} - ${chart.depth}`,
+            data: chart.temps,
+            borderColor: chartColor[chart.service],
+            borderWidth: 2
+        }
+    })
+    chart.update()
+}
+ 
+const chartColor = {
+    STREET: 'red',
+    YANDEX: 'yellow',
+    GISMETEO: 'purple',
+    YRNO: 'cyan',
+    ACCUWEATHER: 'orange',
+    RP5: 'blue',
+    WEATHERCOM: 'brown'
+}
+
+const timeFormat = 'DD/MM/YYYY';
 function newDateString(days) {
     return moment('2020-04-06').add(days, 'd').format(timeFormat);
 }
@@ -23,6 +111,8 @@ const yandexPoints = [8, 11, 10, 14, 8, 3, 6]
 const gismeteoPoints = [10, 7, 9, 14, 9, 3 ,5]
 const yrnoPoints = [1, 7, 7, 8, 3, 1, 4]
 const accuweatherPoints = [8, 14, 10, 14, 10, 5, 6]
+const rp5Points = [NaN, NaN, NaN, NaN, 9, 4, 5]
+const weathercomPoints = [8, 11, 11, 15, 9, 5, 7]
 
 const config = {
     type: 'line',
@@ -54,6 +144,16 @@ const config = {
             label: 'Accuweather',
             data: accuweatherPoints,
             borderColor: 'orange',
+            borderWidth: 2
+        }, {
+            label: 'RP5',
+            data: rp5Points,
+            borderColor: 'blue',
+            borderWidth: 2
+        }, {
+            label: 'weather.com',
+            data: weathercomPoints,
+            borderColor: 'brown',
             borderWidth: 2
         }]
     },
@@ -135,7 +235,6 @@ const config = {
     }
 }
 
-
 const ctx = document.getElementById('myChart')
 const myChart = new Chart(ctx, config)
 
@@ -143,22 +242,3 @@ Chart.defaults.global.defaultFontSize = 16
 Chart.defaults.global.datasets.fill = false
 Chart.defaults.global.datasets.cubicInterpolationMode = 'monotone'
 Chart.defaults.global.datasets.backgroundColor = 'rgba(0, 0, 0, 0)'
-
-/*
-window.onload = function() {
-    const ctx = document.getElementById('myChart').getContext('2d');
-    window.myLine = new Chart(ctx, config);
-    Chart.defaults.global.defaultFontSize = 20;
-
-    Chart.Legend.prototype.afterFit = function() {
-        this.height = this.height + 50;
-    };
-
-};
-*/    
-
-/*
-Chart.Legend.prototype.afterFit = function() {
-    this.height = this.height + 10;
-};
-*/
