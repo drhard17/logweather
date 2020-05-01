@@ -1,3 +1,33 @@
+const firstDayInput = document.getElementById('firstDay')
+const lastDayInput = document.getElementById('lastDay')
+const form = document.getElementById('serviceDepth')
+const addChartButton = document.getElementById('addChart')
+
+let chartAdded = false
+
+let tempRequest = {
+    firstDay: null,
+    lastDay: null,
+    hour: 14,
+    services: []
+}
+
+firstDayInput.oninput = function() {
+    if (chartAdded) {
+        updChartDates()
+    }
+}
+
+lastDayInput.oninput = firstDayInput.oninput
+
+addChartButton.onclick = function() {
+    const service = document.getElementById('serviceSelect').value
+    const depth = parseInt(document.getElementById('depth').value, 10)
+    tempRequest.services.push({name: service, depth: depth})    
+    chartAdded = true
+    updChartDates()
+}
+
 function getChartData(tempRequest, cb) {
     let xhr = new XMLHttpRequest()
     xhr.open('POST', '/getchartdata')
@@ -17,44 +47,19 @@ function getChartData(tempRequest, cb) {
     }
 }
 
-function formDates() {
-    const firstDay = new Date(firstDayInput.value) || new Date('2020-03-30')
-    const lastDay = new Date(lastDayInput.value) || new Date
+function updChartDates() {
+    const firstDay = firstDayInput.value || new Date('2020-03-30')
+    const lastDay = lastDayInput.value || new Date
+
+    firstDayInput.value = moment(firstDay).format('YYYY-MM-DD')
+    lastDayInput.value = moment(lastDay).format('YYYY-MM-DD')
+
     tempRequest.firstDay = firstDay
     tempRequest.lastDay = lastDay
+
     if (chartAdded) {
         updateChart()
     }
-}
-
-const firstDayInput = document.getElementById('firstDay')
-const lastDayInput = document.getElementById('lastDay')
-const form = document.getElementById('serviceDepth')
-const addChartButton = document.getElementById('addChart')
-
-let chartAdded = false
-
-let tempRequest = {
-    firstDay: null,
-    lastDay: null,
-    hour: 14,
-    services: []
-}
-
-firstDayInput.oninput = function() {
-    formDates()
-}
-
-lastDayInput.oninput = function() {
-    formDates()
-}
-
-addChartButton.onclick = function() {
-    const service = document.getElementById('serviceSelect').value
-    const depth = parseInt(document.getElementById('depth').value, 10)
-    tempRequest.services.push({name: service, depth: depth})    
-    chartAdded = true
-    updateChart()
 }
 
 function updateChart() {
@@ -63,7 +68,7 @@ function updateChart() {
             alert(err)
             return
         }
-        console.log(JSON.stringify(res))
+        //console.log(JSON.stringify(res))
         renderChart(myChart, res)
     })
 }
@@ -160,6 +165,7 @@ const config = {
     options: {
         layout: {
             padding: {
+                top: 10,
                 right: 25,
                 left: 25
             }
@@ -175,8 +181,8 @@ const config = {
         },
         responsive: true,
         title: {
-            display: true,
-            text: '3 days forecast accuracy evaluation for Krasnogorsk',
+            display: false,
+            text: 'City: Opaliha',
             fontSize: 30
         },
         tooltips: {
@@ -239,6 +245,7 @@ const ctx = document.getElementById('myChart')
 const myChart = new Chart(ctx, config)
 
 Chart.defaults.global.defaultFontSize = 16
+Chart.defaults.global.defaultFontFamily = 'Mina'
 Chart.defaults.global.datasets.fill = false
 Chart.defaults.global.datasets.cubicInterpolationMode = 'monotone'
 Chart.defaults.global.datasets.backgroundColor = 'rgba(0, 0, 0, 0)'

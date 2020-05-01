@@ -38,7 +38,10 @@ app.engine('html', (filePath, options, cb) => {
         fs.readFile('../csv/STREET.csv', (err, csvData) => {
             if (err) return cb(new Error(err))
 
-            const temp = getLastTempCsv(csvData)
+            let temp = getLastTempCsv(csvData)
+            if (temp > 0) {
+                temp = '+' + temp
+            }
             const rendered = content.toString().replace('#temp#', temp)
             return cb(null, rendered)
         })
