@@ -17,7 +17,7 @@ function getSiteCode(opts, cb) {
 	const req = https.request(opts, (res) => {
 		if (res.statusCode != 200) {
 			cb({
-				type: 'REQUEST ERROR',
+				type: 'REQUEST_ERROR',
 				message: `Recieved status code ${res.statusCode}`
 			});
 			return;
@@ -34,7 +34,7 @@ function getSiteCode(opts, cb) {
 	req.end();
 	req.on('error', (err) => {
 		cb({
-			type: 'REQUEST ERROR',
+			type: 'REQUEST_ERROR',
 			message: err.message
 		});
 	});
@@ -71,7 +71,7 @@ function getTempFrom(site, cb) {
 				...cbCommonData,
 			});
 		} catch (err) {
-			err.type = "PARSE ERROR"
+			err.type = "PARSE_ERROR"
 			cb(err, cbCommonData);
 		}
 	});
