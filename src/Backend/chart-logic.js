@@ -1,14 +1,12 @@
 const moment = require('moment');
 
-const dateFormat = 'YYYY-MM-DD'
-
 module.exports = {
 
     /**
      * 
      * @param {{service: String, time: Date, temps: Number[]}[]} data - Temperature data
      * @param {{firstDay: Date, lastDay: Date, hour: Number, services: {name: String, depth: Number}[]}} tempRequest - request for getting chart data
-     * @returns {{service: string, depth: number, temps: number[]}[]}
+     * @returns {{labels: Date[], points: {service: string, depth: number, temps: number[]}[]}}
      * 
      */
 
@@ -32,7 +30,6 @@ module.exports = {
             labels,
             points
         }
-        //return points
     }
 }
 
@@ -47,6 +44,10 @@ module.exports = {
 
 function extractData(data, service, req, hour) {
     return data
+        .map(record => {
+            record.time = moment(record.time)
+            return record
+        })
         .filter((record) => {
             return record.service === service
         })
@@ -54,13 +55,13 @@ function extractData(data, service, req, hour) {
             return record.time >= req.firstDay && record.time < req.lastDay.endOf('day')
         })
         .filter((record) => {
-            return moment(record.time).hours() === hour
+            return record.time.hours() === hour
         })
 }
 
 /**
  * 
- * @param {[{service: String, time: Date, temps: [Number]}]} data 
+ * @param {{service: String, time: moment, temps: [Number]}[]} data 
  * @param {{firstDay: Date, lastDay: Date, depth: Number}} req
  * 
  */
@@ -70,8 +71,7 @@ function countPoints(data, req) {
     return dates.map((date) => {
         return avgRound(
             data.filter((record) => {
-                //return getCalDate(date) === getCalDate(record.time)
-                return moment(date).startOf('day').isSame(moment(record.time).startOf('day'))
+                return moment(date).startOf('day').isSame(record.time.startOf('day'))
             })
             .map(record => record.temps[req.depth])
         )
@@ -104,13 +104,4 @@ function avgRound(nums) {
     if (!nums.length) return NaN
     const a = nums.reduce((a, b) => (a + b)) / nums.length;
     return Math.round(a)
-}
-
-/**
- * 
- * @param {String} ISOstring - date in ISO format
- */
-
-function getCalDate(ISOstring) {
-    return moment(ISOstring).format(dateFormat)
 }

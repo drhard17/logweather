@@ -2,17 +2,17 @@
 const https = require('https');
 const fs = require('fs');
 
-const output = require('../backend/csv-writer.js')
-const config = JSON.parse(fs.readFileSync('./config.json'))
-const errorHandler = require('./error-handler').errorHandler
+const { TempRecord } = require('../Backend/TempRecord')
+const storage = require('../Backend/csv-storage.js')
+const logger = require('./cr-logger')
 
-//загрузка модулей парсеров
-let sites = []
-for (let siteName in config.sitesToPoll) {
-	sites.push(require(`./temp-parsers/${siteName}-temp-parser`))
-}
 
-//получение html-страницы по url адресу
+/**
+ * Gets webpage HTML code
+ * @param {{hostname: String, path: String, port: Number, headers: String}} opts - common HTTP request options
+ * @param {(err: Error, data: String) => void} cb 
+ */
+
 function getSiteCode(opts, cb) {
 	const req = https.request(opts, (res) => {
 		if (res.statusCode != 200) {
@@ -41,9 +41,9 @@ function getSiteCode(opts, cb) {
 }
 
 /**
- * Функция получения массива температур с сайта site
+ * Gets an array of temperatures from the website
  * 
- * @param {*} site 
+ * @param {{*}} site 
  * @param {(err: Error, data: any) => void} cb
  */
 function getTempFrom(site, cb) {
@@ -61,7 +61,7 @@ function getTempFrom(site, cb) {
 			return
 		}
 		
-//		siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
+		//siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
 		cbCommonData.siteCode = siteCode;
 
 		try {
@@ -77,47 +77,57 @@ function getTempFrom(site, cb) {
 	});
 }
 
-function storeSiteData(site, outFunc, err, data) {
+function storeSiteData(opts, err, data) {
 	const siteCode = data.siteCode;
+	const siteName = data.siteName
+	const reqTime = data.requestTime
+	const temps = data.temps
 			
 	if (err) {
 		if (siteCode != null) {
-			output.saveHTML(site.name, siteCode);
+			logger.storeSiteCode(siteName, reqTime, siteCode);
 		}
-		errorHandler(err, data);
+		logger.logError(err, data);
 		return;
 	}
 
-	if (config.saveHTML && siteCode != null) {
-		output.saveHTML(site.name, siteCode);
+	if (opts.storeSiteCode && siteCode != null) {
+		logger.storeSiteCode(siteName, reqTime, siteCode);
 	}
-
-	outFunc(site.name, data.temps);
+	
+	const tr = new TempRecord(siteName, reqTime, temps)
+	if (!opts.storeTemps) {
+		logger.logSuccess(tr)
+		return	
+	}
+	storage.storeTempRecord(tr)
 }
 
-function poll() {
-	let outFunc = config.toConsoleOnly ? output.toConsole : output.toCSV
+function poll(sites, storingOpts) {
 	for (let site of sites) {
-		if (!config.sitesToPoll[site.name]) {
-			continue;
-		}
-		const storeCurrentSiteData = storeSiteData.bind(null, site, outFunc);
+		const storeCurrentSiteData = storeSiteData.bind(null, storingOpts);
 		getTempFrom(site, storeCurrentSiteData);
 	}
 }
 
-//запуск парсинга по расписанию
 function main() {
+	const config = JSON.parse(fs.readFileSync('./config.json'))
+	const storingOpts = config.storing
+	const sites = Object.keys(config.sitesToPoll)
+		.filter(site => config.sitesToPoll[site])
+		.map(site => require(`./temp-parsers/${site}-temp-parser`))
+
 	if (config.pollOnce) {
-		poll()
+		poll(sites, storingOpts)
 		return
 	}
+
 	let rule = new schedule.RecurrenceRule();
 	rule.minute = config.pollInMinutes //[0, 15, 30, 45]
-	schedule.scheduleJob(rule, function() {
-		poll()
+	schedule.scheduleJob(rule, function () {
+		poll(sites, storingOpts)
 	});
-	console.log('Logweather scheduled service running.')
+	console.log('Logweather crawler running...')
 	console.log('Parse in minutes: ' + rule.minute)
 }
 
