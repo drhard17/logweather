@@ -2,9 +2,9 @@ class TempRecord {
 
     /**
      * 
-     * @param {String} service - name of a forecast service
+     * @param {string} service - name of a forecast service
      * @param {Date} time
-     * @param {Number[]} temps
+     * @param {number[]} temps
      */
 
     constructor(service, time, temps) {
