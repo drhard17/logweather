@@ -5,28 +5,27 @@ const { TempRecord } = require('./TempRecord')
 const csvFolder = '../csv'
 
 function convertRecordToCsv(record) {
-    const time = new Date(record.time)
-    const csvString = time.toISOString() + ',' + record.temps.join() + '\r\n'
-    return {
-        filename: record.service + '.csv',
-        str: csvString
-    }
+    const time = record.time
+    const temps = record.temps
+    return time.toISOString() + ',' + temps.join() + '\r\n'
 }
 
-function storeCsvData(folder, filename, data) {
+function storeCsvData(folder, filename, data, cb) {
     try {
         if (!fs.existsSync(folder)) {
             fs.mkdirSync(folder)
         }
     } catch (err) {
-        console.error(err)
+        cb(err)
+        return
     }
-
     fs.appendFile(`${folder}/${filename}`, data, (err) => {
-        const time = new Date().toLocaleString()
-        const logString = `${time} Added to ${filename}: ${data.slice(0, -2)}`
-        console.log(err || logString);
-    });
+        if (err) {
+            cb(err)
+            return 
+        }
+        cb(null, filename, data)
+    })
 }
 
 function readCsv(folder, filename, cb) {
@@ -100,8 +99,8 @@ function joinFiles(dirname, cb) {
 /**
  * Converts CSV data to array of objects
  * 
- * @param {{filename: String, filedata: String}[]} data 
- * @returns {{service: String, city: String, time: Date, temps: Number[]}[]}
+ * @param {{filename: string, filedata: string}[]} data 
+ * @returns {{service: string, city: string, time: Date, temps: number[]}[]}
  * 
  */
 
@@ -151,8 +150,18 @@ module.exports = {
         if (!(record instanceof TempRecord)) {
             throw new Error('INVALID_TEMP_RECORD_FORMAT')
         }
-        const csvData = convertRecordToCsv(record)
-        storeCsvData(csvFolder, csvData.filename, csvData.str)
+        const csvString = convertRecordToCsv(record)
+        const filename = record.service + '.csv'
+        storeCsvData(csvFolder, filename, csvString, (err, filename, csvString) => {
+            if (err) {
+                console.log(err)
+                return
+            }
+            const time = new Date().toLocaleString()
+            const toGreen = '\x1b[32m', resetColor = '\x1b[0m'
+            console.log(`${time} Added to ${filename}:`)
+            console.log(toGreen, csvString, resetColor)
+        })
     },
 
     getLastRecord: function(serviceName, cb) {
@@ -163,22 +172,11 @@ module.exports = {
             }
             const strings = data.split('\r\n')
             const lastString  = strings[strings.length - 2].split(',')
-    
             const time = new Date(lastString[0])
             const temps = parseInt(lastString.slice(1), 10)
 
             const tr = new TempRecord(serviceName, time, temps)
-
             cb(null, tr)
-
         })
     }
 }
-
-/* 
-if (!module.parent) {
-    const tr = new TempRecord('TEST', 'Krasnogorsk', new Date(), [1, 2, 3])
-    module.exports.storeTempRecord(tr)
-}
-
- */

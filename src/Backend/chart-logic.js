@@ -4,8 +4,8 @@ module.exports = {
 
     /**
      * 
-     * @param {{service: String, time: Date, temps: Number[]}[]} data - Temperature data
-     * @param {{firstDay: Date, lastDay: Date, hour: Number, services: {name: String, depth: Number}[]}} tempRequest - request for getting chart data
+     * @param {{service: string, time: Date, temps: number[]}[]} data - Temperature data
+     * @param {{firstDay: Date, lastDay: Date, hour: number, services: {name: string, depth: number}[]}} tempRequest - request for getting chart data
      * @returns {{labels: Date[], points: {service: string, depth: number, temps: number[]}[]}}
      * 
      */
@@ -61,8 +61,8 @@ function extractData(data, service, req, hour) {
 
 /**
  * 
- * @param {{service: String, time: moment, temps: [Number]}[]} data 
- * @param {{firstDay: Date, lastDay: Date, depth: Number}} req
+ * @param {{service: string, time: moment, temps: number[]]}[]} data 
+ * @param {{firstDay: Date, lastDay: Date, depth: number}} req
  * 
  */
 
@@ -96,8 +96,8 @@ function getDaySequence(firstDay, lastDay) {
 
 /**
  * Counts an average value of a number array and rounds it
- * @param {Number[]} nums 
- * 
+ * @param {number[]} nums 
+ * @returns {number}
  */
 
 function avgRound(nums) {
