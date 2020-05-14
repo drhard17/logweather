@@ -100,7 +100,7 @@ function joinFiles(dirname, cb) {
  * Converts CSV data to array of objects
  * 
  * @param {{filename: string, filedata: string}[]} data 
- * @returns {{service: string, city: string, time: Date, temps: number[]}[]}
+ * @returns {{service: string, time: Date, temps: number[]}[]}
  * 
  */
 
@@ -121,7 +121,6 @@ function convertCsvData(data) {
     return results.map((a) => {
         return {
             service: a[0],
-            city: '',
             time: a[1],
             temps: a.slice(2)
                 .map(i => parseInt(i, 10))

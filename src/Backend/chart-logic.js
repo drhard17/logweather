@@ -18,7 +18,11 @@ module.exports = {
                 lastDay: moment(tempRequest.lastDay).subtract(service.depth, 'd'),
                 depth: service.depth
             }
+
             const tempData = extractData(data, service.name, req, tempRequest.hour)
+
+            console.log(tempData)
+            console.log(req)
             const tempPoints = countPoints(tempData, req)
             return {
                 service: service.name,
@@ -37,7 +41,7 @@ module.exports = {
  * 
  * @param {{service: String, time: Date, temps: Number[]}[]} data - All data from CSV files
  * @param {String} service - forecast service name
- * @param {{firstDay: Date, lastDay: Date, depth: Number}} req 
+ * @param {{firstDay: moment, lastDay: moment, depth: Number}} req 
  * @param {Number} hour 
  * 
  */
@@ -52,10 +56,10 @@ function extractData(data, service, req, hour) {
             return record.service === service
         })
         .filter((record) => {
-            return record.time >= req.firstDay && record.time < req.lastDay.endOf('day')
+            return record.time.isBetween(req.firstDay, req.lastDay.endOf('day'))
         })
         .filter((record) => {
-            return record.time.hours() === hour
+            return moment(record.time).hours() === hour
         })
 }
 
@@ -71,7 +75,7 @@ function countPoints(data, req) {
     return dates.map((date) => {
         return avgRound(
             data.filter((record) => {
-                return moment(date).startOf('day').isSame(record.time.startOf('day'))
+                return moment(date).startOf('day').isSame(moment(record.time).startOf('day'))
             })
             .map(record => record.temps[req.depth])
         )
@@ -105,3 +109,14 @@ function avgRound(nums) {
     const a = nums.reduce((a, b) => (a + b)) / nums.length;
     return Math.round(a)
 }
+
+
+/* function test() {
+    const d = new Date('2020/04/20')
+    const m = moment(d)
+    m.endOf('day')
+    
+    console.log(m.toISOString())
+}
+
+test() */
