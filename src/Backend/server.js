@@ -11,12 +11,18 @@ const config = JSON.parse(fs.readFileSync('./config.json'))
 const hostname = config.webserver.host;
 const port = config.webserver.port;
 
-const storeTemp = function(req, res, next) {
+const storeTemp = function (req, res, next) {
     const temp = req.query.temp
     if (temp) {
-        const tr = new TempRecord('STREET', new Date(), parseInt(temp, 10))
-        storage.storeTempRecord(tr)
-        console.log(`Added temp: ${temp}`)
+
+        try {
+            const tr = new TempRecord('STREET', new Date(), parseInt(temp, 10))
+            storage.storeTempRecord(tr)
+            console.log(`Added temp: ${temp}`)
+        } catch (e) {
+            console.log(`${new Date().toLocaleString()}: ${e.message}`)
+        }
+
     }
     next()
 }
