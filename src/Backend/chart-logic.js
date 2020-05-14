@@ -18,11 +18,7 @@ module.exports = {
                 lastDay: moment(tempRequest.lastDay).subtract(service.depth, 'd'),
                 depth: service.depth
             }
-
             const tempData = extractData(data, service.name, req, tempRequest.hour)
-
-            console.log(tempData)
-            console.log(req)
             const tempPoints = countPoints(tempData, req)
             return {
                 service: service.name,
@@ -109,14 +105,3 @@ function avgRound(nums) {
     const a = nums.reduce((a, b) => (a + b)) / nums.length;
     return Math.round(a)
 }
-
-
-/* function test() {
-    const d = new Date('2020/04/20')
-    const m = moment(d)
-    m.endOf('day')
-    
-    console.log(m.toISOString())
-}
-
-test() */
