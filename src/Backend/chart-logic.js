@@ -48,7 +48,7 @@ function extractData(data, service, req, hour) {
             return record.service === service
         })
         .filter((record) => {
-            return record.time.getHours() === hour
+            return moment(record.time).hours() === hour
         })
         .map(record => {
             record.time = moment(record.time)
