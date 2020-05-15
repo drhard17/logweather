@@ -15,7 +15,7 @@ module.exports = {
         const points = tempRequest.services.map((service) => {
             const req = {
                 firstDay: moment(tempRequest.firstDay).subtract(service.depth, 'd'),
-                lastDay: moment(tempRequest.lastDay).subtract(service.depth, 'd'),
+                lastDay: moment(tempRequest.lastDay).subtract(service.depth, 'd').endOf('day'),
                 depth: service.depth
             }
             const tempData = extractData(data, service.name, req, tempRequest.hour)
@@ -44,18 +44,18 @@ module.exports = {
 
 function extractData(data, service, req, hour) {
     return data
+        .filter((record) => {
+            return record.service === service
+        })
+        .filter((record) => {
+            return record.time.getHours() === hour
+        })
         .map(record => {
             record.time = moment(record.time)
             return record
         })
         .filter((record) => {
-            return record.service === service
-        })
-        .filter((record) => {
-            return record.time.isBetween(req.firstDay, req.lastDay.endOf('day'))
-        })
-        .filter((record) => {
-            return moment(record.time).hours() === hour
+            return record.time.isBetween(req.firstDay, req.lastDay)
         })
 }
 

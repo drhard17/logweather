@@ -121,7 +121,7 @@ function convertCsvData(data) {
     return results.map((a) => {
         return {
             service: a[0],
-            time: a[1],
+            time: new Date(a[1]),
             temps: a.slice(2)
                 .map(i => parseInt(i, 10))
         }
