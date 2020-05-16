@@ -2,12 +2,17 @@ const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
 module.exports = {
+	name: 'RP5',
 	opts: {
 		hostname: 'rp5.ru',
 		path: '/Weather_in_Krasnogorsk',
 		port: 443,
 	},
-	name: 'RP5',
+	
+	setLocation: function (location) {
+		this.opts.path = '/Weather_in_' + location
+	},
+
 	parseFunc: function(page) {
 		const dom = new JSDOM(page);
 		let results = []

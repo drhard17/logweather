@@ -23,6 +23,7 @@ module.exports = {
 
     logSuccess: function(tr) {
         console.log(`Service: ${tr.service}`)
+        console.log(`Location: ${tr.location}`)
         console.log(`Time: ${tr.time.toLocaleString()}`)
         console.log(`Temperatures: ${tr.temps.toString()}`)
         console.log('')

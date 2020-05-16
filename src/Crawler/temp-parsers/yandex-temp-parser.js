@@ -3,12 +3,17 @@ const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
 module.exports = {
+	name: 'YANDEX',
 	opts: {
 		hostname: 'yandex.ru',
 		path: '/pogoda/krasnogorsk/details?via=ms',
 		port: 443,
 	},
-	name: 'YANDEX',
+
+	setLocation: function(location) {
+		this.opts.path = '/pogoda/' + location + '/details?via=ms'
+	},
+
 	parseFunc: function(page) {
 		const dom = new JSDOM(page);
 		let cards = dom.window.document.querySelectorAll('div.card'); //парсим карточки с прогнозами для 10 дней

@@ -7,10 +7,11 @@ class TempRecord {
      * @param {number[]} temps
      */
 
-    constructor(service, time, temps) {
+    constructor(service, location, time, temps) {
         this.service = service
         this.time = time
         this.temps = temps
+        this.location = location
     }
         set temps(value) {
             if (typeof value === 'number' || value === undefined) {

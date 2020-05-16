@@ -46,10 +46,11 @@ function getSiteCode(opts, cb) {
  * @param {{*}} site 
  * @param {(err: Error, data: any) => void} cb
  */
-function getTempFrom(site, cb) {
-	
+function getTempFrom(site, location, cb) {
+	site.setLocation(location)
 	const cbCommonData = {
 		requestTime: new Date(),
+		location,
 		siteName: site.name,
 		siteOpts: site.opts,
 		siteCode: null,
@@ -60,7 +61,6 @@ function getTempFrom(site, cb) {
 			cb(err, cbCommonData);
 			return
 		}
-		
 		//siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
 		cbCommonData.siteCode = siteCode;
 
@@ -82,6 +82,7 @@ function storeSiteData(opts, err, data) {
 	const siteName = data.siteName
 	const reqTime = data.requestTime
 	const temps = data.temps
+	const location = data.location
 			
 	if (err) {
 		if (siteCode != null) {
@@ -95,7 +96,7 @@ function storeSiteData(opts, err, data) {
 		logger.storeSiteCode(siteName, reqTime, siteCode);
 	}
 	
-	const tr = new TempRecord(siteName, reqTime, temps)
+	const tr = new TempRecord(siteName, location, reqTime, temps)
 	if (!opts.storeTemps) {
 		logger.logSuccess(tr)
 		return	
@@ -103,10 +104,12 @@ function storeSiteData(opts, err, data) {
 	storage.storeTempRecord(tr)
 }
 
-function poll(sites, storingOpts) {
+function poll(sites, locations, storingOpts) {
 	for (let site of sites) {
-		const storeCurrentSiteData = storeSiteData.bind(null, storingOpts);
-		getTempFrom(site, storeCurrentSiteData);
+		for (let location of locations[site.name]) {
+			const storeCurrentSiteData = storeSiteData.bind(null, storingOpts);
+			getTempFrom(site, location, storeCurrentSiteData);
+		}
 	}
 }
 
@@ -116,16 +119,18 @@ function main() {
 	const sites = Object.keys(config.sitesToPoll)
 		.filter(site => config.sitesToPoll[site])
 		.map(site => require(`./temp-parsers/${site}-temp-parser`))
+	const locations = {}
+	sites.forEach(site => locations[site.name] = storage.getSiteLocations(site.name))
 
 	if (config.pollOnce) {
-		poll(sites, storingOpts)
+		poll(sites, locations, storingOpts)
 		return
 	}
 
 	let rule = new schedule.RecurrenceRule();
 	rule.minute = config.pollInMinutes //[0, 15, 30, 45]
 	schedule.scheduleJob(rule, function () {
-		poll(sites, storingOpts)
+		poll(sites, locations, storingOpts)
 	});
 	console.log('Logweather crawler running...')
 	console.log('Parse in minutes: ' + rule.minute)

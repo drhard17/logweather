@@ -177,5 +177,11 @@ module.exports = {
             const tr = new TempRecord(serviceName, time, temps)
             cb(null, tr)
         })
+    },
+
+    getSiteLocations: function(site) {
+        const locFilename = `${csvFolder}/locations-${site}-short.txt`
+        const locData = fs.readFileSync(locFilename, 'utf8')
+        return locData.split('\r\n')
     }
 }
