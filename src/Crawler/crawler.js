@@ -10,32 +10,33 @@ const logger = require('./cr-logger')
 /**
  * Gets webpage HTML code
  * @param {{hostname: String, path: String, port: Number, headers: String}} opts - common HTTP request options
- * @param {(err: Error, data: String) => void} cb 
+ * @returns {Promise<string>}
  */
-
-function getSiteCode(opts, cb) {
-	const req = https.request(opts, (res) => {
-		if (res.statusCode != 200) {
-			cb({
-				type: 'REQUEST_ERROR',
-				message: `Recieved status code ${res.statusCode}`
+function getSiteCode(opts) {
+	return new Promise((resolve, reject) => {
+		const req = https.request(opts, (res) => {
+			if (res.statusCode != 200) {
+				reject({
+					type: 'REQUEST_ERROR',
+					message: `Recieved status code ${res.statusCode}`
+				});
+				return;
+			}
+	
+			let rawData = [];
+			res.on('data', (d) => rawData.push(d));
+			res.on('end', () =>	{
+				const siteCode = Buffer.concat(rawData).toString('utf8');
+				resolve(siteCode);
 			});
-			return;
-		}
-
-		let rawData = [];
-		res.on('data', (d) => rawData.push(d));
-		res.on('end', () =>	{
-			const siteCode = Buffer.concat(rawData).toString('utf8');
-			cb(null, siteCode);
 		});
-	});
-
-	req.end();
-	req.on('error', (err) => {
-		cb({
-			type: 'REQUEST_ERROR',
-			message: err.message
+	
+		req.end();
+		req.on('error', (err) => {
+			reject({
+				type: 'REQUEST_ERROR',
+				message: err.message
+			});
 		});
 	});
 }
@@ -56,11 +57,7 @@ function getTempFrom(site, location, cb) {
 		siteCode: null,
 	};
 
-	getSiteCode(site.opts, (err, siteCode) => {
-		if (err) {
-			cb(err, cbCommonData);
-			return
-		}
+	getSiteCode(site.opts).then((siteCode) => {
 		//siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
 		cbCommonData.siteCode = siteCode;
 
@@ -74,6 +71,8 @@ function getTempFrom(site, location, cb) {
 			err.type = "PARSE_ERROR"
 			cb(err, cbCommonData);
 		}
+	}, (err) => {
+		cb(err, cbCommonData);
 	});
 }
 
