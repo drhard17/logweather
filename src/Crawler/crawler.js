@@ -1,5 +1,6 @@
 ﻿const schedule = require('node-schedule');
 const https = require('https');
+const http = require('http');
 const fs = require('fs');
 
 const { TempRecord } = require('../Backend/TempRecord')
@@ -14,7 +15,9 @@ const logger = require('./cr-logger')
  */
 
 function getSiteCode(opts, cb) {
-	const req = https.request(opts, (res) => {
+	let proto
+	opts.port === 80 ? proto = http : proto = https
+	const req = proto.request(opts, (res) => {
 		if (res.statusCode != 200) {
 			cb({
 				type: 'REQUEST_ERROR',
@@ -134,3 +137,6 @@ function main() {
 if (!module.parent) {
 	main();
 }
+
+
+// require('needle').get('www.meteorf.ru/product/weather/3420/', console.log)

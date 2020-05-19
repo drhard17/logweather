@@ -1,40 +1,33 @@
-const { JSDOM } = require('jsdom');
+const {	JSDOM } = require('jsdom');
 
 module.exports = {
-	opts: {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-		},
-		hostname: 'meteoinfo.ru',
-		path: '/hmc-output/forecast/tab_1.php',
-		port: 443,
-		body: "lang=ru-RU&id_city=1641&has_db=1",
-	},
 	name: 'GIDROMET',
-	parseFunc: function(page) {
-		const dom = new JSDOM(page);
-		let results = []
-		return Array.from(
-			dom.window.document.querySelectorAll(".hidden-desktop tr")
+	opts: {
+		hostname: 'www.meteorf.ru',
+		path: '/product/weather/3420/',
+		port: 80,
+	},
+
+	parseFunc: function (page) {
+		const doc = new JSDOM(page).window.document;
+
+		const currentTemp = doc.querySelector('div.weather-info')
+			.querySelector('div.big')
+			.innerHTML
+
+		const tempStrings = Array.from(
+			doc.querySelector('table.weather-data')
+			.querySelector('tbody')
+			.querySelectorAll('tr')
 		)
-		.filter(tr => !tr.querySelector("td:nth-child(1)[rowspan]"))
-		.map(tr => {
-			const str = tr.querySelector(".fc_temp_short").textContent;
-			const temps = module.exports.extractTemps(str);
-			return module.exports.avg(temps);
-		});
-	},
-	extractTemps: function(str) {
-		const rx = /[-+]?\d+/g;
-		const temps = [];
-		let rxRes;
-		while (rxRes = rx.exec(str)) {
-			temps.push(Number(rxRes[0]))
-		}
-		return temps;
-	},
-	avg: function(numbers) {
-		return numbers.reduce((a, x) => a + x, 0) / numbers.length;
-	},
-};
+
+		const temps = tempStrings.filter((item, index) => index % 2 === 1)
+			.map(tr => tr.querySelector('div.temp')
+				.querySelector('div.big')
+				.innerHTML
+			)
+	
+		temps.unshift(currentTemp)
+		return temps.map(temp => parseInt(temp, 10))
+	}
+}
