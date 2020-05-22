@@ -6,7 +6,6 @@ const { TempRecord } = require('../Backend/TempRecord')
 const storage = require('../Backend/csv-storage.js')
 const logger = require('./cr-logger')
 
-
 /**
  * Gets webpage HTML code
  * @param {{hostname: String, path: String, port: Number, headers: String}} opts - common HTTP request options
@@ -47,9 +46,10 @@ function getSiteCode(opts) {
  * @param {{*}} site 
  * @param {(err: Error, data: any) => void} cb
  */
-function getTempFrom(site, location, cb) {
+function getTempFrom(site, location) {
+	
 	site.setLocation(location)
-	const cbCommonData = {
+	const commonData = {
 		requestTime: new Date(),
 		location,
 		siteName: site.name,
@@ -57,31 +57,28 @@ function getTempFrom(site, location, cb) {
 		siteCode: null,
 	};
 
-	getSiteCode(site.opts).then((siteCode) => {
-		//siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
-		cbCommonData.siteCode = siteCode;
-
-		try {
-  		    const temps = site.parseFunc(siteCode)
-		    cb(null, {
-				temps,
-				...cbCommonData,
-			});
-		} catch (err) {
-			err.type = "PARSE_ERROR"
-			cb(err, cbCommonData);
-		}
-	}, (err) => {
-		cb(err, cbCommonData);
-	});
-}
-
-function storeSiteData(opts, err, data) {
+	return new Promise((resolve, reject) => {			
+		getSiteCode(site.opts)
+			.then((siteCode) => {
+				// siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
+				commonData.siteCode = siteCode;
+				const temps = site.parseFunc(siteCode)
+				resolve({temps, ...commonData})
+			})
+			.catch(err => {
+				if (commonData.siteCode) err.type = "PARSE_ERROR"
+				reject({err, ...commonData})
+			})
+		})
+	}
+	
+function storeSiteData(opts, data) {
 	const siteCode = data.siteCode;
 	const siteName = data.siteName
 	const reqTime = data.requestTime
 	const temps = data.temps
 	const location = data.location
+	const err = data.err
 			
 	if (err) {
 		if (siteCode != null) {
@@ -107,7 +104,9 @@ function poll(sites, locations, storingOpts) {
 	for (let site of sites) {
 		for (let location of locations[site.name]) {
 			const storeCurrentSiteData = storeSiteData.bind(null, storingOpts);
-			getTempFrom(site, location, storeCurrentSiteData);
+			getTempFrom(site, location)
+				.then(storeCurrentSiteData)
+				.catch(storeCurrentSiteData)
 		}
 	}
 }
@@ -137,4 +136,18 @@ function main() {
 
 if (!module.parent) {
 	main();
+
 }
+
+/*  
+function quickTest() {
+	const RP5 = require(`./temp-parsers/rp5-temp-parser`)
+	const config = JSON.parse(fs.readFileSync('./config.json'))
+	const storingOpts = config.storing
+	getTempFrom(RP5, 'Moscow,_Russia')
+		.then(data => storeSiteData(storingOpts, data))
+		.catch(err => storeSiteData(storingOpts, err))
+}
+quickTest()
+
+ */
