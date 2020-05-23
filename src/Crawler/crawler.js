@@ -11,34 +11,31 @@ const logger = require('./cr-logger')
  * @param {{hostname: String, path: String, port: Number, headers: String}} opts - common HTTP request options
  * @returns {Promise<string>}
  */
-function getSiteCode(opts) {
-	return new Promise((resolve, reject) => {
-		const req = https.request(opts, (res) => {
-			if (res.statusCode != 200) {
-				reject({
-					type: 'REQUEST_ERROR',
-					message: `Recieved status code ${res.statusCode}`
-				});
-				return;
-			}
-	
-			let rawData = [];
-			res.on('data', (d) => rawData.push(d));
-			res.on('end', () =>	{
-				const siteCode = Buffer.concat(rawData).toString('utf8');
-				resolve(siteCode);
-			});
-		});
-	
-		req.end();
-		req.on('error', (err) => {
-			reject({
+const getSiteCode = (opts) => new Promise((resolve, reject) => {
+	const req = https.request(opts, (res) => {
+		if (res.statusCode != 200) {
+			return reject({
 				type: 'REQUEST_ERROR',
-				message: err.message
+				message: `Recieved status code ${res.statusCode}`
 			});
+		}
+
+		let rawData = [];
+		res.on('data', (d) => rawData.push(d));
+		res.on('end', () =>	{
+			const siteCode = Buffer.concat(rawData).toString('utf8');
+			resolve(siteCode);
 		});
 	});
-}
+
+	req.end();
+	req.on('error', (err) => {
+		reject({
+			type: 'REQUEST_ERROR',
+			message: err.message
+		});
+	});
+});
 
 /**
  * Gets an array of temperatures from the website
@@ -57,20 +54,18 @@ function getTempFrom(site, location) {
 		siteCode: null,
 	};
 
-	return new Promise((resolve, reject) => {			
-		getSiteCode(site.opts)
-			.then((siteCode) => {
-				// siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
-				commonData.siteCode = siteCode;
-				const temps = site.parseFunc(siteCode)
-				resolve({temps, ...commonData})
-			})
-			.catch(err => {
-				if (commonData.siteCode) err.type = "PARSE_ERROR"
-				reject({err, ...commonData})
-			})
+	return getSiteCode(site.opts)
+		.then((siteCode) => {
+			// siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
+			commonData.siteCode = siteCode;
+			const temps = site.parseFunc(siteCode)
+			return {temps, ...commonData};
 		})
-	}
+		.catch(err => {
+			if (commonData.siteCode) err.type = "PARSE_ERROR"
+			throw {err, ...commonData};
+		})
+}
 	
 function storeSiteData(opts, data) {
 	const siteCode = data.siteCode;
