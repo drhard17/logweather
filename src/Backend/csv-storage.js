@@ -179,9 +179,10 @@ module.exports = {
         })
     },
 
-    getSiteLocations: function(site) {
-        const locFilename = `${csvFolder}/locations-${site}-short.txt`
+    getSiteLocations: function(site, locLimit) {
+        if (!locLimit) locLimit = undefined
+        const locFilename = `${csvFolder}/locations-${site}.txt`
         const locData = fs.readFileSync(locFilename, 'utf8')
-        return locData.split('\r\n')
+        return locData.split('\r\n').slice(0, locLimit)
     }
 }

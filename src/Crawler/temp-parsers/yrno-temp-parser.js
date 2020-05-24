@@ -1,11 +1,16 @@
 const { JSDOM } = require('jsdom');
 module.exports = {
+	name: 'YRNO',
 	opts: {
 		hostname: 'www.yr.no',
 		path: '/place/Russia/Moscow_oblast/Krasnogorsk/long.html',
 		port: 443,
 	},
-	name: 'YRNO',
+	
+	setLocation: function (location) {
+		this.opts.path = location
+	},
+
 	parseFunc: function(page) {
 		const dom = new JSDOM(page);
 		let results = []

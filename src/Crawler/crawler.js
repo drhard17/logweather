@@ -116,11 +116,15 @@ function poll(sites, locations, storingOpts) {
 function main() {
 	const config = JSON.parse(fs.readFileSync('./config.json'))
 	const storingOpts = config.storing
+	const locLimit = config.locLimit
 	const sites = Object.keys(config.sitesToPoll)
 		.filter(site => config.sitesToPoll[site])
 		.map(site => require(`./temp-parsers/${site}-temp-parser`))
+	
 	const locations = {}
-	sites.forEach(site => locations[site.name] = storage.getSiteLocations(site.name))
+	sites.forEach(site => locations[site.name] = storage.getSiteLocations(site.name, locLimit))
+	console.log(locations.toString())
+
 
 	if (config.pollOnce) {
 		poll(sites, locations, storingOpts)
