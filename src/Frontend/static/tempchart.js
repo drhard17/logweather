@@ -93,7 +93,8 @@ const chartColor = {
     YRNO: 'cyan',
     ACCUWEATHER: 'orange',
     RP5: 'blue',
-    WEATHERCOM: 'brown'
+    WEATHERCOM: 'brown',
+    GIDROMET: 'gray'
 }
 
 const timeFormat = 'DD/MM/YYYY';

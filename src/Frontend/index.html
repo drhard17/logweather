@@ -76,6 +76,11 @@
 				margin-left: auto;
 				margin-right: auto;
 			}
+			.header-container a {
+				display: block;
+				height: 100%;
+				color: green
+			}
 /* 			.input {
 				background-color: #666;
 				border-color: #666;
@@ -85,8 +90,10 @@
 	</head>
 	<body>
 		<div class="header-container">
-			<h1>Logweather</h1>
-			<h4>forecast ratings</h4>
+			<a href="http://logweather.ru">
+				<h1>Logweather</h1>
+				<h4>forecast ratings</h4>
+			</a>
 		</div>
 
 		<h2 id="tempHeader">City: Opaliha, now #temp#&deg;C</h2>
@@ -107,6 +114,7 @@
 					<option value="YANDEX">Yandex</option>
 					<option value="GISMETEO">Gismeteo</option>
 					<option value="RP5">RP5</option>
+					<option value="GIDROMET">Rosgidromet</option>
 					<option value="ACCUWEATHER">Accuweather</option>
 					<option value="WEATHERCOM">Weather.com</option>
 					<option value="YRNO">Yr.no</option>
