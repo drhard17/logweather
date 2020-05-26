@@ -1,11 +1,11 @@
 const { JSDOM } = require('jsdom');
 module.exports = {
+	name: 'YRNO',
 	opts: {
 		hostname: 'www.yr.no',
 		path: '/place/Russia/Moscow_oblast/Krasnogorsk/long.html',
 		port: 443,
 	},
-	name: 'YRNO',
 	parseFunc: function(page) {
 		const dom = new JSDOM(page);
 		let results = []
@@ -15,6 +15,7 @@ module.exports = {
 		for (let temp of temps) {
 			results.push(parseInt(temp.innerHTML, 10))
 		}
+		results.unshift(NaN)
 		return results;
 	}
 };
