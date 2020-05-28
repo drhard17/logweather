@@ -43,7 +43,7 @@ const getSiteCode = (opts) => new Promise((resolve, reject) => {
  * @param {{*}} site 
  * @param {(err: Error, data: any) => void} cb
  */
-function getTempFrom(site, location) {
+async function getTempFrom(site, location) {
 	
 	site.setLocation(location)
 	const commonData = {
@@ -54,17 +54,17 @@ function getTempFrom(site, location) {
 		siteCode: null,
 	};
 
-	return getSiteCode(site.opts)
-		.then((siteCode) => {
-			// siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
-			commonData.siteCode = siteCode;
-			const temps = site.parseFunc(siteCode)
-			return {temps, ...commonData};
-		})
-		.catch(err => {
-			if (commonData.siteCode) err.type = "PARSE_ERROR"
-			throw {err, ...commonData};
-		})
+	try {
+		const siteCode = await getSiteCode(site.opts)
+		// const siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
+		commonData.siteCode = siteCode
+		const temps = site.parseFunc(siteCode)
+		return {temps, ...commonData};
+	} catch (err) {
+		if (commonData.siteCode) err.type = "PARSE_ERROR"
+		throw {err, ...commonData};
+	}
+
 }
 	
 function storeSiteData(opts, data) {
@@ -73,15 +73,6 @@ function storeSiteData(opts, data) {
 	const reqTime = data.requestTime
 	const temps = data.temps
 	const location = data.location
-	const err = data.err
-			
-	if (err) {
-		if (siteCode != null) {
-			logger.storeSiteCode(siteName, reqTime, siteCode);
-		}
-		logger.logError(err, data);
-		return;
-	}
 
 	if (opts.storeSiteCode && siteCode != null) {
 		logger.storeSiteCode(siteName, reqTime, siteCode);
@@ -95,13 +86,27 @@ function storeSiteData(opts, data) {
 	storage.storeTempRecord(tr)
 }
 
-function poll(sites, locations, storingOpts) {
+function errorHandler(data) {
+	const siteCode = data.siteCode;
+	const siteName = data.siteName
+	const reqTime = data.requestTime
+	const err = data.err
+
+	if (siteCode != null) {
+		logger.storeSiteCode(siteName, reqTime, siteCode);
+	}
+	logger.logError(err, data);
+}
+
+async function poll(sites, locations, storingOpts) {
 	for (let site of sites) {
 		for (let location of locations[site.name]) {
-			const storeCurrentSiteData = storeSiteData.bind(null, storingOpts);
-			getTempFrom(site, location)
-				.then(storeCurrentSiteData)
-				.catch(storeCurrentSiteData)
+			try {
+				const siteData = await getTempFrom(site, location)
+				storeSiteData(storingOpts, siteData)
+			} catch (err) {
+				errorHandler(err)
+			}
 		}
 	}
 }
@@ -134,15 +139,19 @@ if (!module.parent) {
 
 }
 
-/*  
-function quickTest() {
+ /* 
+async function quickTest() {
 	const RP5 = require(`./temp-parsers/rp5-temp-parser`)
 	const config = JSON.parse(fs.readFileSync('./config.json'))
 	const storingOpts = config.storing
-	getTempFrom(RP5, 'Moscow,_Russia')
-		.then(data => storeSiteData(storingOpts, data))
-		.catch(err => storeSiteData(storingOpts, err))
+	try {
+		const siteData = await getTempFrom(RP5, 'Moscow,_Russia')
+		storeSiteData(storingOpts, siteData)
+	} catch (err) {
+		errorHandler(err)
+	}
 }
+
 quickTest()
 
  */
