@@ -6,39 +6,36 @@ const { TempRecord } = require('../Backend/TempRecord')
 const storage = require('../Backend/csv-storage.js')
 const logger = require('./cr-logger')
 
-
 /**
  * Gets webpage HTML code
  * @param {{hostname: String, path: String, port: Number, headers: String}} opts - common HTTP request options
- * @param {(err: Error, data: String) => void} cb 
+ * @returns {Promise<string>}
  */
-
-function getSiteCode(opts, cb) {
+const getSiteCode = (opts) => new Promise((resolve, reject) => {
 	const req = https.request(opts, (res) => {
 		if (res.statusCode != 200) {
-			cb({
+			return reject({
 				type: 'REQUEST_ERROR',
 				message: `Recieved status code ${res.statusCode}`
 			});
-			return;
 		}
 
 		let rawData = [];
 		res.on('data', (d) => rawData.push(d));
 		res.on('end', () =>	{
 			const siteCode = Buffer.concat(rawData).toString('utf8');
-			cb(null, siteCode);
+			resolve(siteCode);
 		});
 	});
 
 	req.end();
 	req.on('error', (err) => {
-		cb({
+		reject({
 			type: 'REQUEST_ERROR',
 			message: err.message
 		});
 	});
-}
+});
 
 /**
  * Gets an array of temperatures from the website
@@ -46,9 +43,10 @@ function getSiteCode(opts, cb) {
  * @param {{*}} site 
  * @param {(err: Error, data: any) => void} cb
  */
-function getTempFrom(site, location, cb) {
+async function getTempFrom(site, location) {
+	
 	site.setLocation(location)
-	const cbCommonData = {
+	const commonData = {
 		requestTime: new Date(),
 		location,
 		siteName: site.name,
@@ -56,41 +54,25 @@ function getTempFrom(site, location, cb) {
 		siteCode: null,
 	};
 
-	getSiteCode(site.opts, (err, siteCode) => {
-		if (err) {
-			cb(err, cbCommonData);
-			return
-		}
-		//siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
-		cbCommonData.siteCode = siteCode;
+	try {
+		const siteCode = await getSiteCode(site.opts)
+		// const siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
+		commonData.siteCode = siteCode
+		const temps = site.parseFunc(siteCode)
+		return {temps, ...commonData};
+	} catch (err) {
+		if (commonData.siteCode) err.type = "PARSE_ERROR"
+		throw {err, ...commonData};
+	}
 
-		try {
-  		    const temps = site.parseFunc(siteCode)
-		    cb(null, {
-				temps,
-				...cbCommonData,
-			});
-		} catch (err) {
-			err.type = "PARSE_ERROR"
-			cb(err, cbCommonData);
-		}
-	});
 }
-
-function storeSiteData(opts, err, data) {
+	
+function storeSiteData(opts, data) {
 	const siteCode = data.siteCode;
 	const siteName = data.siteName
 	const reqTime = data.requestTime
 	const temps = data.temps
 	const location = data.location
-			
-	if (err) {
-		if (siteCode != null) {
-			logger.storeSiteCode(siteName, reqTime, siteCode);
-		}
-		logger.logError(err, data);
-		return;
-	}
 
 	if (opts.storeSiteCode && siteCode != null) {
 		logger.storeSiteCode(siteName, reqTime, siteCode);
@@ -104,11 +86,27 @@ function storeSiteData(opts, err, data) {
 	storage.storeTempRecord(tr)
 }
 
-function poll(sites, locations, storingOpts) {
+function errorHandler(data) {
+	const siteCode = data.siteCode;
+	const siteName = data.siteName
+	const reqTime = data.requestTime
+	const err = data.err
+
+	if (siteCode != null) {
+		logger.storeSiteCode(siteName, reqTime, siteCode);
+	}
+	logger.logError(err, data);
+}
+
+async function poll(sites, locations, storingOpts) {
 	for (let site of sites) {
 		for (let location of locations[site.name]) {
-			const storeCurrentSiteData = storeSiteData.bind(null, storingOpts);
-			getTempFrom(site, location, storeCurrentSiteData);
+			try {
+				const siteData = await getTempFrom(site, location)
+				storeSiteData(storingOpts, siteData)
+			} catch (err) {
+				errorHandler(err)
+			}
 		}
 	}
 }
@@ -142,4 +140,22 @@ function main() {
 
 if (!module.parent) {
 	main();
+
 }
+
+ /* 
+async function quickTest() {
+	const RP5 = require(`./temp-parsers/rp5-temp-parser`)
+	const config = JSON.parse(fs.readFileSync('./config.json'))
+	const storingOpts = config.storing
+	try {
+		const siteData = await getTempFrom(RP5, 'Moscow,_Russia')
+		storeSiteData(storingOpts, siteData)
+	} catch (err) {
+		errorHandler(err)
+	}
+}
+
+quickTest()
+
+ */
