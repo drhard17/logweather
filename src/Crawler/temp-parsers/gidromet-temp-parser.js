@@ -1,4 +1,5 @@
 const {	JSDOM } = require('jsdom');
+const moment = require('moment')
 
 module.exports = {
 	name: 'GIDROMET',
@@ -9,25 +10,55 @@ module.exports = {
 	},
 
 	parseFunc: function (page) {
-		const doc = new JSDOM(page).window.document;
 
-		const currentTemp = doc.querySelector('div.weather-info')
+		const document = new JSDOM(page).window.document;
+		const today = moment().startOf('d')
+
+		const currentTemp = document
+			.querySelector('div.weather-info')
 			.querySelector('div.big')
-			.innerHTML
-
+			.innerHTML	 
+/* 		
+		let currentTemp
+		const todayOnSite = moment(document
+				.querySelector('div.weather-info > div.weather-img > strong')
+				.innerHTML
+				.match(/\d{1,2}\.\d{2}\.\d{4}/)[0]
+			, 'D.MM.YYYY')
+		
+		if (today.isSame(todayOnSite)) {
+			currentTemp = document.querySelector('div.weather-info')
+			.querySelector('div.big')
+			.innerHTML	
+		} else {
+			currentTemp = NaN
+		}
+ */		
 		const tempStrings = Array.from(
-			doc.querySelector('table.weather-data')
+			document.querySelector('table.weather-data')
 			.querySelector('tbody')
 			.querySelectorAll('tr')
 		)
 
+		const days = tempStrings.filter((item, index) => index % 2 === 0)
+			.map(tr => parseInt(
+					tr.querySelector('div.date > strong > span')
+					.innerHTML
+			, 10))
 		const temps = tempStrings.filter((item, index) => index % 2 === 1)
 			.map(tr => tr.querySelector('div.temp')
 				.querySelector('div.big')
 				.innerHTML
 			)
-	
-		temps.unshift(currentTemp)
-		return temps.map(temp => parseInt(temp, 10))
+		const tempDays = temps.map((temp, i) => {
+			return {temp, day: days[i]}
+		})
+
+		const result = tempDays
+			.filter(tempDay => tempDay.day > today.date())
+			.map(tempDay => tempDay.temp)
+		result.unshift(currentTemp)
+
+		return result.map(temp => parseInt(temp, 10))
 	}
 }
