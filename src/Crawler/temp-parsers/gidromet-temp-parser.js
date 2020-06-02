@@ -1,40 +1,64 @@
-const { JSDOM } = require('jsdom');
+const {	JSDOM } = require('jsdom');
+const moment = require('moment')
 
 module.exports = {
-	opts: {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-		},
-		hostname: 'meteoinfo.ru',
-		path: '/hmc-output/forecast/tab_1.php',
-		port: 443,
-		body: "lang=ru-RU&id_city=1641&has_db=1",
-	},
 	name: 'GIDROMET',
-	parseFunc: function(page) {
-		const dom = new JSDOM(page);
-		let results = []
-		return Array.from(
-			dom.window.document.querySelectorAll(".hidden-desktop tr")
-		)
-		.filter(tr => !tr.querySelector("td:nth-child(1)[rowspan]"))
-		.map(tr => {
-			const str = tr.querySelector(".fc_temp_short").textContent;
-			const temps = module.exports.extractTemps(str);
-			return module.exports.avg(temps);
-		});
+	opts: {
+		hostname: 'www.meteorf.ru',
+		path: '/product/weather/3420/',
+		port: 80,
 	},
-	extractTemps: function(str) {
-		const rx = /[-+]?\d+/g;
-		const temps = [];
-		let rxRes;
-		while (rxRes = rx.exec(str)) {
-			temps.push(Number(rxRes[0]))
+
+	parseFunc: function (page) {
+
+		const document = new JSDOM(page).window.document;
+		const today = moment().startOf('d')
+
+		const currentTemp = document
+			.querySelector('div.weather-info')
+			.querySelector('div.big')
+			.innerHTML	 
+/* 		
+		let currentTemp
+		const todayOnSite = moment(document
+				.querySelector('div.weather-info > div.weather-img > strong')
+				.innerHTML
+				.match(/\d{1,2}\.\d{2}\.\d{4}/)[0]
+			, 'D.MM.YYYY')
+		
+		if (today.isSame(todayOnSite)) {
+			currentTemp = document.querySelector('div.weather-info')
+			.querySelector('div.big')
+			.innerHTML	
+		} else {
+			currentTemp = NaN
 		}
-		return temps;
-	},
-	avg: function(numbers) {
-		return numbers.reduce((a, x) => a + x, 0) / numbers.length;
-	},
-};
+ */		
+		const tempStrings = Array.from(
+			document.querySelector('table.weather-data')
+			.querySelector('tbody')
+			.querySelectorAll('tr')
+		)
+
+		const days = tempStrings.filter((item, index) => index % 2 === 0)
+			.map(tr => parseInt(
+					tr.querySelector('div.date > strong > span')
+					.innerHTML
+			, 10))
+		const temps = tempStrings.filter((item, index) => index % 2 === 1)
+			.map(tr => tr.querySelector('div.temp')
+				.querySelector('div.big')
+				.innerHTML
+			)
+		const tempDays = temps.map((temp, i) => {
+			return {temp, day: days[i]}
+		})
+
+		const result = tempDays
+			.filter(tempDay => tempDay.day > today.date())
+			.map(tempDay => tempDay.temp)
+		result.unshift(currentTemp)
+
+		return result.map(temp => parseInt(temp, 10))
+	}
+}
