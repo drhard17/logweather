@@ -31,7 +31,7 @@ app.engine('html', (filePath, options, cb) => {
     fs.readFile(filePath, (err, content) => {
         if (err) return cb(new Error(err))
 
-        storage.getLastRecord('STREET', (err, data) => {
+        storage.getLastRecord('STREET', 101, (err, data) => {
             if (err) return cb(new Error(err))
 
             let temp = data.temps[0]
