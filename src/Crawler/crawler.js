@@ -1,5 +1,6 @@
 ﻿const schedule = require('node-schedule');
 const https = require('https');
+const http = require('http');
 const fs = require('fs');
 
 const { TempRecord } = require('../Backend/TempRecord')
@@ -12,7 +13,9 @@ const logger = require('./cr-logger')
  * @returns {Promise<string>}
  */
 const getSiteCode = (opts) => new Promise((resolve, reject) => {
-	const req = https.request(opts, (res) => {
+	let proto
+	opts.port === 80 ? proto = http : proto = https
+	const req = proto.request(opts, (res) => {
 		if (res.statusCode != 200) {
 			return reject({
 				type: 'REQUEST_ERROR',
@@ -44,15 +47,15 @@ const getSiteCode = (opts) => new Promise((resolve, reject) => {
  * @param {(err: Error, data: any) => void} cb
  */
 async function getTempFrom(site, location) {
-	
-	site.setLocation(location)
 	const commonData = {
 		requestTime: new Date(),
-		location,
+		location: location,
 		siteName: site.name,
 		siteOpts: site.opts,
 		siteCode: null,
 	};
+	const locPath = location[site.name + 'path']
+	site.opts.path = locPath
 
 	try {
 		const siteCode = await getSiteCode(site.opts)
@@ -64,7 +67,6 @@ async function getTempFrom(site, location) {
 		if (commonData.siteCode) err.type = "PARSE_ERROR"
 		throw {err, ...commonData};
 	}
-
 }
 	
 function storeSiteData(opts, data) {
@@ -72,15 +74,16 @@ function storeSiteData(opts, data) {
 	const siteName = data.siteName
 	const reqTime = data.requestTime
 	const temps = data.temps
-	const location = data.location
-
+	const locId = data.location.locId
+	const locName = data.location.name
+	
 	if (opts.storeSiteCode && siteCode != null) {
 		logger.storeSiteCode(siteName, reqTime, siteCode);
 	}
 	
-	const tr = new TempRecord(siteName, location, reqTime, temps)
+	const tr = new TempRecord(siteName, locId, reqTime, temps)
 	if (!opts.storeTemps) {
-		logger.logSuccess(tr)
+		logger.logSuccess(tr, locName)
 		return	
 	}
 	storage.storeTempRecord(tr)
@@ -100,7 +103,8 @@ function errorHandler(data) {
 
 async function poll(sites, locations, storingOpts) {
 	for (let site of sites) {
-		for (let location of locations[site.name]) {
+		for (let location of locations) {
+			if (!location[site.name + 'path']) {continue}
 			try {
 				const siteData = await getTempFrom(site, location)
 				storeSiteData(storingOpts, siteData)
@@ -118,11 +122,7 @@ function main() {
 	const sites = Object.keys(config.sitesToPoll)
 		.filter(site => config.sitesToPoll[site])
 		.map(site => require(`./temp-parsers/${site}-temp-parser`))
-	
-	const locations = {}
-	sites.forEach(site => locations[site.name] = storage.getSiteLocations(site.name, locLimit))
-	console.log(locations.toString())
-
+	const locations = storage.getAllLocations(locLimit)
 
 	if (config.pollOnce) {
 		poll(sites, locations, storingOpts)
@@ -142,20 +142,3 @@ if (!module.parent) {
 	main();
 
 }
-
- /* 
-async function quickTest() {
-	const RP5 = require(`./temp-parsers/rp5-temp-parser`)
-	const config = JSON.parse(fs.readFileSync('./config.json'))
-	const storingOpts = config.storing
-	try {
-		const siteData = await getTempFrom(RP5, 'Moscow,_Russia')
-		storeSiteData(storingOpts, siteData)
-	} catch (err) {
-		errorHandler(err)
-	}
-}
-
-quickTest()
-
- */

@@ -12,6 +12,7 @@
     0, 15, 30, 45
   ],
   "pollOnce": 1,
+  "locLimit": 1,
 
   "storing": {
     "storeTemps": 1,
