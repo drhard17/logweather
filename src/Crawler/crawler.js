@@ -102,8 +102,8 @@ function errorHandler(data) {
 }
 
 async function poll(sites, locations, storingOpts) {
-	for (let site of sites) {
-		for (let location of locations) {
+	for (let location of locations) {
+		for (let site of sites) {
 			if (!location[site.name + 'path']) {continue}
 			try {
 				const siteData = await getTempFrom(site, location)
