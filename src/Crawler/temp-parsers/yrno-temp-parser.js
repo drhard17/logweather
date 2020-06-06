@@ -16,6 +16,7 @@ module.exports = {
 	
 		const trs = Array.from(document.querySelectorAll('#detaljert > tbody > tr'))
 		const blocks = array.chunk(trs, 4)
+		array.remove(blocks, block => block.length < 3)
 
 		const tempsDates = blocks.map(block => {
 			const day = moment(
