@@ -9,7 +9,7 @@ const logger = require('./cr-logger')
 
 /**
  * Gets webpage HTML code
- * @param {{hostname: String, path: String, port: Number, headers: String}} opts - common HTTP request options
+ * @param {{hostname: string, path: string, port: number, headers: string}} opts - common HTTP request options
  * @returns {Promise<string>}
  */
 const getSiteCode = (opts) => new Promise((resolve, reject) => {
@@ -43,8 +43,9 @@ const getSiteCode = (opts) => new Promise((resolve, reject) => {
 /**
  * Gets an array of temperatures from the website
  * 
- * @param {{*}} site 
- * @param {(err: Error, data: any) => void} cb
+ * @param {{name: string, opts: {hostname: string, path: string, port: number, headers: string}, parseFunc: function}} site 
+ * @param {Object} location
+ * @returns {Promise<{temps: number[], requestTime: Date, siteName: string, siteOpts: {}, siteCode: string}>}
  */
 async function getTempFrom(site, location) {
 	const commonData = {
@@ -54,18 +55,18 @@ async function getTempFrom(site, location) {
 		siteOpts: site.opts,
 		siteCode: null,
 	};
-	const locPath = location[site.name + 'path']
-	site.opts.path = locPath
+
+	site.opts.path = location.path[site.name]
 
 	try {
 		const siteCode = await getSiteCode(site.opts)
-		// const siteCode = fs.readFileSync('../saved-html/RP5wrong.html')
+		// const siteCode = fs.readFileSync('../saved-html/GIDROMET_wrong.html')
 		commonData.siteCode = siteCode
 		const temps = site.parseFunc(siteCode)
 		return {temps, ...commonData};
 	} catch (err) {
 		if (commonData.siteCode) err.type = "PARSE_ERROR"
-		throw {err, ...commonData};
+		return {err, ...commonData};
 	}
 }
 	
@@ -103,15 +104,16 @@ function errorHandler(data) {
 
 async function poll(sites, locations, storingOpts) {
 	for (let location of locations) {
+		const promises = []
 		for (let site of sites) {
-			if (!location[site.name + 'path']) {continue}
-			try {
-				const siteData = await getTempFrom(site, location)
-				storeSiteData(storingOpts, siteData)
-			} catch (err) {
-				errorHandler(err)
-			}
+			if (!location.path[site.name]) {continue}
+			promises.push(getTempFrom(site, location))
 		}
+		const allSiteData = await Promise.all(promises)
+		allSiteData.forEach(siteData => {
+			if (siteData.err) {return errorHandler(siteData)}
+			storeSiteData(storingOpts, siteData)
+		})
 	}
 }
 
@@ -119,6 +121,7 @@ function main() {
 	const config = JSON.parse(fs.readFileSync('./config.json'))
 	const storingOpts = config.storing
 	const locLimit = config.locLimit
+	
 	const sites = Object.keys(config.sitesToPoll)
 		.filter(site => config.sitesToPoll[site])
 		.map(site => require(`./temp-parsers/${site}-temp-parser`))
@@ -129,7 +132,7 @@ function main() {
 		return
 	}
 
-	let rule = new schedule.RecurrenceRule();
+	const rule = new schedule.RecurrenceRule();
 	rule.minute = config.pollInMinutes //[0, 15, 30, 45]
 	schedule.scheduleJob(rule, function () {
 		poll(sites, locations, storingOpts)
@@ -140,5 +143,4 @@ function main() {
 
 if (!module.parent) {
 	main();
-
 }

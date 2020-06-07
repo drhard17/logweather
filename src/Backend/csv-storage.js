@@ -192,16 +192,9 @@ module.exports = {
     },
 /**
  * 
- * @param {string} site - service name
  * @param {number} locLimit - limit of locations to parse temperatures from 
  * @returns {string[]} - urls for locations
  */
-    getSiteLocations: function(site, locLimit) {
-        if (!locLimit) locLimit = undefined
-        const locFilename = `${csvFolder}/locations/locations-${site}.txt`
-        const locData = fs.readFileSync(locFilename, 'utf8')
-        return locData.split('\r\n').slice(0, locLimit)
-    },
 
     getAllLocations: function(locLimit) {
         if (!locLimit) locLimit = undefined
@@ -212,11 +205,15 @@ module.exports = {
         const locData = data.slice(0, locLimit)
         return locData.map(string => {
             const values = string.split(';')
-            let location = {}
-            for (let i = 0; i < headers.length; i++) {
-                location[headers[i]] = values[i]
+            let locations = {}
+            locations.path = {}
+            for (let i = 0; i < 3; i++) {
+                locations[headers[i]] = values[i]
             }
-            return location
+            for (let i = 3; i < headers.length; i++) {
+                locations.path[headers[i].slice(0, -4)] = values[i]
+            }
+            return locations
         })
     }
 }
