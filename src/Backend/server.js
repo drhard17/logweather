@@ -14,7 +14,7 @@ const port = config.webserver.port;
 const storeTemp = function(req, res, next) {
     const temp = req.query.temp
     if (temp) {
-        const tr = new TempRecord('STREET', new Date(), parseInt(temp, 10))
+        const tr = new TempRecord('STREET', 101, new Date(), parseInt(temp, 10))
         storage.storeTempRecord(tr)
         console.log(`Added temp: ${temp}`)
     }

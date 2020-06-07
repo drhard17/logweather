@@ -19,7 +19,7 @@ module.exports = {
             console.log('Service:', toGreen, cbData.siteName, resetColor)
             console.log('Location:', toGreen, `${location.locId} - ${location.name}`, resetColor);
             console.log('Time:', toGreen, date, resetColor)
-            console.log('URL:', toGreen, `${cbData.siteOpts.hostname}${location[cbData.siteName + 'path']}`, resetColor)
+            console.log('URL:', toGreen, `${cbData.siteOpts.hostname}${location.path[cbData.siteName]}`, resetColor)
         });
     }, 
 
