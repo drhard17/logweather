@@ -13,11 +13,19 @@ module.exports = {
 
 		const document = new JSDOM(page).window.document;
 		const today = moment().startOf('d')
-
-		const currentTemp = document
-			.querySelector('div.weather-info')
-			.querySelector('div.big')
-			.innerHTML	 
+		let currentTemp
+		try {
+			currentTemp = document
+				.querySelector('div.weather-info')
+				.querySelector('div.big')
+				.innerHTML
+		} catch (error) {
+			currentTemp = document
+				.querySelector('#weatherContainer')
+				.querySelector('span.temperature')
+				.innerHTML
+		}
+	 
 /* 		
 		let currentTemp
 		const todayOnSite = moment(document
