@@ -5,7 +5,7 @@ module.exports = {
     /**
      * 
      * @param {{service: string, time: Date, temps: number[]}[]} data - Temperature data
-     * @param {{firstDay: Date, lastDay: Date, hour: number, services: {name: string, depth: number}[]}} tempRequest - request for getting chart data
+     * @param {{firstDay: Date, lastDay: Date, hour: number, services: {name: string, depth: number}[], locId: number}} tempRequest - request for getting chart data
      * @returns {{labels: Date[], points: {service: string, depth: number, temps: number[]}[]}}
      * 
      */
@@ -18,7 +18,7 @@ module.exports = {
                 lastDay: moment(tempRequest.lastDay).subtract(service.depth, 'd').endOf('day'),
                 depth: service.depth
             }
-            const tempData = extractData(data, service.name, req, tempRequest.hour)
+            const tempData = extractData(data, service.name, req, tempRequest.hour, tempRequest.locId)
             const tempPoints = countPoints(tempData, req)
             return {
                 service: service.name,
@@ -42,10 +42,13 @@ module.exports = {
  * 
  */
 
-function extractData(data, service, req, hour) {
+function extractData(data, service, req, hour, locId) {
     return data
         .filter((record) => {
             return record.service === service
+        })
+        .filter((record) => {
+            return record.locId === locId
         })
         .filter((record) => {
             return moment(record.time).hours() === hour

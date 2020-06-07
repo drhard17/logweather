@@ -3,12 +3,14 @@ class TempRecord {
     /**
      * 
      * @param {string} service - name of a forecast service
-     * @param {Date} time
-     * @param {number[]} temps
+     * @param {Date} time - time of the request
+     * @param {number[]} temps - parsed temps from the service
+     * @param {number} locId - location Id
      */
 
-    constructor(service, time, temps) {
+    constructor(service, locId, time, temps) {
         this.service = service
+        this.locId = locId
         this.time = time
         this.temps = temps
     }

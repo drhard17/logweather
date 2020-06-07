@@ -9,7 +9,8 @@ let tempRequest = {
     firstDay: null,
     lastDay: null,
     hour: 14,
-    services: []
+    services: [],
+    locId: 101
 }
 
 firstDayInput.oninput = function() {

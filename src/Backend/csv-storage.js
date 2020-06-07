@@ -6,8 +6,9 @@ const csvFolder = '../csv'
 
 function convertRecordToCsv(record) {
     const time = record.time
+    const locId = record.locId
     const temps = record.temps
-    return time.toISOString() + ',' + temps.join() + '\r\n'
+    return time.toISOString() + ',' + locId + ',' + temps.join() + '\r\n'
 }
 
 function storeCsvData(folder, filename, data, cb) {
@@ -100,7 +101,7 @@ function joinFiles(dirname, cb) {
  * Converts CSV data to array of objects
  * 
  * @param {{filename: string, filedata: string}[]} data 
- * @returns {{service: string, time: Date, temps: number[]}[]}
+ * @returns {{service: string, locId: number, time: Date, temps: number[]}[]}
  * 
  */
 
@@ -122,7 +123,8 @@ function convertCsvData(data) {
         return {
             service: a[0],
             time: new Date(a[1]),
-            temps: a.slice(2)
+            locId: parseInt(a[2], 10),
+            temps: a.slice(3)
                 .map(i => parseInt(i, 10))
         }
     })
@@ -163,19 +165,55 @@ module.exports = {
         })
     },
 
-    getLastRecord: function(serviceName, cb) {
+    getLastRecord: function(serviceName, locId, cb) {
         readCsv(csvFolder, serviceName, (err, data) => {
             if (err) {
                 cb(err)
                 return
             }
             const strings = data.split('\r\n')
-            const lastString  = strings[strings.length - 2].split(',')
-            const time = new Date(lastString[0])
-            const temps = parseInt(lastString.slice(1), 10)
+            if (strings[strings.length - 1] === '') strings.pop()
 
-            const tr = new TempRecord(serviceName, time, temps)
+            strings.reverse()
+            const lastString = strings
+                .find(string => {
+                    return parseInt(
+                        string.split(',')[1]
+                    , 10) === locId
+                })
+                .split(',')
+
+            const time = new Date(lastString[0])
+            const temps = parseInt(lastString.slice(2)[0], 10)
+
+            const tr = new TempRecord(serviceName, locId, time, temps)
             cb(null, tr)
+        })
+    },
+/**
+ * 
+ * @param {number} locLimit - limit of locations to parse temperatures from 
+ * @returns {string[]} - urls for locations
+ */
+
+    getAllLocations: function(locLimit) {
+        if (!locLimit) locLimit = undefined
+        const locFilename = `${csvFolder}/locations/locations.csv`
+        const data = fs.readFileSync(locFilename, 'utf8').slice(1).split('\r\n')
+        if (data[data.length - 1] === '\r\n') {data.pop()}
+        const headers = data.shift().split(';')
+        const locData = data.slice(0, locLimit)
+        return locData.map(string => {
+            const values = string.split(';')
+            let locations = {}
+            locations.path = {}
+            for (let i = 0; i < 3; i++) {
+                locations[headers[i]] = values[i]
+            }
+            for (let i = 3; i < headers.length; i++) {
+                locations.path[headers[i].slice(0, -4)] = values[i]
+            }
+            return locations
         })
     }
 }
