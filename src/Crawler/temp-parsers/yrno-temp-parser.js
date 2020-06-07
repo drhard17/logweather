@@ -1,4 +1,7 @@
 const { JSDOM } = require('jsdom');
+const moment = require('moment')
+const array = require('lodash/array');
+
 module.exports = {
 	name: 'YRNO',
 	opts: {
@@ -6,20 +9,34 @@ module.exports = {
 		path: '/place/Russia/Moscow_oblast/Krasnogorsk/long.html',
 		port: 443,
 	},
-	
-	setLocation: function (location) {
-		this.opts.path = location
-	},
-
 	parseFunc: function(page) {
-		const dom = new JSDOM(page);
-		let results = []
-		let temps = dom.window.document
-			.querySelector('div.yr-content-longterm > table > tbody > tr:nth-child(2)')
-			.querySelectorAll('td')
-		for (let temp of temps) {
-			results.push(parseInt(temp.innerHTML, 10))
-		}
-		return results;
+		const dateFormat = 'DD/MM/YYYY'
+		const today = moment().startOf('d')
+		const document = new JSDOM(page).window.document
+	
+		const trs = Array.from(document.querySelectorAll('#detaljert > tbody > tr'))
+		const blocks = array.chunk(trs, 4)
+		array.remove(blocks, block => block.length < 3)
+
+		const tempsDates = blocks.map(block => {
+			const day = moment(
+				block[0]
+					.querySelector('th')
+					.innerHTML
+			 , dateFormat)
+			const temp = parseInt(
+				block[2]
+					.querySelectorAll('td')[2]
+					.innerHTML
+			, 10)
+			return {day, temp}
+		})
+
+		const results = tempsDates
+			.filter(rec => rec.day.isAfter(today))
+			.map(rec => rec.temp)
+
+		results.unshift(NaN)
+		return results
 	}
 };

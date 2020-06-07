@@ -40,12 +40,12 @@ module.exports = {
 			.querySelectorAll('tr')
 		)
 
-		const days = tempStrings.filter((item, index) => index % 2 === 0)
+		const days = tempStrings.filter(str => str.getAttribute('class') === 'border-top')
 			.map(tr => parseInt(
 					tr.querySelector('div.date > strong > span')
 					.innerHTML
 			, 10))
-		const temps = tempStrings.filter((item, index) => index % 2 === 1)
+		const temps = tempStrings.filter(str => str.getAttribute('class') !== 'border-top')
 			.map(tr => tr.querySelector('div.temp')
 				.querySelector('div.big')
 				.innerHTML
