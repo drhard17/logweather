@@ -38,7 +38,14 @@ app.engine('html', (filePath, options, cb) => {
             if (temp > 0) {
                 temp = '+' + temp
             }
-            const rendered = content.toString().replace('#temp#', temp)
+            const locations = storage.getAllLocations(0)
+                const locOptions = locations.map(location => {
+                return `<option value=${location.locId}>${location.name}</option>`
+            }).join('\r\n')
+                
+            const rendered = content.toString()
+                .replace('#temp#', temp)
+                .replace('#locations#', locOptions)
             return cb(null, rendered)
         })
     })

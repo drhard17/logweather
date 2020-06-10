@@ -81,11 +81,6 @@
 				height: 100%;
 				color: green
 			}
-/* 			.input {
-				background-color: #666;
-				border-color: #666;
-				text-align: center;
-			} */
 		</style>
 	</head>
 	<body>
@@ -96,7 +91,7 @@
 			</a>
 		</div>
 
-		<h2 id="tempHeader">City: Opaliha, now #temp#&deg;C</h2>
+		<h2 id="tempHeader">City: <span>Opaliha</span>, now #temp#&deg;C</h2>
 		
 		<div class="chartDataInput">
 			<form id="dates">
@@ -107,6 +102,11 @@
 			</form>
 	
 			<form id="serviceDepth">
+				<label for="citySelect">City</label>
+				<select name="city" id="citySelect">
+					<option disabled>Select city</option>
+					#locations#
+				</select>
 				<label for="serviceSelect">Service and depth</label>
 				<select name="service" size="1" id="serviceSelect" class="input">
 					<option disabled>Select service</option>

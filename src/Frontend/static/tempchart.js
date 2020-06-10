@@ -2,15 +2,37 @@ const firstDayInput = document.getElementById('firstDay')
 const lastDayInput = document.getElementById('lastDay')
 const form = document.getElementById('serviceDepth')
 const addChartButton = document.getElementById('addChart')
+const locSelect = document.getElementById('citySelect')
+const depthSelect = document.getElementById('depth')
+const serviceSelect = document.getElementById('serviceSelect')
 
 let chartAdded = false
 
-let tempRequest = {
+const maxDepth = {
+    ACCUWEATHER: 20,
+    GIDROMET: 6,
+    GISMETEO: 9,
+    RP5: 5,
+    WEATHERCOM: 14,
+    YANDEX: 9,
+    YRNO: 8,
+    STREET: 0
+}
+
+const tempRequest = {
     firstDay: null,
     lastDay: null,
     hour: 14,
     services: [],
     locId: 101
+}
+
+locSelect.onchange = function() {
+    const locId = parseInt(this.value, 10)
+    tempRequest.locId = locId
+    const locName = document.querySelector(`option[value="${locId}"]`).innerHTML
+    document.querySelector('#tempHeader > span').innerHTML = locName
+    removeData(myChart)
 }
 
 firstDayInput.oninput = function() {
@@ -22,11 +44,25 @@ firstDayInput.oninput = function() {
 lastDayInput.oninput = firstDayInput.oninput
 
 addChartButton.onclick = function() {
-    const service = document.getElementById('serviceSelect').value
-    const depth = parseInt(document.getElementById('depth').value, 10)
+    const service = serviceSelect.value
+    const depth = parseInt(depthSelect.value, 10)
     tempRequest.services.push({name: service, depth: depth})    
     chartAdded = true
     updChartDates()
+}
+
+serviceSelect.onchange = function() {
+    const serviceMaxDepth = maxDepth[serviceSelect.value]
+    const depthElements = formDepthOptions(serviceMaxDepth)
+    depthSelect.innerHTML = depthElements
+}
+
+function formDepthOptions(maxDepth) {
+    const result = []
+    for (let i = 0; i<=maxDepth; i++) {
+        result.push(`<option value="${i}">${i}</option>`)
+    }
+    return result.join('\r\n')
 }
 
 function getChartData(tempRequest, cb) {
@@ -65,16 +101,12 @@ function updChartDates() {
 
 function updateChart() {
     getChartData(tempRequest, (err, res) => {
-        if (err) {
-            alert(err)
-            return
-        }
-        //console.log(JSON.stringify(res))
+        if (err) return alert(err)
         renderChart(myChart, res)
     })
 }
 
-function renderChart(chart, chartData) {
+function renderChart(myChart, chartData) {
     config.data.labels = chartData.labels.map(date => moment(date))
     config.data.datasets = chartData.points.map((chart) => {
         return {
@@ -84,9 +116,14 @@ function renderChart(chart, chartData) {
             borderWidth: 2
         }
     })
-    chart.update()
+    myChart.update()
 }
- 
+
+function removeData(myChart) {
+    config.data.datasets = []
+    myChart.update();
+}
+
 const chartColor = {
     STREET: 'red',
     YANDEX: 'yellow',
