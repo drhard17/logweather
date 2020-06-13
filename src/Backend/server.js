@@ -73,6 +73,19 @@ app.post('/getchartdata', (req, res) => {
     })
 })
 
+app.post('/getlasttemp', (req, res) => {
+    console.log(`XHR recieved: ${req.xhr}`)
+    res.type('json')
+    storage.getLastRecord(req.body.service, req.body.locId, (err, data) => {
+        if (err) return cb(new Error(err))
+        let temp = data.temps[0]
+        if (temp > 0) {
+            temp = '+' + temp
+        }
+        res.send(JSON.stringify({temp}))
+    })
+})
+
 app.get('/', (req, res) => {
     res.render('index')
 });

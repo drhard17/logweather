@@ -200,7 +200,7 @@ module.exports = {
         if (!locLimit) locLimit = undefined
         const locFilename = `${csvFolder}/locations/locations.csv`
         const data = fs.readFileSync(locFilename, 'utf8').slice(1).split('\r\n')
-        if (data[data.length - 1] === '\r\n') {data.pop()}
+        if (data[data.length - 1] === '') {data.pop()}
         const headers = data.shift().split(';')
         const locData = data.slice(0, locLimit)
         return locData.map(string => {

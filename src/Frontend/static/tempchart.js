@@ -31,8 +31,14 @@ locSelect.onchange = function() {
     const locId = parseInt(this.value, 10)
     tempRequest.locId = locId
     const locName = document.querySelector(`option[value="${locId}"]`).innerHTML
-    document.querySelector('#tempHeader > span').innerHTML = locName
-    removeData(myChart)
+    document.querySelector('#sCity').innerHTML = locName
+
+    getLastTemp('YANDEX', locId, (err, res) => {
+        if (err) return alert(err)    
+        const temp = res.temp
+        document.querySelector('#sTemp').innerHTML = temp
+        removeData(myChart)
+    })
 }
 
 firstDayInput.oninput = function() {
@@ -73,6 +79,28 @@ function getChartData(tempRequest, cb) {
     xhr.responseType = 'json'
 
     const body = JSON.stringify(tempRequest)
+
+    xhr.send(body)
+    xhr.onload = function() {
+        cb(null, xhr.response)
+    }
+
+    xhr.onerror = function() {
+        cb('XHR error')
+    }
+}
+
+function getLastTemp(service, locId, cb) {
+    const xhr = new XMLHttpRequest()
+
+    xhr.open('POST', '/getlasttemp')
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType = 'json'
+
+    const reqBody = {service, locId}
+
+    const body = JSON.stringify(reqBody)
 
     xhr.send(body)
     xhr.onload = function() {
