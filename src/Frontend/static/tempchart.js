@@ -31,12 +31,12 @@ locSelect.onchange = function() {
     const locId = parseInt(this.value, 10)
     tempRequest.locId = locId
     const locName = document.querySelector(`option[value="${locId}"]`).innerHTML
-    document.querySelector('#sCity').innerHTML = locName
 
     getLastTemp('YANDEX', locId, (err, res) => {
         if (err) return alert(err)    
         const temp = res.temp
         document.querySelector('#sTemp').innerHTML = temp
+        document.querySelector('#sCity').innerHTML = locName
         removeData(myChart)
     })
 }
@@ -135,7 +135,7 @@ function updateChart() {
 }
 
 function renderChart(myChart, chartData) {
-    config.data.labels = chartData.labels.map(date => moment(date))
+    config.data.labels = chartData.labels.map(date => moment(date).format(timeFormat))
     config.data.datasets = chartData.points.map((chart) => {
         return {
             label: `${chart.service} - ${chart.depth}`,
