@@ -43,23 +43,15 @@ module.exports = {
  */
 
 function extractData(data, service, req, hour, locId) {
-    return data
-        .filter((record) => {
-            return record.service === service
-        })
-        .filter((record) => {
-            return record.locId === locId
-        })
-        .filter((record) => {
-            return moment(record.time).hours() === hour
-        })
-        .map(record => {
-            record.time = moment(record.time)
-            return record
-        })
-        .filter((record) => {
-            return record.time.isBetween(req.firstDay, req.lastDay)
-        })
+    data.filter((record) => {
+        if (record.service === service && record.locId === locId) {
+            const momentTime = moment(record.time);
+            return momentTime.hours() === hour
+                && momentTime.isBetween(req.firstDay, req.lastDay)
+        } else {
+            return false;
+        }
+    })
 }
 
 /**
