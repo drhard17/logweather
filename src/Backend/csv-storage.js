@@ -165,6 +165,33 @@ module.exports = {
         })
     },
 
+    /**
+     * 
+     * @param {TempRecord[]} records 
+     */
+    storeTempRecords: function(records) {
+        if (records.some(rec => !(rec instanceof TempRecord))) {
+            throw new Error('INVALID_TEMP_RECORD_FORMAT')
+        }
+        const services = new Set(records.map(rec => rec.service))
+        for (const service of services) {
+            const csvStrings = records
+                .filter(rec = rec.service === service)
+                .map(rec => convertRecordToCsv(rec)) 
+            const filename = record.service + '.csv'
+            storeCsvData(csvFolder, filename, csvString, (err, filename, csvString) => {
+                if (err) {
+                    console.log(err)
+                    return
+                }
+                const time = new Date().toLocaleString()
+                const toGreen = '\x1b[32m', resetColor = '\x1b[0m'
+                console.log(`${time} Added to ${filename}:`)
+                console.log(toGreen, csvStrings, resetColor)
+            })
+        }
+    },
+
     getLastRecord: function(serviceName, locId, cb) {
         readCsv(csvFolder, serviceName, (err, data) => {
             if (err) {
