@@ -1,6 +1,7 @@
 .devnotes
 .vscode
 csv
+db
 error.log
 src/.drafts
 src/.vscode

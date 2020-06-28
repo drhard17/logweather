@@ -233,10 +233,10 @@ module.exports = {
         return locData.map(string => {
             const values = string.split(';')
             let locations = {}
-            locations.path = {}
             for (let i = 0; i < 3; i++) {
                 locations[headers[i]] = values[i]
             }
+            locations.path = {}
             for (let i = 3; i < headers.length; i++) {
                 locations.path[headers[i].slice(0, -4)] = values[i]
             }

@@ -1,0 +1,1275 @@
+[{
+    "id": "101",
+    "name": "Krasnogorsk",
+    "nameRus": "Красногорск",
+    "routes": {
+        "YANDEX": "/pogoda/krasnogorsk/details?via=ms'",
+        "GISMETEO": "/weather-krasnogorsk-11442/10-days/",
+        "RP5": "/Weather_in_Krasnogorsk",
+        "ACCUWEATHER": "/ru/ru/krasnogorsk/289248/daily-weather-forecast/289248",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/5dee46352b93411b346eb161aaf601f33320283181d1f8aa42afe10f700e00ff",
+        "YRNO": "/sted/Russland/Moskva_fylke/Krasnogorsk/long.html",
+        "GIDROMET": "/product/weather/3420/"
+    }
+}, {
+    "id": "102",
+    "name": "Moscow",
+    "nameRus": "Москва",
+    "routes": {
+        "YANDEX": "/pogoda/moscow/details?via=ms'",
+        "GISMETEO": "/weather-moscow-4368/10-days/",
+        "RP5": "/Weather_in_Moscow,_Russia",
+        "ACCUWEATHER": "/ru/ru/moscow/294021/daily-weather-forecast/294021",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/34f2aafc84cff75ae0b014754856ea5e7f8ddf618cf9735549dfb5e016c28e10",
+        "YRNO": "/sted/Russland/Moskva/Moskva/long.html",
+        "GIDROMET": "/product/weather/3202/"
+    }
+}, {
+    "id": "103",
+    "name": "Tula",
+    "nameRus": "Тула",
+    "routes": {
+        "YANDEX": "/pogoda/tula/details?via=ms'",
+        "GISMETEO": "/weather-tula-4392/10-days/",
+        "RP5": "/Weather_in_Tula",
+        "ACCUWEATHER": "/ru/ru/tula/295982/daily-weather-forecast/295982",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/e3bbb4aea3f8752822b4d8ea5f4e48178b130e522bf11d1a678ec1ecd3469f22",
+        "YRNO": "/sted/Russland/Tula/Tula/long.html",
+        "GIDROMET": "/product/weather/2533/"
+    }
+}, {
+    "id": "104",
+    "name": "Vladimir",
+    "nameRus": "Владимир",
+    "routes": {
+        "YANDEX": "/pogoda/vladimir/details?via=ms'",
+        "GISMETEO": "/weather-vladimir-4350/10-days/",
+        "RP5": "/Weather_in_Vladimir",
+        "ACCUWEATHER": "/ru/ru/vladimir/296263/daily-weather-forecast/296263",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/58ae9f331c92cf35402755c680dc7cf6e18095d0127d3592c56b91b438241825",
+        "YRNO": "/sted/Russland/Vladimir/Vladimir/long.html",
+        "GIDROMET": "/product/weather/2433/"
+    }
+}, {
+    "id": "105",
+    "name": "Zelenokumsk",
+    "nameRus": "Зеленокумск",
+    "routes": {
+        "YANDEX": "/pogoda/zelenokumsk/details?via=ms'",
+        "GISMETEO": "/weather-zelenokumsk-5228/10-days/",
+        "RP5": "/Weather_in_Zelenokumsk",
+        "ACCUWEATHER": "",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/246104afdf0a7a08b9c9f6ffbd23d515969340d8423f564c354c123e49e96c2b",
+        "YRNO": "/sted/Russland/Stavropol/Zelenokumsk/long.html",
+        "GIDROMET": "/product/weather/2310/"
+    }
+}, {
+    "id": "106",
+    "name": "San-Francisco",
+    "nameRus": "Сан-Франциско",
+    "routes": {
+        "YANDEX": "/pogoda/san-francisco/details?via=ms'",
+        "GISMETEO": "/weather-san-francisco-7188/10-days/",
+        "RP5": "/Weather_in_San_Francisco",
+        "ACCUWEATHER": "/ru/ru/san-francisco/347629/daily-weather-forecast/347629",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/69bedc6a5b6e977993fb3e5344e3c06d8bc36a1fb6754c3ddfb5310a3c6d6c87",
+        "YRNO": "/sted/United_States/California/San_Francisco/long.html",
+        "GIDROMET": "/product/weather/43399/"
+    }
+}, {
+    "id": "107",
+    "name": "Berlin",
+    "nameRus": "Берлин",
+    "routes": {
+        "YANDEX": "/pogoda/berlin/details?via=ms'",
+        "GISMETEO": "/weather-berlin-2391/10-days/",
+        "RP5": "/Weather_in_Berlin,_Germany",
+        "ACCUWEATHER": "/ru/ru/berlin/178087/daily-weather-forecast/178087",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/5ca23443513a0fdc1d37ae2ffaf5586162c6fe592a66acc9320a0d0536be1bb9",
+        "YRNO": "/sted/Tyskland/Berlin/Berlin/long.html",
+        "GIDROMET": "/product/weather/25656/"
+    }
+}, {
+    "id": "108",
+    "name": "Turku",
+    "nameRus": "Турку",
+    "routes": {
+        "YANDEX": "/pogoda/turku/details?via=ms'",
+        "GISMETEO": "/weather-turku-478/10-days/",
+        "RP5": "/Weather_in_Turku_(airport)",
+        "ACCUWEATHER": "/ru/ru/turku/134768/daily-weather-forecast/134768",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/b8d129d3c188c52cec397e5597fe24040140a2a318fb4180f7503c1c9ad72f70",
+        "YRNO": "/sted/Finland/Västra_Finland/Åbo/long.html",
+        "GIDROMET": "/product/weather/4519/"
+    }
+}, {
+    "id": "109",
+    "name": "Helsinki",
+    "nameRus": "Хелсинки",
+    "routes": {
+        "YANDEX": "/pogoda/helsinki/details?via=ms'",
+        "GISMETEO": "/weather-helsinki-479/10-days/",
+        "RP5": "/Weather_in_Helsinki",
+        "ACCUWEATHER": "/ru/ru/helsinki/133328/daily-weather-forecast/133328",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/c571886a97e975d69cf88fcba695fe92283c1af57bfc069035cfd4ef766ceab1",
+        "YRNO": "/sted/Finland/Södra_Finland/Helsingfors/long.html",
+        "GIDROMET": "/product/weather/4672/"
+    }
+}, {
+    "id": "110",
+    "name": "Munich",
+    "nameRus": "Мюнхен",
+    "routes": {
+        "YANDEX": "/pogoda/munich/details?via=ms'",
+        "GISMETEO": "/weather-munich-2782/10-days/",
+        "RP5": "/Weather_in_Munich",
+        "ACCUWEATHER": "/ru/ru/munich/178086/daily-weather-forecast/178086",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/e0c0cd4ab9873fee5066145204f7161a0c1f7468722e633345583634cff0bbd6",
+        "YRNO": "/sted/Tyskland/Bayern/München/long.html",
+        "GIDROMET": "/product/weather/24318/"
+    }
+}, {
+    "id": "111",
+    "name": "Irkutsk",
+    "nameRus": "Иркутск",
+    "routes": {
+        "YANDEX": "/pogoda/irkutsk/details?via=ms'",
+        "GISMETEO": "/weather-irkutsk-4787/10-days/",
+        "RP5": "/Weather_in_Irkutsk",
+        "ACCUWEATHER": "/ru/ru/irkutsk/292712/daily-weather-forecast/292712",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/d576f72d745086e9df7e85d6c2619d90c798c90daf8d2bc816334dde42b6ca55",
+        "YRNO": "/sted/Russland/Irkutsk/Irkutsk/long.html",
+        "GIDROMET": "/product/weather/16283/"
+    }
+}, {
+    "id": "112",
+    "name": "Haifa",
+    "nameRus": "Хайфа",
+    "routes": {
+        "YANDEX": "/pogoda/haifa/details?via=ms'",
+        "GISMETEO": "/weather-haifa-5396/10-days/",
+        "RP5": "/Weather_in_Haifa",
+        "ACCUWEATHER": "/ru/ru/haifa/213181/daily-weather-forecast/213181",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/31680413d1070d38a6c0a579b80216535507818a803351d173ccc111aaeabf22",
+        "YRNO": "/sted/Israel/Haifa/Haifa/long.html",
+        "GIDROMET": "/product/weather/1379/"
+    }
+}, {
+    "id": "113",
+    "name": "Krasnaya-Polyana",
+    "nameRus": "Красная Поляна",
+    "routes": {
+        "YANDEX": "/pogoda/krasnaya-polyana/details?via=ms'",
+        "GISMETEO": "/weather-krasnaya-polyana-5234/10-days/",
+        "RP5": "/Weather_in_Krasnaya_Polyana",
+        "ACCUWEATHER": "/ru/ru/krasnaya-polyana/288711/daily-weather-forecast/288711",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/7a9b9bda04f63198bd3552354d25db2ca3be2510b191760c51d3060f4e3f7209",
+        "YRNO": "/sted/Russland/Omsk/Krasnaya_Polyana/long.html",
+        "GIDROMET": "/product/weather/3426/"
+    }
+}, {
+    "id": "114",
+    "name": "Terskol",
+    "nameRus": "Терскол",
+    "routes": {
+        "YANDEX": "/pogoda/terskol/details?via=ms'",
+        "GISMETEO": "/weather-terskol-5249/10-days/",
+        "RP5": "",
+        "ACCUWEATHER": "",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/2c99f28a6b233081d6619dce9aafcac969967951a714eb65cf4268f27446478d",
+        "YRNO": "/sted/Russland/Kabardino-Balkaria/Terskol/long.html",
+        "GIDROMET": ""
+    }
+}, {
+    "id": "115",
+    "name": "Kolomna",
+    "nameRus": "Коломна",
+    "routes": {
+        "YANDEX": "/pogoda/kolomna/details?via=ms'",
+        "GISMETEO": "/weather-kolomna-4372/10-days/",
+        "RP5": "/Weather_in_Kolomna",
+        "ACCUWEATHER": "/ru/ru/kolomna/294015/daily-weather-forecast/294015",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/4c43ad36dd11207691a722bae8997488ae9ee030b2f90ac34a7b190c43efe8bf",
+        "YRNO": "/sted/Russland/Moskva_fylke/Kolomna/long.html",
+        "GIDROMET": "/product/weather/3472/"
+    }
+}, {
+    "id": "116",
+    "name": "Petushki",
+    "nameRus": "Петушки",
+    "routes": {
+        "YANDEX": "/pogoda/petushki/details?via=ms'",
+        "GISMETEO": "/weather-petushki-4348/10-days/",
+        "RP5": "/Weather_in_Petushki",
+        "ACCUWEATHER": "",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/e48391d6ad28b3e40277f927b33c2dab7278a034cbed13908baef7bfc5c511c6",
+        "YRNO": "/sted/Russland/Vladimir/Petusjki/long.html",
+        "GIDROMET": "/product/weather/2957/"
+    }
+}, {
+    "id": "117",
+    "name": "Saint-Petersburg",
+    "nameRus": "Санкт-Петербург",
+    "routes": {
+        "YANDEX": "/pogoda/saint-petersburg/details?via=ms'",
+        "GISMETEO": "/weather-sankt-peterburg-4079/10-days/",
+        "RP5": "/Weather_in_Saint_Petersburg,_Russia",
+        "ACCUWEATHER": "/ru/ru/saint-petersburg/295212/daily-weather-forecast/295212",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/4edb4827c7f66b1542f84ce1d8d644970e9b935d45d21d4d143e87d94925a4bf",
+        "YRNO": "/sted/Russland/St._Petersburg/St._Petersburg/long.html",
+        "GIDROMET": "/product/weather/2821/"
+    }
+}, {
+    "id": "118",
+    "name": "Tambov",
+    "nameRus": "Тамбов",
+    "routes": {
+        "YANDEX": "/pogoda/tambov/details?via=ms'",
+        "GISMETEO": "/weather-tambov-4440/10-days/",
+        "RP5": "/Weather_in_Tambov",
+        "ACCUWEATHER": "/ru/ru/tambov/295902/daily-weather-forecast/295902",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/0981f4db9bb1864d7ce3d95d6b61390e922503d5ed8c308f86a724fb02a8132f",
+        "YRNO": "/sted/Russland/Tambov/Tambov/long.html",
+        "GIDROMET": "/product/weather/2594/"
+    }
+}, {
+    "id": "119",
+    "name": "Raduzhniy",
+    "nameRus": "Радужный",
+    "routes": {
+        "YANDEX": "/pogoda/raduzhniy/details?via=ms'",
+        "GISMETEO": "/weather-raduzhny-12471/10-days/",
+        "RP5": "",
+        "ACCUWEATHER": "/ru/ru/raduzhnyy/2433505/weather-forecast/2433505",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/570746926461a8f37a89d12fbc90b223f88209ab41957593da95196d6109abd7",
+        "YRNO": "/sted/Russia/Vladimir/Raduzhnyy/long.html",
+        "GIDROMET": "/product/weather/7170/"
+    }
+}, {
+    "id": "120",
+    "name": "Sobinka",
+    "nameRus": "Собинка",
+    "routes": {
+        "YANDEX": "/pogoda/sobinka/details?via=ms'",
+        "GISMETEO": "/weather-sobinka-12472/10-days/",
+        "RP5": "",
+        "ACCUWEATHER": "/ru/ru/sobinka/291274/daily-weather-forecast/291274",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/e1c46db0d658018b542a1dcf3336b1200551f99c779496dcb93f081810630f35",
+        "YRNO": "/sted/Russland/Vladimir/Sobinka/long.html",
+        "GIDROMET": "/product/weather/2718/"
+    }
+}, {
+    "id": "121",
+    "name": "Mytischi",
+    "nameRus": "Мытищи",
+    "routes": {
+        "YANDEX": "/pogoda/mytischi/details?via=ms'",
+        "GISMETEO": "/weather-mytishchi-11441/10-days/",
+        "RP5": "/Weather_in_Mytishchi",
+        "ACCUWEATHER": "/ru/ru/mytishchi/289350/daily-weather-forecast/289350",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/b1298f1daeaa71dc3bab66cd0c82414e675975acf74b70e474cd70feae325aeb",
+        "YRNO": "/sted/Russland/Moskva_fylke/Mytishchi/long.html",
+        "GIDROMET": "/product/weather/3181/"
+    }
+}, {
+    "id": "122",
+    "name": "Abakan",
+    "nameRus": "Абакан",
+    "routes": {
+        "YANDEX": "/pogoda/abakan/details?via=ms'",
+        "GISMETEO": "/weather-abakan-4723/10-days/",
+        "RP5": "/Weather_in_Abakan",
+        "ACCUWEATHER": "/ru/ru/abakan/288447/daily-weather-forecast/288447",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/dff85cab57ca0075d8b15f7caab4c379de4a752e0000a96b8097a2300e623d63",
+        "YRNO": "/sted/Russland/Khakasia/Abakan/long.html",
+        "GIDROMET": "/product/weather/12320/"
+    }
+}, {
+    "id": "123",
+    "name": "Anadyr",
+    "nameRus": "Анадырь",
+    "routes": {
+        "YANDEX": "/pogoda/anadyr/details?via=ms'",
+        "GISMETEO": "/weather-anadyr-4054/10-days/",
+        "RP5": "/Weather_in_Anadyr",
+        "ACCUWEATHER": "/ru/ru/anadyr/287636/daily-weather-forecast/287636",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/6a8587644a3778df1775e637707e6520178552e51a3cada4704ffb6a36cd249d",
+        "YRNO": "/sted/Russland/Tsjukotka/Anadyr/long.html",
+        "GIDROMET": "/product/weather/16837/"
+    }
+}, {
+    "id": "124",
+    "name": "Arkhangelsk",
+    "nameRus": "Архангельск",
+    "routes": {
+        "YANDEX": "/pogoda/arkhangelsk/details?via=ms'",
+        "GISMETEO": "/weather-arkhangelsk-3915/10-days/",
+        "RP5": "/Weather_in_Arkhangelsk",
+        "ACCUWEATHER": "/ru/ru/arkhangelsk/292056/daily-weather-forecast/292056",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/66c9d0165ec6a1a95d6487965e73caa35fde127f2879e5c7ff3ea0355c1f5440",
+        "YRNO": "/sted/Russland/Arkhangelsk/Arkhangelsk/long.html",
+        "GIDROMET": "/product/weather/3959/"
+    }
+}, {
+    "id": "125",
+    "name": "Astrakhan",
+    "nameRus": "Астрахань",
+    "routes": {
+        "YANDEX": "/pogoda/astrakhan/details?via=ms'",
+        "GISMETEO": "/weather-astrakhan-5130/10-days/",
+        "RP5": "/Weather_in_Astrakhan",
+        "ACCUWEATHER": "/ru/ru/astrakhan/292110/daily-weather-forecast/292110",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/5a97bb4bbca593c559795476b1611b285b37dd95e89ac6ff827563914e104951",
+        "YRNO": "/sted/Russland/Astrakhan/Astrakhan/long.html",
+        "GIDROMET": "/product/weather/3946/"
+    }
+}, {
+    "id": "126",
+    "name": "Barnaul",
+    "nameRus": "Барнаул",
+    "routes": {
+        "YANDEX": "/pogoda/barnaul/details?via=ms'",
+        "GISMETEO": "/weather-barnaul-4720/10-days/",
+        "RP5": "/Weather_in_Barnaul",
+        "ACCUWEATHER": "/ru/ru/barnaul/291662/daily-weather-forecast/291662",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/c3221cb831f1548a2783c42d39ff78a076fe678c01736c02de72d89dc9c763bc",
+        "YRNO": "/sted/Russland/Altaj-territoriet/Barnaul/long.html",
+        "GIDROMET": "/product/weather/12291/"
+    }
+}, {
+    "id": "127",
+    "name": "Belgorod",
+    "nameRus": "Белгород",
+    "routes": {
+        "YANDEX": "/pogoda/belgorod/details?via=ms'",
+        "GISMETEO": "/weather-belgorod-5039/10-days/",
+        "RP5": "/Weather_in_Belgorod",
+        "ACCUWEATHER": "/ru/ru/belgorod/292195/daily-weather-forecast/292195",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/4dacd0cae25626c0a15d084f894d9a233e5429e784704f06892b1773fd5f9d92",
+        "YRNO": "/sted/Russland/Belgorod/Belgorod/long.html",
+        "GIDROMET": "/product/weather/3903/"
+    }
+}, {
+    "id": "128",
+    "name": "Birobidgan",
+    "nameRus": "Биробиджан",
+    "routes": {
+        "YANDEX": "/pogoda/birobidgan/details?via=ms'",
+        "GISMETEO": "/weather-birobidzhan-4860/10-days/",
+        "RP5": "/Weather_in_Birobidzhan",
+        "ACCUWEATHER": "/ru/ru/birobidzhan/291591/daily-weather-forecast/291591",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/7b0909b6b8b7f96a62e253d27b4dde1e9cf49ac93e1302d331697d6729237f9d",
+        "YRNO": "/sted/Russland/Jødiske_autonome_fylke/Birobidzjan/long.html",
+        "GIDROMET": "/product/weather/16307/"
+    }
+}, {
+    "id": "129",
+    "name": "Blagoveshchensk",
+    "nameRus": "Благовещенск",
+    "routes": {
+        "YANDEX": "/pogoda/blagoveshchensk/details?via=ms'",
+        "GISMETEO": "/weather-blagoveshchensk-4848/10-days/",
+        "RP5": "/Weather_in_Blagoveshchensk",
+        "ACCUWEATHER": "/ru/ru/blagoveshchensk/286867/daily-weather-forecast/286867",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/65dc85ecb2f55748343ee49e4b16863136c2713df6a8d31f548c9c2ef8a70cb0",
+        "YRNO": "/sted/Russland/Amur/Blagovesjtsjensk/long.html",
+        "GIDROMET": "/product/weather/3873/"
+    }
+}, {
+    "id": "130",
+    "name": "Bryansk",
+    "nameRus": "Брянск",
+    "routes": {
+        "YANDEX": "/pogoda/bryansk/details?via=ms'",
+        "GISMETEO": "/weather-bryansk-4258/10-days/",
+        "RP5": "/Weather_in_Bryansk",
+        "ACCUWEATHER": "/ru/ru/bryansk/292254/daily-weather-forecast/292254",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/38ef87ac1636dcf00589ffe322132047636081c48ed73e5f1909b4c560a47507",
+        "YRNO": "/sted/Russland/Brjansk/Brjansk/long.html",
+        "GIDROMET": "/product/weather/3845/"
+    }
+}, {
+    "id": "131",
+    "name": "Veliky Novgorod",
+    "nameRus": "Великий-Новгород",
+    "routes": {
+        "YANDEX": "/pogoda/veliky-novgorod/details?via=ms'",
+        "GISMETEO": "/weather-veliky-novgorod-4090/10-days/",
+        "RP5": "/Weather_in_Velikiy_Novgorode",
+        "ACCUWEATHER": "/ru/ru/veliky-novgorod/294457/daily-weather-forecast/294457",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/e4569118d4cfb7c450f50885c4ba1ba315b3042ccdf40cef72e93092bafe5881",
+        "YRNO": "/sted/Russia/Novgorod/Veliky_Novgorod/long.html",
+        "GIDROMET": "/product/weather/3116/"
+    }
+}, {
+    "id": "132",
+    "name": "Vladivostok",
+    "nameRus": "Владивосток",
+    "routes": {
+        "YANDEX": "/pogoda/vladivostok/details?via=ms'",
+        "GISMETEO": "/weather-vladivostok-4877/10-days/",
+        "RP5": "/Weather_in_Vladivostok",
+        "ACCUWEATHER": "/ru/ru/vladivostok/294927/daily-weather-forecast/294927",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/ae2e08d50b1515ffa1e74da0e7d66730e456806e2019e9462f0f3eb144b5a964",
+        "YRNO": "/sted/Russland/Primorsk/Vladivostok/long.html",
+        "GIDROMET": "/product/weather/16154/"
+    }
+}, {
+    "id": "133",
+    "name": "Vladikavkaz",
+    "nameRus": "Владикавказ",
+    "routes": {
+        "YANDEX": "/pogoda/vladikavkaz/details?via=ms'",
+        "GISMETEO": "/weather-vladikavkaz-5254/10-days/",
+        "RP5": "/Weather_in_Vladikavkaz",
+        "ACCUWEATHER": "/ru/ru/vladikavkaz/294391/daily-weather-forecast/294391",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/b5ce77620a6c20d733398f01242f584620008a03ce207e0723b0254bb82f95a5",
+        "YRNO": "/sted/Russland/Nord-Ossetia/Vladikavkaz/long.html",
+        "GIDROMET": "/product/weather/2434/"
+    }
+}, {
+    "id": "134",
+    "name": "Volgograd",
+    "nameRus": "Волгоград",
+    "routes": {
+        "YANDEX": "/pogoda/volgograd/details?via=ms'",
+        "GISMETEO": "/weather-volgograd-5089/10-days/",
+        "RP5": "/Weather_in_Volgograd",
+        "ACCUWEATHER": "/ru/ru/volgograd/296363/daily-weather-forecast/296363",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/7a7db3b59b35a4faed510713d410244b81583ff839704c5b758b29ab4f8bdb98",
+        "YRNO": "/sted/Russland/Volgograd/Volgograd/long.html",
+        "GIDROMET": "/product/weather/2426/"
+    }
+}, {
+    "id": "135",
+    "name": "Vologda",
+    "nameRus": "Вологда",
+    "routes": {
+        "YANDEX": "/pogoda/vologda/details?via=ms'",
+        "GISMETEO": "/weather-vologda-4278/10-days/",
+        "RP5": "/Weather_in_Vologda",
+        "ACCUWEATHER": "/ru/ru/vologda/296477/daily-weather-forecast/296477",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/f609b455f6dd8f097b1b55bb85fc8dc73163e4e0d93d6c89b21933c27ecb6013",
+        "YRNO": "/sted/Russland/Vologda/Vologda/long.html",
+        "GIDROMET": "/product/weather/2421/"
+    }
+}, {
+    "id": "136",
+    "name": "Voronezh",
+    "nameRus": "Воронеж",
+    "routes": {
+        "YANDEX": "/pogoda/voronezh/details?via=ms'",
+        "GISMETEO": "/weather-voronezh-5026/10-days/",
+        "RP5": "/Weather_in_Voronezh",
+        "ACCUWEATHER": "/ru/ru/voronezh/296543/daily-weather-forecast/296543",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/c811fe9cc55daf06ea556004a0e9d096035e4627903ea902da1650bc856a3b79",
+        "YRNO": "/sted/Russland/Voronezj/Voronezh/long.html",
+        "GIDROMET": "/product/weather/2412/"
+    }
+}, {
+    "id": "137",
+    "name": "Gorno-Altaysk",
+    "nameRus": "Горно-Алтайск",
+    "routes": {
+        "YANDEX": "/pogoda/gorno-altaysk/details?via=ms'",
+        "GISMETEO": "/weather-gorno-altaysk-5180/10-days/",
+        "RP5": "/Weather_in_Gorno-Altaysk",
+        "ACCUWEATHER": "/ru/ru/gorno-altaysk/286861/daily-weather-forecast/286861",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/35025e43cd5c76967f920e1456f868a921aa590039fb3463d70662ff164ada53",
+        "YRNO": "/sted/Russland/Altaj/Gorno-Altaysk/long.html",
+        "GIDROMET": "/product/weather/12237/"
+    }
+}, {
+    "id": "138",
+    "name": "Grozniy",
+    "nameRus": "Грозный",
+    "routes": {
+        "YANDEX": "/pogoda/grozniy/details?via=ms'",
+        "GISMETEO": "/weather-grozny-5256/10-days/",
+        "RP5": "/Weather_in_Grozny",
+        "ACCUWEATHER": "/ru/ru/grozny/292293/daily-weather-forecast/292293",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/f1a8be0d496b63aedc00b33ab61328ad12953cbae0814ffac16ff2f5acc63530",
+        "YRNO": "/sted/Russland/Tsjetsjenia/Groznyj/long.html",
+        "GIDROMET": "/product/weather/3651/"
+    }
+}, {
+    "id": "139",
+    "name": "Yekaterinburg",
+    "nameRus": "Екатеринбург",
+    "routes": {
+        "YANDEX": "/pogoda/yekaterinburg/details?via=ms'",
+        "GISMETEO": "/weather-yekaterinburg-4517/10-days/",
+        "RP5": "/Weather_in_Yekaterinburg",
+        "ACCUWEATHER": "/ru/ru/yekaterinburg/295863/daily-weather-forecast/295863",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/bee83c0f4aa7de0d4905a612d06d3af59cc13086efe66a4db3537d88c2a46cca",
+        "YRNO": "/sted/Russland/Sverdlovsk/Jekaterinburg/long.html",
+        "GIDROMET": "/product/weather/11932/"
+    }
+}, {
+    "id": "140",
+    "name": "Ivanovo",
+    "nameRus": "Иваново",
+    "routes": {
+        "YANDEX": "/pogoda/ivanovo/details?via=ms'",
+        "GISMETEO": "/weather-ivanovo-4318/10-days/",
+        "RP5": "/Weather_in_Ivanovo",
+        "ACCUWEATHER": "/ru/ru/ivanovo/288066/daily-weather-forecast/288066",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/9c038e6ef364bf938eb7ca9659855d4d5366ca8e1d1b2e6d4b63498b5899866f",
+        "YRNO": "/sted/Russland/Ivanovo/Ivanovo/long.html",
+        "GIDROMET": "/product/weather/3610/"
+    }
+}, {
+    "id": "141",
+    "name": "Izhevsk",
+    "nameRus": "Ижевск",
+    "routes": {
+        "YANDEX": "/pogoda/izhevsk/details?via=ms'",
+        "GISMETEO": "/weather-izhevsk-4508/10-days/",
+        "RP5": "/Weather_in_Izhevsk",
+        "ACCUWEATHER": "/ru/ru/izhevsk/296181/daily-weather-forecast/296181",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/712bcab3d5cd7d032d31677f6ad2a7a8ab3772ef04a77a7b53c8999293f2408c",
+        "YRNO": "/sted/Russland/Udmurtia/Izjevsk/long.html",
+        "GIDROMET": "/product/weather/3603/"
+    }
+}, {
+    "id": "142",
+    "name": "Yoshkar-Ola",
+    "nameRus": "Йошкар-Ола",
+    "routes": {
+        "YANDEX": "/pogoda/yoshkar-ola/details?via=ms'",
+        "GISMETEO": "/weather-yoshkar-ola-11975/10-days/",
+        "RP5": "/Weather_in_Yoshkar-Ola",
+        "ACCUWEATHER": "/ru/ru/yoshkar-ola/289162/daily-weather-forecast/289162",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/210bbc9a06e3ad3cd0a0a18271b86ebb6df8debf83b0589ef00ee7a69ddb0915",
+        "YRNO": "/sted/Russland/Mari_El/Yoshkar-Ola/long.html",
+        "GIDROMET": "/product/weather/2344/"
+    }
+}, {
+    "id": "143",
+    "name": "Kazan",
+    "nameRus": "Казань",
+    "routes": {
+        "YANDEX": "/pogoda/kazan/details?via=ms'",
+        "GISMETEO": "/weather-kazan-4364/10-days/",
+        "RP5": "/Weather_in_Kazan",
+        "ACCUWEATHER": "/ru/ru/kazan/295954/daily-weather-forecast/295954",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/ecf0ce04af6f721cec1964ac4d797bc985953dff9b2f775037ac082cfe06d8f4",
+        "YRNO": "/sted/Russland/Tatarstan/Kazan/long.html",
+        "GIDROMET": "/product/weather/3538/"
+    }
+}, {
+    "id": "144",
+    "name": "Kaliningrad",
+    "nameRus": "Калининград",
+    "routes": {
+        "YANDEX": "/pogoda/kaliningrad/details?via=ms'",
+        "GISMETEO": "/weather-kaliningrad-4225/10-days/",
+        "RP5": "/Weather_in_Kaliningrad",
+        "ACCUWEATHER": "/ru/ru/kaliningrad/292922/daily-weather-forecast/292922",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/7c1b8e430147719615e012f8e44fde56b6ede18a211dfcd8d27160ad3a60a542",
+        "YRNO": "/sted/Russland/Kaliningrad/Kaliningrad/long.html",
+        "GIDROMET": "/product/weather/3591/"
+    }
+}, {
+    "id": "145",
+    "name": "Kaluga",
+    "nameRus": "Калуга",
+    "routes": {
+        "YANDEX": "/pogoda/kaluga/details?via=ms'",
+        "GISMETEO": "/weather-kaluga-4387/10-days/",
+        "RP5": "/Weather_in_Kaluga",
+        "ACCUWEATHER": "/ru/ru/kaluga/293006/daily-weather-forecast/293006",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/614b2d6e7bb8acb0f0506eeb7eec1d37515e02a3e33012e0d32ff7dc3f9ff3b3",
+        "YRNO": "/sted/Russland/Kaluga/Kaluga/long.html",
+        "GIDROMET": "/product/weather/3585/"
+    }
+}, {
+    "id": "146",
+    "name": "Kemerovo",
+    "nameRus": "Кемерово",
+    "routes": {
+        "YANDEX": "/pogoda/kemerovo/details?via=ms'",
+        "GISMETEO": "/weather-kemerovo-4693/10-days/",
+        "RP5": "/Weather_in_Kemerovo",
+        "ACCUWEATHER": "/ru/ru/kemerovo/293142/daily-weather-forecast/293142",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/ac27b13ba7d1865e41e9c26422cc24c44e86dbad45b5b1bb4e8c5cb1ac4c5c27",
+        "YRNO": "/sted/Russland/Kemerovo/Kemerovo/long.html",
+        "GIDROMET": "/product/weather/12199/"
+    }
+}, {
+    "id": "147",
+    "name": "Kirov",
+    "nameRus": "Киров",
+    "routes": {
+        "YANDEX": "/pogoda/kirov/details?via=ms'",
+        "GISMETEO": "/weather-kirov-4292/10-days/",
+        "RP5": "/Weather_in_Kirov",
+        "ACCUWEATHER": "/ru/ru/kirovo-chyepyetsk/288508/daily-weather-forecast/288508",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/6c30b371ed4bb96ee358c2daab4485a4aefa69fec9c020bb24b330df6122ec7e",
+        "YRNO": "/sted/Russia/Kirov/Kirov/long.html",
+        "GIDROMET": "/product/weather/3501/"
+    }
+}, {
+    "id": "148",
+    "name": "Kostroma",
+    "nameRus": "Кострома",
+    "routes": {
+        "YANDEX": "/pogoda/kostroma/details?via=ms'",
+        "GISMETEO": "/weather-kostroma-4314/10-days/",
+        "RP5": "/Weather_in_Kostroma",
+        "ACCUWEATHER": "/ru/ru/kostroma/293552/daily-weather-forecast/293552",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/b5f7008b526d47c70e964c456a3099f993d7cf5254d427b5fb12ee196ab5a6a7",
+        "YRNO": "/sted/Russland/Kostroma/Kostroma/long.html",
+        "GIDROMET": "/product/weather/3445/"
+    }
+}, {
+    "id": "149",
+    "name": "Krasnodar",
+    "nameRus": "Краснодар",
+    "routes": {
+        "YANDEX": "/pogoda/krasnodar/details?via=ms'",
+        "GISMETEO": "/weather-krasnodar-5136/10-days/",
+        "RP5": "/Weather_in_Krasnodar",
+        "ACCUWEATHER": "/ru/ru/krasnodar/293686/daily-weather-forecast/293686",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/8a6e20ebf6d3cc2516ee08b4c3298f7f003981351f519f267f2fa181809dc8f2",
+        "YRNO": "/sted/Russland/Krasnodar/Krasnodar/long.html",
+        "GIDROMET": "/product/weather/3421/"
+    }
+}, {
+    "id": "150",
+    "name": "Krasnoyarsk",
+    "nameRus": "Красноярск",
+    "routes": {
+        "YANDEX": "/pogoda/krasnoyarsk/details?via=ms'",
+        "GISMETEO": "/weather-krasnoyarsk-4674/10-days/",
+        "RP5": "/Weather_in_Krasnoyarsk",
+        "ACCUWEATHER": "/ru/ru/krasnoyarsk/293708/daily-weather-forecast/293708",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/bcac3a08a51c90ff7e3fb94c1bd1b4b444b183142d7602044b094dd259853913",
+        "YRNO": "/sted/Russland/Krasnojarsk/Krasnojarsk/long.html",
+        "GIDROMET": "/product/weather/12170/"
+    }
+}, {
+    "id": "151",
+    "name": "Kurgan",
+    "nameRus": "Курган",
+    "routes": {
+        "YANDEX": "/pogoda/kurgan/details?via=ms'",
+        "GISMETEO": "/weather-kurgan-4569/10-days/",
+        "RP5": "/Weather_in_Kurgan",
+        "ACCUWEATHER": "/ru/ru/kurgan/288879/daily-weather-forecast/288879",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/87488210e389cf17de63d9a13d695514eb223e02dc4ce6e0de753397b5867d25",
+        "YRNO": "/sted/Russland/Kurgan/Kurgan/long.html",
+        "GIDROMET": "/product/weather/12159/"
+    }
+}, {
+    "id": "152",
+    "name": "Kursk",
+    "nameRus": "Курск",
+    "routes": {
+        "YANDEX": "/pogoda/kursk/details?via=ms'",
+        "GISMETEO": "/weather-kursk-5010/10-days/",
+        "RP5": "/Weather_in_Kursk",
+        "ACCUWEATHER": "/ru/ru/kursk/293758/daily-weather-forecast/293758",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/eeb51412dc2cb17a53f9b613006f19e6e7234a0af7528fa56a1a0b67bc0949fb",
+        "YRNO": "/sted/Russland/Kursk/Kursk/long.html",
+        "GIDROMET": "/product/weather/3360/"
+    }
+}, {
+    "id": "153",
+    "name": "Kyzyl",
+    "nameRus": "Кызыл",
+    "routes": {
+        "YANDEX": "/pogoda/kyzyl/details?via=ms'",
+        "GISMETEO": "/weather-kyzyl-5189/10-days/",
+        "RP5": "/Weather_in_Kyzyl",
+        "ACCUWEATHER": "/ru/ru/kyzyl/291128/daily-weather-forecast/291128",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/99d31b08b305a5faefbfa743cab8c04d483c5a618afbd17d26e3ac3474987d00",
+        "YRNO": "/sted/Russland/Tuva/Kyzyl/long.html",
+        "GIDROMET": "/product/weather/12154/"
+    }
+}, {
+    "id": "154",
+    "name": "Lipetsk",
+    "nameRus": "Липецк",
+    "routes": {
+        "YANDEX": "/pogoda/lipetsk/details?via=ms'",
+        "GISMETEO": "/weather-lipetsk-4437/10-days/",
+        "RP5": "/Weather_in_Lipetsk",
+        "ACCUWEATHER": "/ru/ru/lipetsk/293886/daily-weather-forecast/293886",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/2a42e5ccd97293459dbe92666dd898f349a60ea7931b431bda77c958a05011df",
+        "YRNO": "/sted/Russland/Lipetsk/Lipetsk/long.html",
+        "GIDROMET": "/product/weather/3306/"
+    }
+}, {
+    "id": "155",
+    "name": "Magadan",
+    "nameRus": "Магадан",
+    "routes": {
+        "YANDEX": "/pogoda/magadan/details?via=ms'",
+        "GISMETEO": "/weather-magadan-4063/10-days/",
+        "RP5": "/Weather_in_Magadan",
+        "ACCUWEATHER": "/ru/ru/magadan/289119/daily-weather-forecast/289119",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/7f3c1217718a4889228956b10d39cad74d6a8837dcbeb9207662317bd31df47c",
+        "YRNO": "/sted/Russland/Magadan/Magadan/long.html",
+        "GIDROMET": "/product/weather/16829/"
+    }
+}, {
+    "id": "156",
+    "name": "Magas",
+    "nameRus": "Магас",
+    "routes": {
+        "YANDEX": "/pogoda/magas/details?via=ms'",
+        "GISMETEO": "/weather-magas-13103/10-days/",
+        "RP5": "/Weather_in_Magas",
+        "ACCUWEATHER": "/ru/ru/magas/1934859/weather-forecast/1934859",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/8fcce20fb1938a4f9c7e3bebed1e6e7a699fd1fd583fab64b3ef947524a5cbcd",
+        "YRNO": "/sted/Russland/Ingusjetia/Magas/long.html",
+        "GIDROMET": "/product/weather/44749/"
+    }
+}, {
+    "id": "157",
+    "name": "Maykop",
+    "nameRus": "Майкоп",
+    "routes": {
+        "YANDEX": "/pogoda/maykop/details?via=ms'",
+        "GISMETEO": "/weather-maykop-5218/10-days/",
+        "RP5": "/Weather_in_Maykop",
+        "ACCUWEATHER": "/ru/ru/maykop/291658/daily-weather-forecast/291658",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/8eedf24ec2f3cdd96779e1fe64783537aa5ce5175c57a6d09e0de6417fc55899",
+        "YRNO": "/sted/Russland/Adygia/Majkop/long.html",
+        "GIDROMET": "/product/weather/3250/"
+    }
+}, {
+    "id": "158",
+    "name": "Makhachkala",
+    "nameRus": "Махачкала",
+    "routes": {
+        "YANDEX": "/pogoda/makhachkala/details?via=ms'",
+        "GISMETEO": "/weather-makhachkala-5270/10-days/",
+        "RP5": "/Weather_in_Makhachkala",
+        "ACCUWEATHER": "/ru/ru/makhachkala/292547/daily-weather-forecast/292547",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/ef11b51ddb23ad8e43e26574f97966e0ab2fd69ed2bd4b7388356f9b1831da4c",
+        "YRNO": "/sted/Russland/Dagestan/Makhatsjkala/long.html",
+        "GIDROMET": "/product/weather/3272/"
+    }
+}, {
+    "id": "159",
+    "name": "Murmansk",
+    "nameRus": "Мурманск",
+    "routes": {
+        "YANDEX": "/pogoda/murmansk/details?via=ms'",
+        "GISMETEO": "/weather-murmansk-3903/10-days/",
+        "RP5": "/Weather_in_Murmansk",
+        "ACCUWEATHER": "/ru/ru/murmansk/294076/daily-weather-forecast/294076",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/8796cf96edfacd0422f0f2cb331423a98c2b15cd1932b4d19436bd5f76acf512",
+        "YRNO": "/sted/Russland/Murmansk/Murmansk/long.html",
+        "GIDROMET": "/product/weather/3188/"
+    }
+}, {
+    "id": "160",
+    "name": "Nalchik",
+    "nameRus": "Нальчик",
+    "routes": {
+        "YANDEX": "/pogoda/nalchik/details?via=ms'",
+        "GISMETEO": "/weather-nalchik-5250/10-days/",
+        "RP5": "/Weather_in_Nalchik_(airport)",
+        "ACCUWEATHER": "/ru/ru/nalchik/292758/daily-weather-forecast/292758",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/a19c04e6f84d77c3b208fe03e7cd9165155932a284a7b6033b25ad767a437324",
+        "YRNO": "/sted/Russland/Annet/Nalchik_Airport/long.html",
+        "GIDROMET": "/product/weather/3175/"
+    }
+}, {
+    "id": "161",
+    "name": "Naryan-Mar",
+    "nameRus": "Нарьян-Мар",
+    "routes": {
+        "YANDEX": "/pogoda/naryan-mar/details?via=ms'",
+        "GISMETEO": "/weather-naryan-mar-3959/10-days/",
+        "RP5": "/Weather_in_Naryan-Mar",
+        "ACCUWEATHER": "/ru/ru/naryan-mar/289464/daily-weather-forecast/289464",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/f1a9daf4ad78f44a9f95929cacfcd376ed5181ca60a6787a490c698d830da526",
+        "YRNO": "/sted/Russland/Nenetsk/Naryan_Mar_Airport/long.html",
+        "GIDROMET": "/product/weather/3170/"
+    }
+}, {
+    "id": "162",
+    "name": "Nizhny Novgorod",
+    "nameRus": "Нижний-Новгород",
+    "routes": {
+        "YANDEX": "/pogoda/nizhny-novgorod/details?via=ms'",
+        "GISMETEO": "/weather-nizhny-novgorod-4355/10-days/",
+        "RP5": "/Weather_in_Nizhny_Novgorod",
+        "ACCUWEATHER": "/ru/ru/nizhny-novgorod/294199/daily-weather-forecast/294199",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/68878d7f2691bdfbe784d972c6083581d4ecc6a013e99e8410e4543bc15a5428",
+        "YRNO": "/sted/Russland/Nizjnij_Novgorod/Nizjnij_Novgorod/long.html",
+        "GIDROMET": "/product/weather/3128/"
+    }
+}, {
+    "id": "163",
+    "name": "Novosibirsk",
+    "nameRus": "Новосибирск",
+    "routes": {
+        "YANDEX": "/pogoda/novosibirsk/details?via=ms'",
+        "GISMETEO": "/weather-novosibirsk-4690/10-days/",
+        "RP5": "/Weather_in_Novosibirsk",
+        "ACCUWEATHER": "/ru/ru/novosibirsk/294459/daily-weather-forecast/294459",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/49e03742ba04a23306057562ca075f4f84cdad1af49f8f0729b4c0bbccfa1eaa",
+        "YRNO": "/sted/Russland/Novosibirsk/Novosibirsk/long.html",
+        "GIDROMET": "/product/weather/12100/"
+    }
+}, {
+    "id": "164",
+    "name": "Omsk",
+    "nameRus": "Омск",
+    "routes": {
+        "YANDEX": "/pogoda/omsk/details?via=ms'",
+        "GISMETEO": "/weather-omsk-4578/10-days/",
+        "RP5": "/Weather_in_Omsk",
+        "ACCUWEATHER": "/ru/ru/omsk/294463/daily-weather-forecast/294463",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/0d1167b309d543d6716df784a83ef33c47de2d0dfbf44ff905d5b698c757cae2",
+        "YRNO": "/sted/Russland/Omsk/Omsk/long.html",
+        "GIDROMET": "/product/weather/12090/"
+    }
+}, {
+    "id": "165",
+    "name": "Orel",
+    "nameRus": "Орел",
+    "routes": {
+        "YANDEX": "/pogoda/orel/details?via=ms'",
+        "GISMETEO": "/weather-orel-4432/10-days/",
+        "RP5": "/Weather_in_Orel",
+        "ACCUWEATHER": "/ru/ru/orellana/261825/daily-weather-forecast/261825",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/fe0c564ada1a2cb747c32bce1b02823d52bc1a001d9ea5e214bd495f0f9d407f",
+        "YRNO": "/sted/Russia//Orjol/Orjol//long.html",
+        "GIDROMET": "/product/weather/3026/"
+    }
+}, {
+    "id": "166",
+    "name": "Orenburg",
+    "nameRus": "Оренбург",
+    "routes": {
+        "YANDEX": "/pogoda/orenburg/details?via=ms'",
+        "GISMETEO": "/weather-orenburg-5159/10-days/",
+        "RP5": "/Weather_in_Orenburg",
+        "ACCUWEATHER": "/ru/ru/orenburg/294535/daily-weather-forecast/294535",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/71ea758e8600a3067ebec9c8fcb2be0fc9fc3e24a6c0c53a9757dbd4269015e1",
+        "YRNO": "/sted/Russland/Orenburg/Orenburg/long.html",
+        "GIDROMET": "/product/weather/3025/"
+    }
+}, {
+    "id": "167",
+    "name": "Penza",
+    "nameRus": "Пенза",
+    "routes": {
+        "YANDEX": "/pogoda/penza/details?via=ms'",
+        "GISMETEO": "/weather-penza-4445/10-days/",
+        "RP5": "/Weather_in_Penza",
+        "ACCUWEATHER": "/ru/ru/penza/294772/daily-weather-forecast/294772",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/67ee1fe8c5240bf32016c83cc15f0198cff90a1f9b20ed2be78943a3d3a2026f",
+        "YRNO": "/sted/Russland/Penza/Penza/long.html",
+        "GIDROMET": "/product/weather/2985/"
+    }
+}, {
+    "id": "168",
+    "name": "Perm",
+    "nameRus": "Пермь",
+    "routes": {
+        "YANDEX": "/pogoda/perm/details?via=ms'",
+        "GISMETEO": "/weather-perm-4476/10-days/",
+        "RP5": "/Weather_in_Perm",
+        "ACCUWEATHER": "/ru/ru/perm/294922/daily-weather-forecast/294922",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/df4ebfaa45213201f3bb25d5cd7314871442023de9dab35bc6cc5cd2f649dab5",
+        "YRNO": "/sted/Russland/Perm/Perm/long.html",
+        "GIDROMET": "/product/weather/2978/"
+    }
+}, {
+    "id": "169",
+    "name": "Petrozavodsk",
+    "nameRus": "Петрозаводск",
+    "routes": {
+        "YANDEX": "/pogoda/petrozavodsk/details?via=ms'",
+        "GISMETEO": "/weather-petrozavodsk-3934/10-days/",
+        "RP5": "/Weather_in_Petrozavodsk",
+        "ACCUWEATHER": "/ru/ru/petrozavodsk/293141/daily-weather-forecast/293141",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/ce5ebdf03afaa95aa8a8f92c6b1ce048c937967edfe27c93fdb44dbe89610e83",
+        "YRNO": "/sted/Russland/Karelen/Petrozavodsk/long.html",
+        "GIDROMET": "/product/weather/2958/"
+    }
+}, {
+    "id": "170",
+    "name": "Petropavlovsk",
+    "nameRus": "Петропавловск",
+    "routes": {
+        "YANDEX": "/pogoda/petropavlovsk/details?via=ms'",
+        "GISMETEO": "/weather-petropavlovsk-kamchatsky-4907/10-days/",
+        "RP5": "/Weather_in_Petropavlovsk",
+        "ACCUWEATHER": "/ru/ru/petropavlovsk-kamchatsky/288260/daily-weather-forecast/288260",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/452cbca24b48b8cefe03a14211d1fb36460285c084c647b119cc9cae5df0d51d",
+        "YRNO": "/sted/Russland/Kamtsjatka/Petropavlovsk-Kamtsjatskij/long.html",
+        "GIDROMET": "/product/weather/12471/"
+    }
+}, {
+    "id": "171",
+    "name": "Pskov",
+    "nameRus": "Псков",
+    "routes": {
+        "YANDEX": "/pogoda/pskov/details?via=ms'",
+        "GISMETEO": "/weather-pskov-4114/10-days/",
+        "RP5": "/Weather_in_Pskov",
+        "ACCUWEATHER": "/ru/ru/pskov/295031/daily-weather-forecast/295031",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/fe75cf7cb5614cc1c708d1482e3bdb01025888c3f496a8cedd8a6f9a816edd64",
+        "YRNO": "/sted/Russland/Pskov/Pskov/long.html",
+        "GIDROMET": "/product/weather/2896/"
+    }
+}, {
+    "id": "172",
+    "name": "Rostov-na-Donu",
+    "nameRus": "Ростов-на-Дону",
+    "routes": {
+        "YANDEX": "/pogoda/rostov-na-donu/details?via=ms'",
+        "GISMETEO": "/weather-rostov-na-donu-5110/10-days/",
+        "RP5": "/Weather_in_Rostov-on-Don",
+        "ACCUWEATHER": "/ru/ru/rostov-on-don/295146/daily-weather-forecast/295146",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/48ac01f108144808a4f0fb6288a0802c8319e44e2de9ca943ddd5a6bb263bb17",
+        "YRNO": "/sted/Russland/Rostov/Rostov-na-Donu/long.html",
+        "GIDROMET": "/product/weather/2855/"
+    }
+}, {
+    "id": "173",
+    "name": "Ryazan",
+    "nameRus": "Рязань",
+    "routes": {
+        "YANDEX": "/pogoda/ryazan/details?via=ms'",
+        "GISMETEO": "/weather-ryazan-4394/10-days/",
+        "RP5": "/Weather_in_Ryazan",
+        "ACCUWEATHER": "/ru/ru/ryazan/295190/daily-weather-forecast/295190",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/0bcfa52f378b07303d9323a15f35704271c930f777e8e8b93261be77cacc3b88",
+        "YRNO": "/sted/Russland/Rjazan/Rjazan/long.html",
+        "GIDROMET": "/product/weather/2843/"
+    }
+}, {
+    "id": "174",
+    "name": "Salekhard",
+    "nameRus": "Салехард",
+    "routes": {
+        "YANDEX": "/pogoda/salekhard/details?via=ms'",
+        "GISMETEO": "/weather-salekhard-3964/10-days/",
+        "RP5": "/Weather_in_Salekhard",
+        "ACCUWEATHER": "/ru/ru/salekhard/291505/daily-weather-forecast/291505",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/0c9b3d192ebd740228886af6b5c62beef3b7043b172436f1690d0bbf9bea0119",
+        "YRNO": "/sted/Russland/Jamalo-Nenetsk/Salekhard/long.html",
+        "GIDROMET": "/product/weather/12049/"
+    }
+}, {
+    "id": "175",
+    "name": "Samara",
+    "nameRus": "Самара",
+    "routes": {
+        "YANDEX": "/pogoda/samara/details?via=ms'",
+        "GISMETEO": "/weather-samara-4618/10-days/",
+        "RP5": "/Weather_in_Samara",
+        "ACCUWEATHER": "/ru/ru/samara/290396/daily-weather-forecast/290396",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/bce6473a62836488cf158df036413506647bd5b2bcf410ecaf3d2c5ec992b9cd",
+        "YRNO": "/sted/Russland/Samara/Samara/long.html",
+        "GIDROMET": "/product/weather/2827/"
+    }
+}, {
+    "id": "176",
+    "name": "Saransk",
+    "nameRus": "Саранск",
+    "routes": {
+        "YANDEX": "/pogoda/saransk/details?via=ms'",
+        "GISMETEO": "/weather-saransk-4401/10-days/",
+        "RP5": "/Weather_in_Saransk",
+        "ACCUWEATHER": "/ru/ru/saransk/293970/daily-weather-forecast/293970",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/bee118f56a47234d0fd63a470b5c20e1b5c1e20314ad3bb1b35c7e99389ce6e8",
+        "YRNO": "/sted/Russland/Mordovia/Saransk/long.html",
+        "GIDROMET": "/product/weather/2818/"
+    }
+}, {
+    "id": "177",
+    "name": "Saratov",
+    "nameRus": "Саратов",
+    "routes": {
+        "YANDEX": "/pogoda/saratov/details?via=ms'",
+        "GISMETEO": "/weather-saratov-5032/10-days/",
+        "RP5": "/Weather_in_Saratov,_Saratov_region",
+        "ACCUWEATHER": "/ru/ru/saratov/295382/daily-weather-forecast/295382",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/37ba6c8fe79400112c4d1553df1206e4da5069e7965ff466eb19031495ebfcb2",
+        "YRNO": "/sted/Russland/Saratov/Saratov/long.html",
+        "GIDROMET": "/product/weather/2816/"
+    }
+}, {
+    "id": "178",
+    "name": "Sevastopol",
+    "nameRus": "Севастополь",
+    "routes": {
+        "YANDEX": "/pogoda/sevastopol/details?via=ms'",
+        "GISMETEO": "/weather-sevastopol-5003/10-days/",
+        "RP5": "/Weather_in_Sevastopol",
+        "ACCUWEATHER": "/ru/ru/sevastopol/6120/daily-weather-forecast/6120",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/1627d45bcbb21583ea1bef537eef41c6ea5c0364a17f2d2d059d6a059a59e2b1",
+        "YRNO": "/sted/Ukraina/Sevastopol/Sevastopol/long.html",
+        "GIDROMET": "/product/weather/5655/"
+    }
+}, {
+    "id": "179",
+    "name": "Simferopol",
+    "nameRus": "Симферополь",
+    "routes": {
+        "YANDEX": "/pogoda/simferopol/details?via=ms'",
+        "GISMETEO": "/weather-simferopol-4995/10-days/",
+        "RP5": "/Weather_in_Simferopol",
+        "ACCUWEATHER": "/ru/ru/simferopol/322464/daily-weather-forecast/322464",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/7d122d598b863f397808fdbc6f6a11c26ca4aa9fbdca38438d7e279d83aaade9",
+        "YRNO": "/sted/Ukraina/Krim/Simferopol/long.html",
+        "GIDROMET": "/product/weather/5638/"
+    }
+}, {
+    "id": "180",
+    "name": "Smolensk",
+    "nameRus": "Смоленск",
+    "routes": {
+        "YANDEX": "/pogoda/smolensk/details?via=ms'",
+        "GISMETEO": "/weather-smolensk-4239/10-days/",
+        "RP5": "/Weather_in_Smolensk",
+        "ACCUWEATHER": "/ru/ru/smolensk/295475/daily-weather-forecast/295475",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/efae9a5b1f9319478081e4170aae0ac6e172987c461533915330ff409d54192b",
+        "YRNO": "/sted/Russland/Smolensk/Smolensk/long.html",
+        "GIDROMET": "/product/weather/2721/"
+    }
+}, {
+    "id": "181",
+    "name": "Stavropol",
+    "nameRus": "Ставрополь",
+    "routes": {
+        "YANDEX": "/pogoda/stavropol/details?via=ms'",
+        "GISMETEO": "/weather-stavropol-5141/10-days/",
+        "RP5": "/Weather_in_Stavropol",
+        "ACCUWEATHER": "/ru/ru/stavropol/295608/daily-weather-forecast/295608",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/55d4093d4360ddb8eeeb5dba4337af963c3822594bc42aea0e6d40eedb36e595",
+        "YRNO": "/sted/Russland/Stavropol/Stavropol/long.html",
+        "GIDROMET": "/product/weather/2651/"
+    }
+}, {
+    "id": "182",
+    "name": "Syktyvkar",
+    "nameRus": "Сыктывкар",
+    "routes": {
+        "YANDEX": "/pogoda/syktyvkar/details?via=ms'",
+        "GISMETEO": "/weather-syktyvkar-3989/10-days/",
+        "RP5": "/Weather_in_Syktyvkar",
+        "ACCUWEATHER": "/ru/ru/syktyvkar/288559/daily-weather-forecast/288559",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/0ee88d45224bdfaa1371ff9c77de2797663392597e24a6da9ac9d618a3b76f53",
+        "YRNO": "/sted/Russland/Komi/Syktyvkar/long.html",
+        "GIDROMET": "/product/weather/2606/"
+    }
+}, {
+    "id": "183",
+    "name": "Tver",
+    "nameRus": "Тверь",
+    "routes": {
+        "YANDEX": "/pogoda/tver/details?via=ms'",
+        "GISMETEO": "/weather-tver-4327/10-days/",
+        "RP5": "/Weather_in_Tver",
+        "ACCUWEATHER": "/ru/ru/tver/296079/daily-weather-forecast/296079",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/c73b8586a7d1845437a0a7240628aaeda17f9378246f695e12b04c63a055b557",
+        "YRNO": "/sted/Russland/Tver/Tver/long.html",
+        "GIDROMET": "/product/weather/2526/"
+    }
+}, {
+    "id": "184",
+    "name": "Tomsk",
+    "nameRus": "Томск",
+    "routes": {
+        "YANDEX": "/pogoda/tomsk/details?via=ms'",
+        "GISMETEO": "/weather-tomsk-4652/10-days/",
+        "RP5": "/Weather_in_Tomsk",
+        "ACCUWEATHER": "/ru/ru/tomsk/290868/daily-weather-forecast/290868",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/7fd10ea6f9bc4bd86f9cb969d1eeee17657908c077325b7c4bf1e5cce5834a07",
+        "YRNO": "/sted/Russland/Tomsk/Tomsk/long.html",
+        "GIDROMET": "/product/weather/11990/"
+    }
+}, {
+    "id": "185",
+    "name": "Tyumen",
+    "nameRus": "Тюмень",
+    "routes": {
+        "YANDEX": "/pogoda/tyumen/details?via=ms'",
+        "GISMETEO": "/weather-tyumen-4501/10-days/",
+        "RP5": "/Weather_in_Tyumen",
+        "ACCUWEATHER": "/ru/ru/tyumen/291102/daily-weather-forecast/291102",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/6ef81334433640684b39d3adee1de7317656684a3b632040093bfdab3ea36f6a",
+        "YRNO": "/sted/Russland/Tjumen/Tjumen/long.html",
+        "GIDROMET": "/product/weather/11973/"
+    }
+}, {
+    "id": "186",
+    "name": "Ulan-Ude",
+    "nameRus": "Улан-Удэ",
+    "routes": {
+        "YANDEX": "/pogoda/ulan-ude/details?via=ms'",
+        "GISMETEO": "/weather-ulan-ude-4804/10-days/",
+        "RP5": "/Weather_in_Ulan-Ude",
+        "ACCUWEATHER": "/ru/ru/ulan-ude/287431/daily-weather-forecast/287431",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/05d94bbe4a6c89c0c66b84a02dd15053ac5900455f36c443ffe4af2736afbc2a",
+        "YRNO": "/sted/Russland/Burjatia/Ulan-Ude/long.html",
+        "GIDROMET": "/product/weather/16168/"
+    }
+}, {
+    "id": "187",
+    "name": "Ulyanovsk",
+    "nameRus": "Ульяновск",
+    "routes": {
+        "YANDEX": "/pogoda/ulyanovsk/details?via=ms'",
+        "GISMETEO": "/weather-ulyanovsk-4407/10-days/",
+        "RP5": "/Weather_in_Ulyanovsk",
+        "ACCUWEATHER": "/ru/ru/ulyanovsk/296217/daily-weather-forecast/296217",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/7ba47f9fcc206513b30dcf8c10eb3bb62bb117f3248efe2d5c1caae4b4ed4b95",
+        "YRNO": "/sted/Russland/Uljanovsk/Ulyanovsk/long.html",
+        "GIDROMET": "/product/weather/2512/"
+    }
+}, {
+    "id": "188",
+    "name": "Ufa",
+    "nameRus": "Уфа",
+    "routes": {
+        "YANDEX": "/pogoda/ufa/details?via=ms'",
+        "GISMETEO": "/weather-ufa-4588/10-days/",
+        "RP5": "/Weather_in_Ufa",
+        "ACCUWEATHER": "/ru/ru/ufa/292177/daily-weather-forecast/292177",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/ecc562d6ac455484d9f5ceb6bfc963ba60bf38338297dc46e06130a48cac575d",
+        "YRNO": "/sted/Russland/Basjkortostan/Ufa/long.html",
+        "GIDROMET": "/product/weather/2519/"
+    }
+}, {
+    "id": "189",
+    "name": "Khabarovsk",
+    "nameRus": "Хабаровск",
+    "routes": {
+        "YANDEX": "/pogoda/khabarovsk/details?via=ms'",
+        "GISMETEO": "/weather-khabarovsk-4862/10-days/",
+        "RP5": "/Weather_in_Khabarovsk",
+        "ACCUWEATHER": "/ru/ru/khabarovsk/293149/daily-weather-forecast/293149",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/fb6f3414f1bedcbc5247597d1d362a4387abcac878b65550e0a1e6cb13ee0260",
+        "YRNO": "/sted/Russland/Khabarovsk/Khabarovsk/long.html",
+        "GIDROMET": "/product/weather/16276/"
+    }
+}, {
+    "id": "190",
+    "name": "Khanty-Mansiysk",
+    "nameRus": "Ханты-Мансийск",
+    "routes": {
+        "YANDEX": "/pogoda/khanty-mansiysk/details?via=ms'",
+        "GISMETEO": "/weather-khanty-mansysk-4003/10-days/",
+        "RP5": "/Weather_in_Khanty-Mansiysk",
+        "ACCUWEATHER": "/ru/ru/khanty-mansiysk/288460/daily-weather-forecast/288460",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/7d0d08d4d2fa47a6fcbe989338d4f5e8f3a2215e6f98b3588fa5f6a1af5a5268",
+        "YRNO": "/sted/Russland/Khanty-Mansijsk/Khanty-Mansijsk/long.html",
+        "GIDROMET": "/product/weather/12196/"
+    }
+}, {
+    "id": "191",
+    "name": "Cheboksary",
+    "nameRus": "Чебоксары",
+    "routes": {
+        "YANDEX": "/pogoda/cheboksary/details?via=ms'",
+        "GISMETEO": "/weather-cheboksary-4361/10-days/",
+        "RP5": "/Weather_in_Cheboksary",
+        "ACCUWEATHER": "/ru/ru/cheboksary/287676/daily-weather-forecast/287676",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/50d049288f9aeacf1cd61927f62efb24c8b79049c7ab3915e4333fe9e82f3922",
+        "YRNO": "/sted/Russland/Tsjuvasjia/Tsjeboksary/long.html",
+        "GIDROMET": "/product/weather/3822/"
+    }
+}, {
+    "id": "192",
+    "name": "Chelyabinsk",
+    "nameRus": "Челябинск",
+    "routes": {
+        "YANDEX": "/pogoda/chelyabinsk/details?via=ms'",
+        "GISMETEO": "/weather-chelyabinsk-4565/10-days/",
+        "RP5": "/Weather_in_Chelyabinsk",
+        "ACCUWEATHER": "/ru/ru/chelyabinsk/292332/daily-weather-forecast/292332",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/47300995d85694c9cb21e9cbe02e56ee33288a9edce0e4c5627ecd566518a5db",
+        "YRNO": "/sted/Russland/Tsjeljabinsk/Tsjeljabinsk/long.html",
+        "GIDROMET": "/product/weather/12254/"
+    }
+}, {
+    "id": "193",
+    "name": "Cherkessk",
+    "nameRus": "Черкесск",
+    "routes": {
+        "YANDEX": "/pogoda/cherkessk/details?via=ms'",
+        "GISMETEO": "/weather-cherkessk-5224/10-days/",
+        "RP5": "/Weather_in_Cherkessk",
+        "ACCUWEATHER": "/ru/ru/cherkessk/288291/daily-weather-forecast/288291",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/b8ff885c3f3c411d0abbf4ad6c317b331a21bf2c271b8bc759f51aa786e13997",
+        "YRNO": "/sted/Russland/Karatsjajevo-Tsjerkessia/Tsjerkessk/long.html",
+        "GIDROMET": "/product/weather/3808/"
+    }
+}, {
+    "id": "194",
+    "name": "Chita",
+    "nameRus": "Чита",
+    "routes": {
+        "YANDEX": "/pogoda/chita/details?via=ms'",
+        "GISMETEO": "/weather-chita-4797/10-days/",
+        "RP5": "/Weather_in_Chita,_Japan",
+        "ACCUWEATHER": "/ru/ru/chita/291605/daily-weather-forecast/291605",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/5de2a0171fd4ebe088f581af789aeb97948350db2695162f8e024501356f606f",
+        "YRNO": "/sted/Russland/Transbajkal/Tsjita/long.html",
+        "GIDROMET": "/product/weather/16294/"
+    }
+}, {
+    "id": "195",
+    "name": "Elista",
+    "nameRus": "Элиста",
+    "routes": {
+        "YANDEX": "/pogoda/elista/details?via=ms'",
+        "GISMETEO": "/weather-elista-5127/10-days/",
+        "RP5": "/Weather_in_Elista",
+        "ACCUWEATHER": "/ru/ru/elista/288166/daily-weather-forecast/288166",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/6cfa820b95d28828145234008d153ad200affe4b5b353224741ce662b40bab3e",
+        "YRNO": "/sted/Russland/Kalmykia/Elista/long.html",
+        "GIDROMET": "/product/weather/3717/"
+    }
+}, {
+    "id": "196",
+    "name": "Sakhalinsk",
+    "nameRus": "Сахалинск",
+    "routes": {
+        "YANDEX": "/pogoda/sakhalinsk/details?via=ms'",
+        "GISMETEO": "/weather-yuzhno-sakhalinsk-4894/10-days/",
+        "RP5": "/Weather_in_Yuzhno-Sakhalinsk",
+        "ACCUWEATHER": "/ru/ru/yuzhno-sakhalinsk/290280/daily-weather-forecast/290280",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/24041d8786c975fddce536c4b09230e1706bac69a3de6cdf27d8bdc691ca6073",
+        "YRNO": "/sted/Russland/Sakhalin/Juzjno-Sakhalinsk/long.html",
+        "GIDROMET": "/product/weather/16809/"
+    }
+}, {
+    "id": "197",
+    "name": "Yakutsk",
+    "nameRus": "Якутск",
+    "routes": {
+        "YANDEX": "/pogoda/yakutsk/details?via=ms'",
+        "GISMETEO": "/weather-yakutsk-4039/10-days/",
+        "RP5": "/Weather_in_Yakutsk",
+        "ACCUWEATHER": "/ru/ru/yakutsk/290150/daily-weather-forecast/290150",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/92440a7ac756369278e063f8d405ef0f666d6998f68980c355fd971e0dd24f8f",
+        "YRNO": "/sted/Russland/Sakha/Yakutsk/long.html",
+        "GIDROMET": "/product/weather/16148/"
+    }
+}, {
+    "id": "198",
+    "name": "Yaroslavl",
+    "nameRus": "Ярославль",
+    "routes": {
+        "YANDEX": "/pogoda/yaroslavl/details?via=ms'",
+        "GISMETEO": "/weather-yaroslavl-4313/10-days/",
+        "RP5": "/Weather_in_Yaroslavl",
+        "ACCUWEATHER": "/ru/ru/yaroslavl/296629/daily-weather-forecast/296629",
+        "WEATHERCOM": "/ru-RU/weather/tenday/l/985de64314fe10f1fab3e49ae41966ee39b432fd2b46ba4fb0579512408f8cb1",
+        "YRNO": "/sted/Russland/Jaroslavl/Yaroslavl/long.html",
+        "GIDROMET": "/product/weather/2374/"
+    }
+}]
