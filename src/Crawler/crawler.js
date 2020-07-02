@@ -4,7 +4,7 @@ const http = require('http');
 const fs = require('fs');
 
 const { TempRecord } = require('../Backend/TempRecord')
-const storage = require('../Backend/csv-storage.js')
+const storage = require('../Backend/db-storage.js')
 const logger = require('./cr-logger')
 
 /**
@@ -70,36 +70,43 @@ async function getTempFrom(site, location) {
 	}
 }
 	
-function storeSiteData(opts, data) {
-	const siteCode = data.siteCode;
-	const siteName = data.siteName
-	const reqTime = data.requestTime
-	const temps = data.temps
-	const locId = data.location.locId
-	const locName = data.location.name
+function storeSiteData(opts, sitesData) {
+	let trs = []
+
+	for (const siteData of sitesData) {	
+		const siteCode = siteData.siteCode;
+		const siteName = siteData.siteName
+		const reqTime = siteData.requestTime
+		const temps = siteData.temps
+		const location = siteData.location
 	
-	if (opts.storeSiteCode && siteCode != null) {
-		logger.storeSiteCode(siteName, reqTime, siteCode);
+		
+		if (opts.storeSiteCode && siteCode != null) {
+			logger.storeSiteCode(siteName, reqTime, siteCode);
+		}
+		
+		trs.push(new TempRecord(reqTime, siteName, location.locId, temps))
 	}
-	
-	const tr = new TempRecord(siteName, locId, reqTime, temps)
+
 	if (!opts.storeTemps) {
-		logger.logSuccess(tr, locName)
+		logger.logSuccess(trs)
 		return	
 	}
-	storage.storeTempRecord(tr)
+	storage.storeTempRecords(trs)
 }
 
-function errorHandler(data) {
-	const siteCode = data.siteCode;
-	const siteName = data.siteName
-	const reqTime = data.requestTime
-	const err = data.err
+function errorHandler(sitesData) {
+	sitesData.forEach(siteData => {
+		const siteCode = siteData.siteCode;
+		const siteName = siteData.siteName
+		const reqTime = siteData.requestTime
+		const err = siteData.err
 
-	if (siteCode != null) {
-		logger.storeSiteCode(siteName, reqTime, siteCode);
-	}
-	logger.logError(err, data);
+		if (siteCode != null) {
+			logger.storeSiteCode(siteName, reqTime, siteCode);
+		}
+		logger.logError(err, siteData);
+	})
 }
 
 async function poll(sites, locations, storingOpts) {
@@ -110,10 +117,11 @@ async function poll(sites, locations, storingOpts) {
 			promises.push(getTempFrom(site, location))
 		}
 		const allSiteData = await Promise.all(promises)
-		allSiteData.forEach(siteData => {
-			if (siteData.err) {return errorHandler(siteData)}
-			storeSiteData(storingOpts, siteData)
-		})
+		const errData = allSiteData.filter(siteData => siteData.err)
+		const parsedData = allSiteData.filter(siteData => !siteData.err)
+
+		if (errData.length) { errorHandler(errData) }
+		storeSiteData(storingOpts, parsedData)
 	}
 }
 
@@ -125,7 +133,7 @@ function main() {
 	const sites = Object.keys(config.sitesToPoll)
 		.filter(site => config.sitesToPoll[site])
 		.map(site => require(`./temp-parsers/${site}-temp-parser`))
-	const locations = storage.getAllLocations(locLimit)
+	const locations = require('../Backend/csv-storage.js').getAllLocations(locLimit)
 
 	if (config.pollOnce) {
 		poll(sites, locations, storingOpts)

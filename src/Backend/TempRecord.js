@@ -8,18 +8,18 @@ class TempRecord {
      * @param {number} locId - location Id
      */
 
-    constructor(datetime, serviceId, locId, temps) {
+    constructor(datetime, serviceName, locId, temps) {
         this.datetime = datetime
-        this.serviceId = serviceId
+        this.serviceName = serviceName
         this.temps = temps
         
         const _locId = parseInt(locId, 10)
         if (Number.isNaN(_locId) || _locId < 100) { throw new Error('INVALID_LOCATION_ID') }
         this.locId = _locId
 
-        const _serviceId = parseInt(serviceId, 10)
+        /* const _serviceId = parseInt(serviceId, 10)
         if (Number.isNaN(_serviceId) || _serviceId > 8) { throw new Error('INVALID_SERVICE_ID') }
-        this.serviceId = _serviceId
+        this.serviceId = _serviceId */
     }
         set temps(value) {
             if (typeof value === 'number' || value === undefined) {

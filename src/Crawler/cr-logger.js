@@ -4,10 +4,10 @@ const logFile = '../error.log'
 const htmlFolder = '../saved-html'
 
 module.exports = {
-    logError: function(err, cbData) {
-        const date = cbData.requestTime.toLocaleString()
-        const msg = `${date} ${cbData.siteName}_${err.type}: ${err.message}\r\n`
-        const location = cbData.location
+    logError: function(err, siteData) {
+        const date = siteData.requestTime.toLocaleString()
+        const msg = `${date} ${siteData.siteName}_${err.type}: ${err.message}\r\n`
+        const location = siteData.location
 
         fs.appendFile(logFile, msg, (error) => {
             if (error) {
@@ -16,19 +16,21 @@ module.exports = {
             }
             const toRed = '\x1b[31m', toGreen = '\x1b[32m', resetColor = '\x1b[0m'
             console.log(toRed, `${err.type}: ${err.message}`, resetColor)
-            console.log('Service:', toGreen, cbData.siteName, resetColor)
+            console.log('Service:', toGreen, siteData.siteName, resetColor)
             console.log('Location:', toGreen, `${location.locId} - ${location.name}`, resetColor);
             console.log('Time:', toGreen, date, resetColor)
-            console.log('URL:', toGreen, `${cbData.siteOpts.hostname}${location.path[cbData.siteName]}`, resetColor)
+            console.log('URL:', toGreen, `${siteData.siteOpts.hostname}${location.path[siteData.siteName]}`, resetColor)
         });
     }, 
 
-    logSuccess: function(tr, locName) {
-        console.log(`Service: ${tr.service}`)
-        console.log(`Location: ${tr.locId} - ${locName}`)
-        console.log(`Time: ${tr.time.toLocaleString()}`)
-        console.log(`Temperatures: ${tr.temps.toString()}`)
-        console.log('')
+    logSuccess: function(trs) {
+        trs.forEach(tr => {
+            console.log(`Service: ${tr.serviceName}`)
+            console.log(`Location: ${tr.locId}`)
+            console.log(`Time: ${tr.datetime.toLocaleString()}`)
+            console.log(`Temperatures: ${tr.temps.toString()}`)
+            console.log('')
+        })
     },
 
     storeSiteCode: function (name, time, data) {

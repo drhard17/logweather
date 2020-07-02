@@ -5,7 +5,7 @@ const { TempRecord } = require('./TempRecord')
 const csvFolder = '../csv'
 
 function convertRecordToCsv(record) {
-    const time = record.time
+    const time = record.datetime
     const locId = record.locId
     const temps = record.temps
     return time.toISOString() + ',' + locId + ',' + temps.join() + '\r\n'
@@ -169,17 +169,18 @@ module.exports = {
      * 
      * @param {TempRecord[]} records 
      */
-    storeTempRecords: function(records) {
-        if (records.some(rec => !(rec instanceof TempRecord))) {
+    storeTempRecords: function(trs) {
+        if (trs.some(tr => !(tr instanceof TempRecord))) {
             throw new Error('INVALID_TEMP_RECORD_FORMAT')
         }
-        const services = new Set(records.map(rec => rec.service))
-        for (const service of services) {
-            const csvStrings = records
-                .filter(rec = rec.service === service)
-                .map(rec => convertRecordToCsv(rec)) 
-            const filename = record.service + '.csv'
-            storeCsvData(csvFolder, filename, csvString, (err, filename, csvString) => {
+        const services = new Set(trs.map(tr => tr.serviceName))
+        for (const serviceName of services) {
+            const csvStrings = trs
+                .filter(tr => tr.serviceName === serviceName)
+                .map(tr => convertRecordToCsv(tr))
+                .join('\r\n') 
+            const filename = serviceName + '.csv'
+            storeCsvData(csvFolder, filename, csvStrings, (err, filename, csvStrings) => {
                 if (err) {
                     console.log(err)
                     return

@@ -169,7 +169,8 @@ function trsToSQL(trs) {
         const forecastData = tr.temps.map((temp, index) => {
             let dbTemp
             temp === null || Number.isNaN(temp) ? dbTemp = 'NULL' : dbTemp = temp
-            return [timeStamp, tr.serviceId, tr.locId, index, dbTemp]
+            const serviceNameExp = `(SELECT id FROM services WHERE name = '${tr.serviceName}')`
+            return [timeStamp, serviceNameExp, tr.locId, index, dbTemp]
         })
         return forecastData
     })    
@@ -239,20 +240,22 @@ function importCsvToDb() {
     })
 }
 
-function storeTempRecords(trs, cb) {
+module.exports = {
+    storeTempRecords: function (trs) {
 
-    const sql = trsToSQL(trs)
-    const db = getLogweatherDb()
-                   
-    db.run(sql, (err) => {
-        if (err) return cb(err);
-        console.log(`Success inserting data!`);
-    })
+        const sql = trsToSQL(trs)
+        const db = getLogweatherDb()
+                    
+        db.run(sql, (err) => {
+            if (err) return console.log(err);
+            console.log(`Success inserting data!`);
+        })
 
-    db.close((err) => {
-        if (err) return cb(err)
-    })
-    cb(null)
+        db.close((err) => {
+            if (err) return console.log(err);
+        })
+        console.log(`${trs.length} TRs added`);
+    }
 }
 
 function getLastTemp(serviceName, locId, cb) {
@@ -277,6 +280,8 @@ function getTempPoints(tRequest) {
 
     const firstDay = getDbDate(tRequest.firstDay)
     const lastDay = getDbDate(tRequest.lastDay)
+
+    console.log(firstDay, lastDay);
 
     const db = getLogweatherDb()
     const sql = `
@@ -316,11 +321,11 @@ function testTempReq() {
 }
 
 function main() {
-    const tr1 = new TempRecord(new Date(), 2, 101, [20, null, 12, 13, NaN, 17])
-    const tr2 = new TempRecord(new Date(), 3, 102, [21, 23, 25])
+    const tr1 = new TempRecord(new Date(), 'YANDEX', 101, [20, null, 12, 13, NaN, 17])
+    const tr2 = new TempRecord(new Date(), 'GISMETEO', 102, [21, 23, 25])
     const tr = [tr1, tr2]
 
-    storeTempRecords(tr, (err) => {
+    module.exports.storeTempRecords(tr, (err) => {
         if (err) return console.error(err.message);
         console.log('TR stored');
         
@@ -331,9 +336,9 @@ function main() {
 
 if (!module.parent) {
 
-    testTempReq()
+    // testTempReq()
     // importCsvToDb()
-    // main()
+    main()
     
 /*     getLastTemp('YANDEX', 101, (err, data) => {
         if(err) { console.log(err) }
