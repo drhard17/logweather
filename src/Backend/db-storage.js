@@ -5,7 +5,6 @@ const array = require('lodash/array');
 const { TempRecord } = require('./TempRecord');
 const { TempRequest } = require('./TempRequest');
 const csvStorage = require('./csv-storage.js');
-const { result } = require('lodash');
 
 const dbFolder = '../db'
 const dbName = 'logweather.db'
@@ -21,7 +20,7 @@ function getLogweatherDb() {
 
     return new sqlite3.Database(`${dbFolder}/${dbName}`, (err) => {
         if (err) { return console.error(err.message) }
-        console.log('Connected to the Logweather database.')
+        // console.log('Connected to the Logweather database.')
     })
 }
 
@@ -81,32 +80,7 @@ function createTables(db) {
     })
 }
 
-function servicesToJson() {
-    const services = [
-        {id: 1, name: 'STREET'},
-        {id: 2, name: 'YANDEX'},
-        {id: 3, name: 'GISMETEO'},
-        {id: 4, name: 'ACCUWEATHER'},
-        {id: 5, name: 'WEATHERCOM'},
-        {id: 6, name: 'YRNO'},
-        {id: 7, name: 'GIDROMET'},
-        {id: 8, name: 'RP5'}
-    ]
-    const json = JSON.stringify(services)
-    fs.writeFile('./services.json', json, (err) => {
-        if (err) return console.log(err);
-        console.log('OK');
-    })
-}
 
-function locationsToJson() {
-    const locations = csvStorage.getAllLocations()
-    const json = JSON.stringify(locations)
-    fs.writeFile('./locations.json', json, (err) => {
-        if (err) return console.log(err)
-        console.log('Write locations.json OK');
-    })
-}
 
 function fillServicesTable(db, filename) {
     fs.readFile(filename, (err, data) => {
@@ -147,7 +121,7 @@ function fillDb() {
         fillServicesTable(db, './services.json')
         fillLocationsTable(db, './locations.json')
     })
-    // db.close()    
+    db.close()    
 }
 
 function getDbDate(date) {
@@ -159,7 +133,9 @@ function getDbDate(date) {
 
 function trsToSQL(trs) {
     
-    if (!(trs instanceof Array)) { trs = [trs] }
+    if (!(trs instanceof Array)) {
+        trs = [trs]
+    }
     if (trs.some(tr => !(tr instanceof TempRecord))) {
         throw new Error('INVALID_TEMP_RECORD_FORMAT')
     }
@@ -183,7 +159,6 @@ function trsToSQL(trs) {
                             ${allForecastData[0][4]} AS temp
                     ${allForecastData.slice(1).map(string => `UNION ALL SELECT ${string.toString()}`).join('\r\n')}                            
     `
-    // console.log(sql);
     return sql
 }
 
@@ -255,69 +230,73 @@ module.exports = {
             if (err) return console.log(err);
         })
         console.log(`${trs.length} TRs added`);
-    }
-}
+    },
 
-function getLastTemp(serviceName, locId, cb) {
-    const db = getLogweatherDb()
-    const sql = `SELECT datetime, service_id, location_id, temp FROM forecasts
-                WHERE depth = 0 
-                    AND service_id = (SELECT id FROM services WHERE name = '${serviceName}')
-                    AND location_id = ${locId}
-                    AND datetime = (SELECT MAX(datetime) FROM forecasts)`
-    db.all(sql, (err, rows) => {
-        if (err) { return cb(err) }
-        if (!rows.length) { return cb(null, null) }
-        const temp = rows[0].temp
-        cb(null, temp)
-    })
-}
 
-function getTempPoints(tRequest) {
-    if (!(tRequest instanceof TempRequest)) {
-        throw new Error('INVALID_TEMP_REQUEST_FORMAT')
-    }
+    getLastTemp: function(serviceName, locId, cb) {
+        const db = getLogweatherDb()
+        const sql = `SELECT MAX(datetime) AS datetime, service_id, location_id, temp FROM forecasts
+                        WHERE depth = 0 
+                        AND service_id = (SELECT id FROM services WHERE name = '${serviceName}')
+                        AND location_id = ${parseInt(locId, 10)}
+                    `
+        db.all(sql, (err, rows) => {
+            console.log(serviceName, locId, err);
+            if (err) { return cb(err) }
+            if (!rows.length) { return cb(null, null) }
+            
+            const temp = rows[0].temp
+            cb(null, temp)
+        })
+    },
 
-    const firstDay = getDbDate(tRequest.firstDay)
-    const lastDay = getDbDate(tRequest.lastDay)
+    /**
+     * 
+     * @param {TempRequest} tempRequest 
+     */
 
-    console.log(firstDay, lastDay);
-
-    const db = getLogweatherDb()
-    const sql = `
-        SELECT date(datetime, 'unixepoch') AS timeStamp, ROUND(AVG(temp), 0) AS temp 
-        FROM forecasts 
-        WHERE service_id = (SELECT id FROM services WHERE name = '${tRequest.serviceName}')
-            AND location_id = ${tRequest.locId}
-            AND depth = ${tRequest.depth}
-            AND datetime BETWEEN ${firstDay} AND ${lastDay}
-            AND (SELECT strftime('%H', datetime(datetime, 'unixepoch'))) = '${tRequest.hour}'
-        GROUP BY date(datetime, 'unixepoch')
-    `
-    db.all(sql, (err, rows) => {
-        if (err) console.log(err)
-        console.log(rows.length)
-        const chartData = {
-            labels: rows.map(row => row.timeStamp),
-            points: [{
-                service: tRequest.serviceName,
-                depth: tRequest.depth,
-                temps: rows.map(row => row.temp)
-            }]
+    getTempPoints: function(tempRequest, cb) {
+        if (!(tempRequest instanceof TempRequest)) {
+            throw new Error('INVALID_TEMP_REQUEST_FORMAT')
         }
-        console.log(chartData.points[0].temps);
-        console.log(chartData.labels)
-        
-    })
-    db.close()
+
+        const firstDay = getDbDate(tempRequest.firstDay)
+        const lastDay = getDbDate(tempRequest.lastDay)
+
+        const db = getLogweatherDb()
+        const sql = `
+            SELECT date(datetime, 'unixepoch', '+${tempRequest.depth} day') AS timeStamp, ROUND(AVG(temp), 0) AS avgTemp 
+            FROM forecasts 
+            WHERE service_id = (SELECT id FROM services WHERE name = '${tempRequest.serviceName}')
+                AND location_id = ${tempRequest.locId}
+                AND depth = ${tempRequest.depth}
+                AND datetime BETWEEN ${firstDay} AND ${lastDay}
+                AND (SELECT strftime('%H', datetime(datetime, 'unixepoch'))) = '${tempRequest.hour}'
+            GROUP BY date(datetime, 'unixepoch')
+        `
+        db.all(sql, (err, rows) => {
+            if (err) { return cb(err) }
+            
+            const result = rows.map(row => {
+                return {
+                    label: new Date(row.timeStamp),
+                    avgTemp: row.avgTemp
+                }
+            })
+            cb(null, result)
+        })
+        db.close()
+    }
 }
+
 
 function testTempReq() {
 
     const timeOffset = 3
     const tReq = new TempRequest(new Date('2020/04/06'), new Date('2020/04/13'), 101, 'STREET', 0, 14 - timeOffset)
-    getTempPoints(tReq)
-    
+    getTempPoints(tReq, (err, data) => {
+        console.log(data)
+    })
 }
 
 function main() {
@@ -336,9 +315,9 @@ function main() {
 
 if (!module.parent) {
 
-    // testTempReq()
+    testTempReq()
     // importCsvToDb()
-    main()
+    // main()
     
 /*     getLastTemp('YANDEX', 101, (err, data) => {
         if(err) { console.log(err) }

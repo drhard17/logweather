@@ -3,7 +3,8 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
 
-const storage = require('./csv-storage.js')
+const csvStorage = require('./csv-storage.js')
+const storage = require('./db-storage.js')
 const bl = require('./chart-builder.js')
 const { TempRecord } = require('./TempRecord')
 const config = JSON.parse(fs.readFileSync('./config.json'))
@@ -14,8 +15,8 @@ const port = config.webserver.port;
 const storeTemp = function(req, res, next) {
     const temp = req.query.temp
     if (temp) {
-        const tr = new TempRecord('STREET', 101, new Date(), parseInt(temp, 10))
-        storage.storeTempRecord(tr)
+        const tr = new TempRecord(new Date(), 'STREET', 101, parseInt(temp, 10))
+        storage.storeTempRecords(tr)
         console.log(`Added temp: ${temp}`)
     }
     next()
@@ -31,14 +32,13 @@ app.engine('html', (filePath, options, cb) => {
     fs.readFile(filePath, (err, content) => {
         if (err) return cb(new Error(err))
 
-        storage.getLastRecord('STREET', 101, (err, data) => {
+        storage.getLastTemp('STREET', 101, (err, temp) => {
             if (err) return cb(new Error(err))
 
-            let temp = data.temps[0]
             if (temp > 0) {
                 temp = '+' + temp
             }
-            const locations = storage.getAllLocations(0)
+            const locations = csvStorage.getAllLocations(0)
                 const locOptions = locations.map(location => {
                 return `<option value=${location.locId}>${location.name}</option>`
             }).join('\r\n')
@@ -76,9 +76,8 @@ app.post('/getchartdata', (req, res) => {
 app.post('/getlasttemp', (req, res) => {
     console.log(`XHR recieved: ${req.xhr}`)
     res.type('json')
-    storage.getLastRecord(req.body.service, req.body.locId, (err, data) => {
+    storage.getLastTemp(req.body.service, req.body.locId, (err, temp) => {
         if (err) return cb(new Error(err))
-        let temp = data.temps[0]
         if (temp > 0) {
             temp = '+' + temp
         }

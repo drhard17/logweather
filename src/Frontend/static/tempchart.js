@@ -22,9 +22,15 @@ const maxDepth = {
 const tempRequest = {
     firstDay: null,
     lastDay: null,
-    hour: 14,
-    services: [],
-    locId: 101
+    locId: 101,
+    serviceName: null,
+    depth: 0,
+    hour: 14 - 3
+}
+
+let chartData = {
+    labels: [],
+    points: []
 }
 
 locSelect.onchange = function() {
@@ -37,13 +43,14 @@ locSelect.onchange = function() {
         const temp = res.temp
         document.querySelector('#sTemp').innerHTML = temp
         document.querySelector('#sCity').innerHTML = locName
+        chartData.points = []
         removeData(myChart)
     })
 }
 
 firstDayInput.oninput = function() {
     if (chartAdded) {
-        updChartDates()
+        // updChartDates()
     }
 }
 
@@ -52,7 +59,8 @@ lastDayInput.oninput = firstDayInput.oninput
 addChartButton.onclick = function() {
     const service = serviceSelect.value
     const depth = parseInt(depthSelect.value, 10)
-    tempRequest.services.push({name: service, depth: depth})    
+    tempRequest.serviceName = service
+    tempRequest.depth = depth
     chartAdded = true
     updChartDates()
 }
@@ -119,8 +127,8 @@ function updChartDates() {
     firstDayInput.value = moment(firstDay).format('YYYY-MM-DD')
     lastDayInput.value = moment(lastDay).format('YYYY-MM-DD')
 
-    tempRequest.firstDay = firstDay
-    tempRequest.lastDay = lastDay
+    tempRequest.firstDay = new Date(firstDay)
+    tempRequest.lastDay = new Date(lastDay)
 
     if (chartAdded) {
         updateChart()
@@ -130,7 +138,14 @@ function updChartDates() {
 function updateChart() {
     getChartData(tempRequest, (err, res) => {
         if (err) return alert(err)
-        renderChart(myChart, res)
+        
+        chartData.labels = res.labels
+        chartData.points.push(res.points[0])
+        
+        // console.log(JSON.stringify(chartData));
+        // console.log(JSON.stringify(res));
+        
+        renderChart(myChart, chartData)
     })
 }
 

@@ -1,3 +1,13 @@
+/**
+ * @param {Date} firstDay
+ * @param {Date} lastDay
+ * @param {number} locId
+ * @param {string} serviceName
+ * @param {number} depth
+ * @param {number} hour
+ * 
+ */
+
 class TempRequest {
     constructor (firstDay, lastDay, locId, serviceName, depth, hour) {
         this.firstDay = firstDay

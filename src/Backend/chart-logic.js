@@ -1,6 +1,44 @@
 const moment = require('moment');
+const storage = require('./db-storage.js');
+const { TempRequest } = require('./TempRequest');
+const array = require('lodash/array');
 
 module.exports = {
+
+    calculatePoints: function(tempRequest, cb) {
+        const labels = getDaySequence(tempRequest.firstDay, tempRequest.lastDay)
+        
+        const firstDay = moment(tempRequest.firstDay).subtract(tempRequest.depth, 'd').toDate()
+        const lastDay = moment(tempRequest.lastDay).subtract(tempRequest.depth, 'd').endOf('day').toDate()
+        const hour = tempRequest.hour - 0
+
+        const formedTempRequest = new TempRequest(firstDay, lastDay, tempRequest.locId, tempRequest.serviceName, tempRequest.depth, hour)
+        
+        storage.getTempPoints(formedTempRequest, (err, tempPoints) => {
+            if (err) { return cb(err) }
+            const chartPoints = labels.map(label => {
+                let temp = null
+                tempPoints.forEach((item) => {
+                    if (item.label.toISOString() === label.toISOString()) {
+                        temp = item.avgTemp
+                    }
+                })                    
+                return {
+                    label,
+                    temp
+                }
+            })
+            
+            cb(null, {
+                labels: chartPoints.map(point => point.label),
+                points: [{
+                    service: tempRequest.serviceName,
+                    depth: tempRequest.depth,
+                    temps: chartPoints.map(point => point.temp)
+                }]
+            })
+        })
+    },
 
     /**
      * 
@@ -10,7 +48,7 @@ module.exports = {
      * 
      */
 
-    calculatePoints: function (data, tempRequest) {
+    calculatePointsOld: function (data, tempRequest) {
         const labels = getDaySequence(tempRequest.firstDay, tempRequest.lastDay)
         const points = tempRequest.services.map((service) => {
             const req = {
