@@ -19,16 +19,16 @@ module.exports = {
             console.log('Service:', toGreen, siteData.siteName, resetColor)
             console.log('Location:', toGreen, `${location.locId} - ${location.name}`, resetColor);
             console.log('Time:', toGreen, date, resetColor)
-            console.log('URL:', toGreen, `${siteData.siteOpts.hostname}${location.path[siteData.siteName]}`, resetColor)
+            console.log('URL:', toGreen, `${siteData.siteOpts.hostname}${location.routes[siteData.siteName]}`, resetColor)
         });
     }, 
 
-    logSuccess: function(trs) {
-        trs.forEach(tr => {
-            console.log(`Service: ${tr.serviceName}`)
-            console.log(`Location: ${tr.locId}`)
-            console.log(`Time: ${tr.datetime.toLocaleString()}`)
-            console.log(`Temperatures: ${tr.temps.toString()}`)
+    logSuccess: function(tempRecords) {
+        tempRecords.forEach(tempRecord => {
+            console.log(`Service: ${tempRecord.serviceName}`)
+            console.log(`Location: ${tempRecord.locId}`)
+            console.log(`Time: ${tempRecord.datetime.toLocaleString()}`)
+            console.log(`Temperatures: ${tempRecord.temps.toString()}`)
             console.log('')
         })
     },

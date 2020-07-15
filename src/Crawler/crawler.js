@@ -44,7 +44,7 @@ const getSiteCode = (opts) => new Promise((resolve, reject) => {
  * Gets an array of temperatures from the website
  * 
  * @param {{name: string, opts: {hostname: string, path: string, port: number, headers: string}, parseFunc: function}} site 
- * @param {Object} location
+ * @param {{id: number, name: string, nameRus: string, routes: {[siteName]: string}[]}} location
  * @returns {Promise<{temps: number[], requestTime: Date, siteName: string, siteOpts: {}, siteCode: string}>}
  */
 async function getTempFrom(site, location) {
@@ -56,7 +56,7 @@ async function getTempFrom(site, location) {
 		siteCode: null,
 	};
 
-	site.opts.path = location.path[site.name]
+	site.opts.path = location.routes[site.name]
 
 	try {
 		const siteCode = await getSiteCode(site.opts)
@@ -71,7 +71,7 @@ async function getTempFrom(site, location) {
 }
 	
 function storeSiteData(opts, sitesData) {
-	let trs = []
+	let tempRecords = []
 
 	for (const siteData of sitesData) {	
 		const siteCode = siteData.siteCode;
@@ -80,19 +80,18 @@ function storeSiteData(opts, sitesData) {
 		const temps = siteData.temps
 		const location = siteData.location
 	
-		
 		if (opts.storeSiteCode && siteCode != null) {
 			logger.storeSiteCode(siteName, reqTime, siteCode);
 		}
 		
-		trs.push(new TempRecord(reqTime, siteName, location.locId, temps))
+		tempRecords.push(new TempRecord(reqTime, siteName, location.id, temps))
 	}
 
 	if (!opts.storeTemps) {
-		logger.logSuccess(trs)
+		logger.logSuccess(tempRecords)
 		return	
 	}
-	storage.storeTempRecords(trs)
+	storage.storeTempRecords(tempRecords)
 }
 
 function errorHandler(sitesData) {
@@ -113,7 +112,7 @@ async function poll(sites, locations, storingOpts) {
 	for (let location of locations) {
 		const promises = []
 		for (let site of sites) {
-			if (!location.path[site.name]) {continue}
+			if (!Object.keys(location.routes).includes(site.name)) { continue }
 			promises.push(getTempFrom(site, location))
 		}
 		const allSiteData = await Promise.all(promises)
@@ -128,13 +127,13 @@ async function poll(sites, locations, storingOpts) {
 function main() {
 	const config = JSON.parse(fs.readFileSync('./config.json'))
 	const storingOpts = config.storing
-	const locLimit = config.locLimit
-	
+	const locLimit = config.locLimit || undefined
+	const locations = JSON.parse(fs.readFileSync('./locations.json')).slice(0, locLimit)
+
 	const sites = Object.keys(config.sitesToPoll)
 		.filter(site => config.sitesToPoll[site])
 		.map(site => require(`./temp-parsers/${site}-temp-parser`))
-	const locations = require('../Backend/csv-storage.js').getAllLocations(locLimit)
-
+	
 	if (config.pollOnce) {
 		poll(sites, locations, storingOpts)
 		return

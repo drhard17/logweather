@@ -3,11 +3,12 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
 
-const csvStorage = require('./csv-storage.js')
 const storage = require('./db-storage.js')
 const bl = require('./chart-builder.js')
 const { TempRecord } = require('./TempRecord')
+
 const config = JSON.parse(fs.readFileSync('./config.json'))
+const locations = JSON.parse(fs.readFileSync('./locations.json'))
 
 const hostname = config.webserver.host;
 const port = config.webserver.port;
@@ -38,9 +39,9 @@ app.engine('html', (filePath, options, cb) => {
             if (temp > 0) {
                 temp = '+' + temp
             }
-            const locations = csvStorage.getAllLocations(0)
-                const locOptions = locations.map(location => {
-                return `<option value=${location.locId}>${location.name}</option>`
+            
+            const locOptions = locations.map(location => {
+                return `<option value=${location.id}>${location.name}</option>`
             }).join('\r\n')
                 
             const rendered = content.toString()
