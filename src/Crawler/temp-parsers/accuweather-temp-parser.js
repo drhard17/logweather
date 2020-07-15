@@ -14,11 +14,11 @@ module.exports = {
 	parseFunc: function(page) {
 		const dom = new JSDOM(page);
 
-		let currentTemp = dom.window.document
-			.querySelector('div.page-subheader-wrap')
-			.querySelectorAll('span')[1]
-			.innerHTML
-
+		const headerTemp = dom.window.document.querySelector('span.header-temp')
+		const innerSpan = headerTemp.querySelector('span')
+		headerTemp.removeChild(innerSpan)
+		const currentTemp = headerTemp.innerHTML
+		
 		let results = []
 		let temps = dom.window.document
 			.querySelector('div.page-column-1')

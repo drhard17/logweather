@@ -34,7 +34,7 @@ module.exports = {
 			.map(str => str.querySelector('span').innerHTML)
 			.map(temp => parseInt(temp, 10))
 			results = [NaN].concat(temps)
-			console.log('WEATHERCOM test site')
+			// console.log('WEATHERCOM test site')
 		}
 		return results;
 	}
