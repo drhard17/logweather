@@ -58,7 +58,6 @@
         "YANDEX": "/pogoda/zelenokumsk/details?via=ms'",
         "GISMETEO": "/weather-zelenokumsk-5228/10-days/",
         "RP5": "/Weather_in_Zelenokumsk",
-        "ACCUWEATHER": "",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/246104afdf0a7a08b9c9f6ffbd23d515969340d8423f564c354c123e49e96c2b",
         "YRNO": "/sted/Russland/Stavropol/Zelenokumsk/long.html",
         "GIDROMET": "/product/weather/2310/"
@@ -174,11 +173,8 @@
     "routes": {
         "YANDEX": "/pogoda/terskol/details?via=ms'",
         "GISMETEO": "/weather-terskol-5249/10-days/",
-        "RP5": "",
-        "ACCUWEATHER": "",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/2c99f28a6b233081d6619dce9aafcac969967951a714eb65cf4268f27446478d",
-        "YRNO": "/sted/Russland/Kabardino-Balkaria/Terskol/long.html",
-        "GIDROMET": ""
+        "YRNO": "/sted/Russland/Kabardino-Balkaria/Terskol/long.html"
     }
 }, {
     "id": "115",
@@ -201,7 +197,6 @@
         "YANDEX": "/pogoda/petushki/details?via=ms'",
         "GISMETEO": "/weather-petushki-4348/10-days/",
         "RP5": "/Weather_in_Petushki",
-        "ACCUWEATHER": "",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/e48391d6ad28b3e40277f927b33c2dab7278a034cbed13908baef7bfc5c511c6",
         "YRNO": "/sted/Russland/Vladimir/Petusjki/long.html",
         "GIDROMET": "/product/weather/2957/"
@@ -239,7 +234,6 @@
     "routes": {
         "YANDEX": "/pogoda/raduzhniy/details?via=ms'",
         "GISMETEO": "/weather-raduzhny-12471/10-days/",
-        "RP5": "",
         "ACCUWEATHER": "/ru/ru/raduzhnyy/2433505/weather-forecast/2433505",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/570746926461a8f37a89d12fbc90b223f88209ab41957593da95196d6109abd7",
         "YRNO": "/sted/Russia/Vladimir/Raduzhnyy/long.html",
@@ -252,7 +246,6 @@
     "routes": {
         "YANDEX": "/pogoda/sobinka/details?via=ms'",
         "GISMETEO": "/weather-sobinka-12472/10-days/",
-        "RP5": "",
         "ACCUWEATHER": "/ru/ru/sobinka/291274/daily-weather-forecast/291274",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/e1c46db0d658018b542a1dcf3336b1200551f99c779496dcb93f081810630f35",
         "YRNO": "/sted/Russland/Vladimir/Sobinka/long.html",
