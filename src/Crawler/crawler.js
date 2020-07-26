@@ -60,7 +60,6 @@ async function getTempFrom(site, location) {
 
 	try {
 		const siteCode = await getSiteCode(site.opts)
-		// const siteCode = fs.readFileSync('../saved-html/GIDROMET_wrong.html')
 		commonData.siteCode = siteCode
 		const temps = site.parseFunc(siteCode)
 		return {temps, ...commonData};
@@ -71,22 +70,14 @@ async function getTempFrom(site, location) {
 }
 	
 function storeSiteData(opts, sitesData) {
-	let tempRecords = []
-
+	const tempRecords = []
 	for (const siteData of sitesData) {	
-		const siteCode = siteData.siteCode;
-		const siteName = siteData.siteName
-		const reqTime = siteData.requestTime
-		const temps = siteData.temps
-		const location = siteData.location
-	
+		const { siteCode, siteName, requestTime, temps, location } = siteData
 		if (opts.storeSiteCode && siteCode != null) {
-			logger.storeSiteCode(siteName, reqTime, siteCode);
+			logger.storeSiteCode(siteName, requestTime, siteCode);
 		}
-		
-		tempRecords.push(new TempRecord(reqTime, siteName, location.id, temps))
+		tempRecords.push(new TempRecord(requestTime, siteName, location.id, temps))
 	}
-
 	if (!opts.storeTemps) {
 		logger.logSuccess(tempRecords)
 		return	
@@ -96,13 +87,9 @@ function storeSiteData(opts, sitesData) {
 
 function errorHandler(sitesData) {
 	sitesData.forEach(siteData => {
-		const siteCode = siteData.siteCode;
-		const siteName = siteData.siteName
-		const reqTime = siteData.requestTime
-		const err = siteData.err
-
+		const { siteCode, siteName, requestTime, err } = siteData
 		if (siteCode != null) {
-			logger.storeSiteCode(siteName, reqTime, siteCode);
+			logger.storeSiteCode(siteName, requestTime, siteCode);
 		}
 		logger.logError(err, siteData);
 	})
@@ -120,7 +107,8 @@ async function poll(sites, locations, storingOpts) {
 		const parsedData = allSiteData.filter(siteData => !siteData.err)
 
 		if (errData.length) { errorHandler(errData) }
-		storeSiteData(storingOpts, parsedData)
+		if (parsedData.length) { storeSiteData(storingOpts, parsedData) }
+		
 	}
 }
 
