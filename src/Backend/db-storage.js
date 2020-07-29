@@ -8,56 +8,53 @@ function getDbDate(date) {
     return Math.floor(date.getTime() / 1000)
 }
 
-function trsToSQL(tempRecords) {
-    const allForecastData = tempRecords.flatMap(tempRecord => {
-        const timeStamp = Math.floor(tempRecord.datetime.getTime() / 1000)
-        const forecastData = tempRecord.temps.map((temp, index) => {
-            let dbTemp
-            temp === null || Number.isNaN(temp) ? dbTemp = 'NULL' : dbTemp = temp
-            const serviceNameExp = `(SELECT id FROM services WHERE name = '${tempRecord.serviceName}')`
-            return [timeStamp, serviceNameExp, tempRecord.locId, index, dbTemp]
+function extractParams(tempRecords) {
+    return tempRecords.flatMap(tempRecord => {
+        const dbTime = Math.floor(tempRecord.datetime.getTime() / 1000)
+        const params = tempRecord.temps.map((temp, index) => {
+            if (Number.isNaN(temp)) {
+                temp = null
+            }
+            return [dbTime, tempRecord.serviceName, tempRecord.locId, index, temp]
         })
-        return forecastData
-    })    
-
-    return `INSERT INTO forecasts (datetime, service_id, location_id, depth, temp)
-            SELECT ${allForecastData[0][0]} AS datetime, 
-                    ${allForecastData[0][1]} AS service_id, 
-                    ${allForecastData[0][2]} AS location_id, 
-                    ${allForecastData[0][3]} AS depth, 
-                    ${allForecastData[0][4]} AS temp
-                    ${allForecastData.slice(1).map(string => `UNION ALL SELECT ${string.toString()}`).join('\r\n')}                            
-    `
+        return params
+    })
 }
 
 module.exports = {
-    storeTempRecords: function (tempRecords) {
+    storeTempRecords: function(tempRecords) {
         if (!(tempRecords instanceof Array)) {
             tempRecords = [tempRecords]
         }
         if (tempRecords.some(tr => !(tr instanceof TempRecord))) {
             throw new Error('INVALID_TEMP_RECORD_FORMAT')
         }
-
-        const sql = trsToSQL(tempRecords)
         const db = getLogweatherDb()
-        const locId = tempRecords.map(tempRecord => tempRecord.locId)[0] //for log
-        db.run(sql, (err) => {
-            if (err) return console.log(err);
-            const date = new Date().toLocaleTimeString()
-            console.log(`${date} - locId ${locId} - ${tempRecords.length} temprecords added`)
+        const sql = `INSERT INTO forecasts (datetime, service_id, location_id, depth, temp)
+                     VALUES (?, (SELECT id FROM services WHERE name = ?), ?, ?, ?)`
+        const paramsArr = extractParams(tempRecords)
+        db.serialize(() => {
+            const stmt = db.prepare(sql)
+            for (const params of paramsArr) {
+                stmt.run(params, (err) => {
+                    if (err) return console.log(err)
+                })
+            }
+            stmt.finalize()
         })
-
         db.close((err) => {
-            if (err) return console.log(err);
+            if (err) return console.log(err)
+            const time = new Date().toLocaleTimeString()
+            const locId = tempRecords[0].locId
+            console.log(`${time} - locId ${locId} - ${tempRecords.length} temprecords added`)
         })
     },
 
     getLastTemp: function(serviceName, locId, cb) {
         const db = getLogweatherDb()
         const sql = `SELECT MAX(datetime) AS datetime, service_id, location_id, temp FROM forecasts
-                        WHERE service_id = (SELECT id FROM services WHERE name = (?))
-                        AND location_id = (?)
+                        WHERE service_id = (SELECT id FROM services WHERE name = ?)
+                        AND location_id = ?
                         AND depth = 0
                     `
         const locationId = parseInt(locId, 10)                     
@@ -85,9 +82,9 @@ module.exports = {
             SELECT datetime AS timeStamp, services.name AS serviceName, depth, temp
             FROM forecasts
             INNER JOIN services ON forecasts.service_id = services.id
-            WHERE datetime BETWEEN (?) AND (?)
-                AND location_id = (?)
-                AND (SELECT strftime('%H', datetime(datetime, 'unixepoch'))) = (?)
+            WHERE datetime BETWEEN ? AND ?
+                AND location_id = ?
+                AND (SELECT strftime('%H', datetime(datetime, 'unixepoch'))) = ?
         `
         db.all(sql, [firstDay, lastDay, locId, hour], (err, rows) => {
             if (err) { return cb(err) }
