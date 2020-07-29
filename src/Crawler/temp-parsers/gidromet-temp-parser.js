@@ -26,22 +26,6 @@ module.exports = {
 				.innerHTML
 		}
 	 
-/* 		
-		let currentTemp
-		const todayOnSite = moment(document
-				.querySelector('div.weather-info > div.weather-img > strong')
-				.innerHTML
-				.match(/\d{1,2}\.\d{2}\.\d{4}/)[0]
-			, 'D.MM.YYYY')
-		
-		if (today.isSame(todayOnSite)) {
-			currentTemp = document.querySelector('div.weather-info')
-			.querySelector('div.big')
-			.innerHTML	
-		} else {
-			currentTemp = NaN
-		}
- */		
 		const tempStrings = Array.from(
 			document.querySelector('table.weather-data')
 			.querySelector('tbody')
@@ -63,7 +47,7 @@ module.exports = {
 		})
 
 		const result = tempDays
-			.filter(tempDay => tempDay.day > today.date())
+			.filter(tempDay => tempDay.day !== today.date() && !Number.isNaN(tempDay.day)) 
 			.map(tempDay => tempDay.temp)
 		result.unshift(currentTemp)
 
