@@ -82,7 +82,12 @@ function storeSiteData(opts, sitesData) {
 		logger.logSuccess(tempRecords)
 		return	
 	}
-	storage.storeTempRecords(tempRecords)
+	try {
+		storage.storeTempRecords(tempRecords)	
+	} catch (error) {
+		console.error('Storage error: ' + error.message)
+	}
+	
 }
 
 function errorHandler(sitesData) {
