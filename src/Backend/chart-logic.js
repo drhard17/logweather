@@ -19,7 +19,7 @@ module.exports = {
                 depth: chart.depth
             }
        
-            
+
             const tempData = extractData(data, chart.serviceName, req, tempRequest.locId)
             const tempPoints = countPoints(tempData, req)
             return {
@@ -37,10 +37,9 @@ module.exports = {
 
 /**
  * 
- * @param {{service: string, time: Date, temps: number[]}[]} data - All data from CSV files
- * @param {string} service - forecast service name
+ * @param {{service: string, time: Date, temps: number[]}[]} data - data got from the storage
+ * @param {string} serviceName - forecast service name
  * @param {{firstDay: moment, lastDay: moment, depth: number}} req 
- * @param {number} hour 
  * 
  */
 
@@ -71,10 +70,11 @@ function extractData(data, serviceName, req) {
 
 function countPoints(data, req) {
     const dates = getDaySequence(req.firstDay, req.lastDay)
+        .map(date => moment(date))
     return dates.map((date) => {
         return avgRound(
             data.filter((record) => {
-                return moment(date).startOf('day').isSame(moment(record.datetime).startOf('day'))
+                return date.startOf('day').isSame(record.datetime.startOf('day'))
             })
             .map(record => record.temp)
         )
