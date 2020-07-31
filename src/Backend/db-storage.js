@@ -34,6 +34,7 @@ module.exports = {
                      VALUES (?, (SELECT id FROM services WHERE name = ?), ?, ?, ?)`
         const paramsArr = extractParams(tempRecords)
         db.serialize(() => {
+            db.all('PRAGMA busy_timeout = 10000')
             const stmt = db.prepare(sql)
             for (const params of paramsArr) {
                 stmt.run(params, (err) => {
