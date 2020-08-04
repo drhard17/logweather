@@ -11,7 +11,7 @@ function getDbDate(date) {
 function extractParams(tempRecords) {
     return tempRecords.flatMap(tempRecord => {
         const dbTime = Math.floor(tempRecord.datetime.getTime() / 1000)
-        const params = tempRecord.temps.map((temp, index) => {
+        const params = tempRecord.temps.flatMap((temp, index) => {
             if (Number.isNaN(temp)) {
                 temp = null
             }
@@ -19,6 +19,12 @@ function extractParams(tempRecords) {
         })
         return params
     })
+}
+
+function formPlaceholders(holder, tempRecords) {
+    return tempRecords.flatMap(tempRecord => {
+        return tempRecord.temps.map(temp => holder)
+    }).join(',' + '\n')
 }
 
 module.exports = {
@@ -29,25 +35,27 @@ module.exports = {
         if (tempRecords.some(tr => !(tr instanceof TempRecord))) {
             throw new Error('INVALID_TEMP_RECORD_FORMAT')
         }
+        
+        const clause = 'INSERT INTO forecasts (datetime, service_id, location_id, depth, temp) VALUES '
+        const placeholder = '(?, (SELECT id FROM services WHERE name = ?), ?, ?, ?)'
+        
+        const sql =  clause + formPlaceholders(placeholder, tempRecords)
+        const params = extractParams(tempRecords)
+        
         const db = getLogweatherDb()
-        const sql = `INSERT INTO forecasts (datetime, service_id, location_id, depth, temp)
-                     VALUES (?, (SELECT id FROM services WHERE name = ?), ?, ?, ?)`
-        const paramsArr = extractParams(tempRecords)
         db.serialize(() => {
-            db.all('PRAGMA busy_timeout = 10000')
-            const stmt = db.prepare(sql)
-            for (const params of paramsArr) {
-                stmt.run(params, (err) => {
-                    if (err) return console.log(err)
-                })
-            }
-            stmt.finalize()
+            db.run('PRAGMA busy_timeout = 20000')
+              .run(sql, params, (err) => {
+                if (err) { return console.log(err) }
+
+                const time = new Date().toLocaleTimeString()
+                const locId = tempRecords[0].locId
+                
+                console.log(`${time} - locId ${locId} - ${tempRecords.length} temprecords added`)
+            })
         })
         db.close((err) => {
             if (err) return console.log(err)
-            const time = new Date().toLocaleTimeString()
-            const locId = tempRecords[0].locId
-            console.log(`${time} - locId ${locId} - ${tempRecords.length} temprecords added`)
         })
     },
 
