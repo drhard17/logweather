@@ -1,5 +1,11 @@
+const fs = require('fs')
+
 const { getLogweatherDb } = require('./db-creator.js')
 const { TempRecord } = require('./TempRecord');
+
+const config = JSON.parse(fs.readFileSync('./config.json'))
+const { storing: { busyTimeout } } = config
+
 
 function getDbDate(date) {
     if (!(date instanceof Date)) {
@@ -11,7 +17,7 @@ function getDbDate(date) {
 function extractParams(tempRecords) {
     return tempRecords.flatMap(tempRecord => {
         const dbTime = Math.floor(tempRecord.datetime.getTime() / 1000)
-        const params = tempRecord.temps.map((temp, index) => {
+        const params = tempRecord.temps.flatMap((temp, index) => {
             if (Number.isNaN(temp)) {
                 temp = null
             }
@@ -21,49 +27,61 @@ function extractParams(tempRecords) {
     })
 }
 
+function formPlaceholders(holder, tempRecords) {
+    return tempRecords.flatMap(tempRecord => {
+        return tempRecord.temps.map(temp => holder)
+    }).join(',' + '\n')
+}
+
 module.exports = {
-    storeTempRecords: function(tempRecords) {
+    storeTempRecords: async function(tempRecords) {
         if (!(tempRecords instanceof Array)) {
             tempRecords = [tempRecords]
         }
         if (tempRecords.some(tr => !(tr instanceof TempRecord))) {
             throw new Error('INVALID_TEMP_RECORD_FORMAT')
         }
-        const db = getLogweatherDb()
-        const sql = `INSERT INTO forecasts (datetime, service_id, location_id, depth, temp)
-                     VALUES (?, (SELECT id FROM services WHERE name = ?), ?, ?, ?)`
-        const paramsArr = extractParams(tempRecords)
-        db.serialize(() => {
-            db.all('PRAGMA busy_timeout = 10000')
-            const stmt = db.prepare(sql)
-            for (const params of paramsArr) {
-                stmt.run(params, (err) => {
-                    if (err) return console.log(err)
+        
+        const clause = 'INSERT INTO forecasts (datetime, service_id, location_id, depth, temp) VALUES '
+        const placeholder = '(?, (SELECT id FROM services WHERE name = ?), ?, ?, ?)'
+        
+        const sql =  clause + formPlaceholders(placeholder, tempRecords)
+        const params = extractParams(tempRecords)
+        
+        const db = await getLogweatherDb()
+        return new Promise((resolve, reject) => {
+            db.serialize(() => {
+                db.run(`PRAGMA busy_timeout = ${busyTimeout}`)
+                .run(sql, params, (err) => {
+                    if (err) { 
+                        console.log('DB_ERROR');
+                        return reject(err) 
+                    }
                 })
-            }
-            stmt.finalize()
-        })
-        db.close((err) => {
-            if (err) return console.log(err)
-            const time = new Date().toLocaleTimeString()
-            const locId = tempRecords[0].locId
-            console.log(`${time} - locId ${locId} - ${tempRecords.length} temprecords added`)
+            })
+            db.close((err) => {
+                if (err) return reject(err)
+                resolve()
+            })
         })
     },
 
-    getLastTemp: function(serviceName, locId, cb) {
-        const db = getLogweatherDb()
+    getLastTemp: async function(serviceName, locId) {
+        db = await getLogweatherDb()
         const sql = `SELECT MAX(datetime) AS datetime, service_id, location_id, temp FROM forecasts
                         WHERE service_id = (SELECT id FROM services WHERE name = ?)
                         AND location_id = ?
                         AND depth = 0
                     `
-        const locationId = parseInt(locId, 10)                     
-        db.all(sql, [serviceName, locationId], (err, rows) => {
-            if (err) { return cb(err) }
-            if (!rows.length) { return cb(null, null) }
-            const temp = rows[0].temp
-            cb(null, temp)
+        const locationId = parseInt(locId, 10)
+        return new Promise((resolve, reject) => {
+            db.all(sql, [serviceName, locationId], (err, rows) => {
+                if (err) { reject(err) }
+                if (!rows.length) { resolve(null) }
+                const temp = rows[0].temp
+                resolve(temp)
+            })
+            db.close()
         })
     },
 
@@ -72,13 +90,13 @@ module.exports = {
      * @param {TempRequest} tempRequest 
      */
 
-    getTempData: function (req, cb) {
+    getTempData: async function (req, cb) {
         const firstDay = getDbDate(req.firstDay)
         const lastDay = getDbDate(req.lastDay)
         const hour = String(req.hour)
         const locId = req.locId
         
-        const db = getLogweatherDb()
+        const db = await getLogweatherDb()
         const sql = `
             SELECT datetime AS timeStamp, services.name AS serviceName, depth, temp
             FROM forecasts
@@ -87,18 +105,20 @@ module.exports = {
                 AND location_id = ?
                 AND (SELECT strftime('%H', datetime(datetime, 'unixepoch'))) = ?
         `
-        db.all(sql, [firstDay, lastDay, locId, hour], (err, rows) => {
-            if (err) { return cb(err) }
-            const result = rows.map(row => {
-                return {
-                    datetime: new Date(row.timeStamp * 1000),
-                    serviceName: row.serviceName,
-                    depth: row.depth,
-                    temp: row.temp
-                }
+        return new Promise((resolve, reject) => {
+            db.all(sql, [firstDay, lastDay, locId, hour], (err, rows) => {
+                if (err) { return reject(err) }
+                const result = rows.map(row => {
+                    return {
+                        datetime: new Date(row.timeStamp * 1000),
+                        serviceName: row.serviceName,
+                        depth: row.depth,
+                        temp: row.temp
+                    }
+                })
+                resolve(result)
             })
-            cb(null, result)
+            db.close()
         })
-        db.close()
     }
 }

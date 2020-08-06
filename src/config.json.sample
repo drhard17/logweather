@@ -1,26 +1,27 @@
 {
   "sitesToPoll": {
     "ACCUWEATHER": 1,
-    "GIDROMET": 0,
+    "GIDROMET": 1,
     "GISMETEO": 1,
     "RP5": 1,
-    "WEATHERCOM": 0,
+    "WEATHERCOM": 1,
     "YANDEX": 1,
-    "YRNO": 0
+    "YRNO": 1
   },
   "pollInMinutes": [
     0, 15, 30, 45
   ],
-  "pollOnce": 1,
-  "locLimit": 1,
+  "pollOnce": 0,
+  "locLimit": 0,
 
   "storing": {
     "storeTemps": 1,
-    "storeSiteCode": 0
+    "storeSiteCode": 0,
+    "busyTimeout": 20000
   },
 
   "webserver": {
-    "host": "127.0.0.1",
-    "port": "3000"
+    "host": "45.135.164.204",
+    "port": "80"
   }
 }

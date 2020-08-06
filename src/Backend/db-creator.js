@@ -88,14 +88,14 @@ function createDb() {
 }
 
 module.exports = {
-    getLogweatherDb: function() {
+    getLogweatherDb: () => new Promise((resolve, reject) => {
         const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
             if (err) { 
-                return console.error(err.message) 
+                return reject(new Error('Database connection error')) 
             }
+            resolve(db)
         })
-        return db
-    }
+    })
 }
 
 if (!module.parent) {
