@@ -1,43 +1,57 @@
 const fs = require('fs')
 const needle = require('needle')
 
-function getLocations() {
-    const locData = fs.readFileSync('../csv/locations-eng.txt', 'utf8')
-    return locData.split('\r\n')//.slice(0, 10)
+function getLocNames() {
+    const locData = fs.readFileSync('./locations.json', 'utf8')
+    const locations = JSON.parse(locData)
+    return locations.map(location => location.name).slice(0, 10)
 }
 
-const locations = getLocations()
+const initUrl = 'https://weather.com/api/v1/p/redux-dal'
+const options = {
+    headers: { 'content-type': 'application/json' },
+    user_agent: 'PostmanRuntime/7.24.1',
+}
 
-function getUrl() {
-    loc = locations.shift()
-    const initUrl = 'https://weather.com/api/v1/p/redux-dal'
-    const body = `[{"name":"getSunV3LocationSearchUrlConfig","params":{"query":"${loc}","language":"en-US","locationType":"locale"}}]`
-    const options = {
-        headers: { 'content-type': 'application/json' },
-        user_agent: 'PostmanRuntime/7.24.1',
-      }
+const locData = fs.readFileSync('./locations.json', 'utf8')
+let locations = JSON.parse(locData)
 
-    needle.post(initUrl, body, options, function (error, response) {
-        if (error || response.statusCode !== 200) {
-            console.log(loc.toUpperCase(), error, response.statusCode)
-            return
-        }
+async function getUrl() {
+    for (let location of locations) {
+                
+        const locName = location.name
+        const body = `[{"name":"getSunV3LocationSearchUrlConfig","params":{"query":"${locName}","language":"en-US","locationType":"locale"}}]`
+        
+        const response = await needle('post', initUrl, body, options)  
+
         try {
             const placeId = response.body   
                 .dal
-                .getSunV3LocationSearchUrlConfig[`language:en-US;locationType:locale;query:${loc}`]
+                .getSunV3LocationSearchUrlConfig[`language:en-US;locationType:locale;query:${locName}`]
                 .data
                 .location
                 .placeId[0]
-            // console.log(loc + ': ' + placeId)
-            console.log('/ru-RU/weather/tenday/l/' + placeId)
+            
+            const timeZone = response.body   
+                .dal
+                .getSunV3LocationSearchUrlConfig[`language:en-US;locationType:locale;query:${locName}`]
+                .data
+                .location
+                .ianaTimeZone[0]
+                
+            // console.log('/ru-RU/weather/tenday/l/' + placeId)
+            console.log(`${locName}: ${timeZone}`);
+            location.timeZone = timeZone
         } catch (error) {
-            console.log(`${loc}: REJECTED: ${error.message}`)
+            if (response.statusCode !== 200) {
+                console.log(locName.toUpperCase(), error, response.statusCode)
+                return
+            }
+            console.log(`${locName}: REJECTED: ${error.message}`)
         }
-        //fs.appendFileSync('../csv/locations-gismeteo.txt', path + '\r\n')
-        
-        if(locations.length) getUrl()
-    })
+    }
+    const result = JSON.stringify(locations)
+    fs.writeFileSync('./locations-tz.json', result)
 }
 
 getUrl()
