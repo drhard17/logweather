@@ -3,34 +3,47 @@ const fs = require('fs')
 const logFile = '../error.log'
 const htmlFolder = '../saved-html'
 
+const toRed = '\x1b[31m', toGreen = '\x1b[32m', resetColor = '\x1b[0m'
+
 module.exports = {
-    logError: function(err, siteData) {
+    logParsingError: function(err, siteData) {
         const date = siteData.requestTime.toLocaleString()
-        const msg = `${date} ${siteData.siteName}_${err.type}: ${err.message}\r\n`
+        const msg = `${date} ${err.type}_ON_${siteData.siteName}: ${err.message}`
         const location = siteData.location
+        const url = `${siteData.siteOpts.hostname}${location.routes[siteData.siteName]}`
 
-        fs.appendFile(logFile, msg, (error) => {
-            if (error) {
-                console.log(`${logFile} not available`)
-                return
-            }
-            const toRed = '\x1b[31m', toGreen = '\x1b[32m', resetColor = '\x1b[0m'
-            console.log(toRed, `${err.type}: ${err.message}`, resetColor)
-            console.log('Service:', toGreen, siteData.siteName, resetColor)
-            console.log('Location:', toGreen, `${location.locId} - ${location.name}`, resetColor);
-            console.log('Time:', toGreen, date, resetColor)
-            console.log('URL:', toGreen, `${siteData.siteOpts.hostname}${location.routes[siteData.siteName]}`, resetColor)
-        });
-    }, 
+        fs.appendFile(logFile, `${msg}\r\n`, (err) => {
+            if (err) { return console.log(err) }
+            
+            console.log(toRed, msg, resetColor)
+            console.log('Location:', toGreen, `${location.id} - ${location.name}`, resetColor);
+            console.log('URL:', toGreen, url, resetColor)
+        })
+    },
+    
+    logStorageError: (err) => {
+        const date = new Date().toLocaleString()
+        const msg = `${date} STORAGE_ERROR: ${err.message}\r\n`
+        fs.appendFile(logFile, msg, (err) => {
+            if (err) { return console.log(err) }
+        })
+        console.log(toRed, `${date}: ${err.message}`, resetColor)
+    },
 
-    logSuccess: function(tempRecords) {
+    logSuccessParsing: function(tempRecords) {
         tempRecords.forEach(tempRecord => {
+            console.log(`Time: ${tempRecord.datetime.toLocaleString()}`)
             console.log(`Service: ${tempRecord.serviceName}`)
             console.log(`Location: ${tempRecord.locId}`)
-            console.log(`Time: ${tempRecord.datetime.toLocaleString()}`)
             console.log(`Temperatures: ${tempRecord.temps.toString()}`)
             console.log('')
         })
+    },
+
+    logSuccessStoring: (tempRecords) => {
+        const time = new Date().toLocaleTimeString()
+        const locId = tempRecords[0].locId
+        console.log(`${time} - Location #${locId} - ${tempRecords.length} temprecords saved`)
     },
 
     storeSiteCode: function (name, time, data) {

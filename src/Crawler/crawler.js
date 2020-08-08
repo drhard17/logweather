@@ -13,8 +13,7 @@ const logger = require('./cr-logger')
  * @returns {Promise<string>}
  */
 const getSiteCode = (opts) => new Promise((resolve, reject) => {
-	let proto
-	opts.port === 80 ? proto = http : proto = https
+	const proto = opts.port === 80 ? http : https
 	const req = proto.request(opts, (res) => {
 		if (res.statusCode != 200) {
 			return reject({
@@ -62,14 +61,14 @@ async function getTempFrom(site, location) {
 		const siteCode = await getSiteCode(site.opts)
 		commonData.siteCode = siteCode
 		const temps = site.parseFunc(siteCode)
-		return {temps, ...commonData};
+		return { temps, ...commonData }
 	} catch (err) {
-		if (commonData.siteCode) err.type = "PARSE_ERROR"
-		return {err, ...commonData};
+		if (commonData.siteCode) { err.type = "PARSE_ERROR" }
+		return { err, ...commonData }
 	}
 }
 	
-function storeSiteData(opts, sitesData) {
+async function storeSiteData(opts, sitesData) {
 	const tempRecords = []
 	for (const siteData of sitesData) {	
 		const { siteCode, siteName, requestTime, temps, location } = siteData
@@ -79,15 +78,15 @@ function storeSiteData(opts, sitesData) {
 		tempRecords.push(new TempRecord(requestTime, siteName, location.id, temps))
 	}
 	if (!opts.storeTemps) {
-		logger.logSuccess(tempRecords)
+		logger.logSuccessParsing(tempRecords)
 		return	
 	}
 	try {
-		storage.storeTempRecords(tempRecords)	
-	} catch (error) {
-		console.error('Storage error: ' + error.message)
+		await storage.storeTempRecords(tempRecords)
+		logger.logSuccessStoring(tempRecords)
+	} catch (err) {
+		logger.logStorageError(err)
 	}
-	
 }
 
 function errorHandler(sitesData) {
@@ -96,7 +95,7 @@ function errorHandler(sitesData) {
 		if (siteCode != null) {
 			logger.storeSiteCode(siteName, requestTime, siteCode);
 		}
-		logger.logError(err, siteData);
+		logger.logParsingError(err, siteData);
 	})
 }
 
@@ -113,7 +112,6 @@ async function poll(sites, locations, storingOpts) {
 
 		if (errData.length) { errorHandler(errData) }
 		if (parsedData.length) { storeSiteData(storingOpts, parsedData) }
-		
 	}
 }
 
@@ -128,16 +126,17 @@ function main() {
 		.map(site => require(`./temp-parsers/${site}-temp-parser`))
 	
 	if (config.pollOnce) {
+		console.log('Logweather Crawler one-time poll...')
 		poll(sites, locations, storingOpts)
 		return
 	}
 
-	const rule = new schedule.RecurrenceRule();
+	const rule = new schedule.RecurrenceRule()
 	rule.minute = config.pollInMinutes //[0, 15, 30, 45]
-	schedule.scheduleJob(rule, function () {
+	schedule.scheduleJob(rule, () => {
 		poll(sites, locations, storingOpts)
-	});
-	console.log('Logweather crawler running...')
+	})
+	console.log('Logweather Crawler running...')
 	console.log('Parse in minutes: ' + rule.minute)
 }
 

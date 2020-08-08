@@ -9,18 +9,12 @@ const hour = 11 // time option for chart building
 module.exports = {
     /**
      * 
-     * @param {{firstDay: Date, lastDay: Date, locId: number, charts: {serviceName: string, depth: number}[]}} req - request for getting chart data
-     * @param {(err: Error, data) => void} cb 
+     * @param {{firstDay: Date, lastDay: Date, locId: number, charts: {serviceName: string, depth: number}[]}} request - request for getting chart data
      * 
      */
 
-    getChartPoints: function (request, cb) {
-        let tempRequest
-        try {
-            tempRequest = TempRequest.fromObject(request)    
-        } catch (err) {
-            return cb(err)
-        }
+    getChartPoints: async function (request) {
+        const tempRequest = TempRequest.fromObject(request)
         const allDepths = tempRequest.charts.map(chart => chart.depth) 
         const maxDepth = Math.max.apply(null, allDepths)
         const tempDataRequest = {
@@ -29,12 +23,8 @@ module.exports = {
             hour: hour,
             locId: tempRequest.locId
         }
-        storage.getTempData(tempDataRequest, (err, tempData) => {
-            if (err) {
-                return cb(err)
-            }
-            const chartPoints = logic.calculatePoints(tempData, tempRequest)
-            cb(null, chartPoints)
-        })
+        const tempData = await storage.getTempData(tempDataRequest)
+        const chartPoints = logic.calculatePoints(tempData, tempRequest)
+        return chartPoints
     }
 }

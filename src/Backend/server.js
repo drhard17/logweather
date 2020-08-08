@@ -1,9 +1,11 @@
 const fs = require('fs')
+const fsPromises = require('fs').promises
 const bodyParser = require('body-parser')
 const express = require('express')
-const app = express()
+const asyncHandler = require('express-async-handler')
 
 const storage = require('./db-storage.js')
+const logger = require('../crawler/cr-logger.js')
 const bl = require('./chart-builder.js')
 const { TempRecord } = require('./TempRecord')
 
@@ -13,12 +15,23 @@ const locations = JSON.parse(fs.readFileSync('./locations.json'))
 const hostname = config.webserver.host;
 const port = config.webserver.port;
 
-const storeTemp = function(req, res, next) {
-    const temp = req.query.temp
+const app = express()
+
+async function formSiteTemp(serviceName, locId) {
+    const temp = await storage.getLastTemp(serviceName, locId)
+    return temp > 0 ? '+' + temp : temp
+}
+
+const storeTemp = async function(req, res, next) {
+    const { temp } = req.query
     if (temp) {
         const tr = new TempRecord(new Date(), 'STREET', 101, parseInt(temp, 10))
-        storage.storeTempRecords(tr)
-        console.log(`Added temp: ${temp}`)
+        try {
+            await storage.storeTempRecords(tr)
+            logger.logSuccessStoring([tr])
+        } catch (err) {
+            logger.logStorageError(err)
+        }
     }
     next()
 }
@@ -29,27 +42,22 @@ const logIP = function(req, res, next) {
     next()
 }
 
-app.engine('html', (filePath, options, cb) => {
-    fs.readFile(filePath, (err, content) => {
-        if (err) return cb(new Error(err))
+app.engine('html', async(filePath, options, cb) => {
+    const content = await fsPromises.readFile(filePath, 'utf-8')
+    try {
+        const siteTemp = await formSiteTemp('STREET', 101)
+        
+        const locOptions = locations.map(location => {
+            return `<option value=${location.id}>${location.name}</option>`
+        }).join('\r\n')
 
-        storage.getLastTemp('STREET', 101, (err, temp) => {
-            if (err) return cb(new Error(err))
-
-            if (temp > 0) {
-                temp = '+' + temp
-            }
-            
-            const locOptions = locations.map(location => {
-                return `<option value=${location.id}>${location.name}</option>`
-            }).join('\r\n')
-                
-            const rendered = content.toString()
-                .replace('#temp#', temp)
-                .replace('#locations#', locOptions)
-            return cb(null, rendered)
-        })
-    })
+        const rendered = content.toString()
+            .replace('#temp#', siteTemp)
+            .replace('#locations#', locOptions)
+        return cb(null, rendered)
+    } catch (err) {
+        return cb(err.message)
+    }
 })
 
 app.set('views', './frontend')
@@ -62,29 +70,17 @@ app.use(express.static('./frontend/static'))
 app.use(express.static('./node_modules/moment'))
 app.use(express.static('./node_modules/chart.js/dist'))
 
-app.post('/getchartdata', (req, res) => {
-    console.log(`XHR recieved: ${req.xhr}`)
+app.post('/getchartdata', asyncHandler(async(req, res) => {
     res.type('json')
-    bl.getChartPoints(req.body, (err, data) => {
-        if (err) {
-            res.send(err)
-            return
-        }
-        res.send(JSON.stringify(data))
-    })
-})
+    const chartPoints = await bl.getChartPoints(req.body)
+    res.send(JSON.stringify(chartPoints))
+}))
 
-app.post('/getlasttemp', (req, res) => {
-    console.log(`XHR recieved: ${req.xhr}`)
+app.post('/getlasttemp', asyncHandler(async(req, res) => {
     res.type('json')
-    storage.getLastTemp(req.body.service, req.body.locId, (err, temp) => {
-        if (err) return cb(new Error(err))
-        if (temp > 0) {
-            temp = '+' + temp
-        }
-        res.send(JSON.stringify({temp}))
-    })
-})
+    const siteTemp = await formSiteTemp(req.body.service, req.body.locId)
+    res.send(JSON.stringify({temp: siteTemp}))
+}))
 
 app.get('/', (req, res) => {
     res.render('index')
