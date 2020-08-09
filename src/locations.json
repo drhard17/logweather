@@ -1,5 +1,5 @@
 [{
-    "id": "101",
+    "id": 101,
     "name": "Krasnogorsk",
     "nameRus": "Красногорск",
     "routes": {
@@ -10,9 +10,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/5dee46352b93411b346eb161aaf601f33320283181d1f8aa42afe10f700e00ff",
         "YRNO": "/sted/Russland/Moskva_fylke/Krasnogorsk/long.html",
         "GIDROMET": "/product/weather/3420/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "102",
+    "id": 102,
     "name": "Moscow",
     "nameRus": "Москва",
     "routes": {
@@ -23,9 +24,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/34f2aafc84cff75ae0b014754856ea5e7f8ddf618cf9735549dfb5e016c28e10",
         "YRNO": "/sted/Russland/Moskva/Moskva/long.html",
         "GIDROMET": "/product/weather/3202/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "103",
+    "id": 103,
     "name": "Tula",
     "nameRus": "Тула",
     "routes": {
@@ -36,9 +38,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/e3bbb4aea3f8752822b4d8ea5f4e48178b130e522bf11d1a678ec1ecd3469f22",
         "YRNO": "/sted/Russland/Tula/Tula/long.html",
         "GIDROMET": "/product/weather/2533/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "104",
+    "id": 104,
     "name": "Vladimir",
     "nameRus": "Владимир",
     "routes": {
@@ -49,9 +52,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/58ae9f331c92cf35402755c680dc7cf6e18095d0127d3592c56b91b438241825",
         "YRNO": "/sted/Russland/Vladimir/Vladimir/long.html",
         "GIDROMET": "/product/weather/2433/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "105",
+    "id": 105,
     "name": "Zelenokumsk",
     "nameRus": "Зеленокумск",
     "routes": {
@@ -61,9 +65,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/246104afdf0a7a08b9c9f6ffbd23d515969340d8423f564c354c123e49e96c2b",
         "YRNO": "/sted/Russland/Stavropol/Zelenokumsk/long.html",
         "GIDROMET": "/product/weather/2310/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "106",
+    "id": 106,
     "name": "San-Francisco",
     "nameRus": "Сан-Франциско",
     "routes": {
@@ -74,9 +79,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/69bedc6a5b6e977993fb3e5344e3c06d8bc36a1fb6754c3ddfb5310a3c6d6c87",
         "YRNO": "/sted/United_States/California/San_Francisco/long.html",
         "GIDROMET": "/product/weather/43399/"
-    }
+    },
+    "timeZone": "America/Los_Angeles"
 }, {
-    "id": "107",
+    "id": 107,
     "name": "Berlin",
     "nameRus": "Берлин",
     "routes": {
@@ -87,9 +93,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/5ca23443513a0fdc1d37ae2ffaf5586162c6fe592a66acc9320a0d0536be1bb9",
         "YRNO": "/sted/Tyskland/Berlin/Berlin/long.html",
         "GIDROMET": "/product/weather/25656/"
-    }
+    },
+    "timeZone": "Europe/Berlin"
 }, {
-    "id": "108",
+    "id": 108,
     "name": "Turku",
     "nameRus": "Турку",
     "routes": {
@@ -100,9 +107,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/b8d129d3c188c52cec397e5597fe24040140a2a318fb4180f7503c1c9ad72f70",
         "YRNO": "/sted/Finland/Västra_Finland/Åbo/long.html",
         "GIDROMET": "/product/weather/4519/"
-    }
+    },
+    "timeZone": "Europe/Helsinki"
 }, {
-    "id": "109",
+    "id": 109,
     "name": "Helsinki",
     "nameRus": "Хелсинки",
     "routes": {
@@ -113,9 +121,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/c571886a97e975d69cf88fcba695fe92283c1af57bfc069035cfd4ef766ceab1",
         "YRNO": "/sted/Finland/Södra_Finland/Helsingfors/long.html",
         "GIDROMET": "/product/weather/4672/"
-    }
+    },
+    "timeZone": "Europe/Helsinki"
 }, {
-    "id": "110",
+    "id": 110,
     "name": "Munich",
     "nameRus": "Мюнхен",
     "routes": {
@@ -126,9 +135,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/e0c0cd4ab9873fee5066145204f7161a0c1f7468722e633345583634cff0bbd6",
         "YRNO": "/sted/Tyskland/Bayern/München/long.html",
         "GIDROMET": "/product/weather/24318/"
-    }
+    },
+    "timeZone": "Europe/Berlin"
 }, {
-    "id": "111",
+    "id": 111,
     "name": "Irkutsk",
     "nameRus": "Иркутск",
     "routes": {
@@ -139,9 +149,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/d576f72d745086e9df7e85d6c2619d90c798c90daf8d2bc816334dde42b6ca55",
         "YRNO": "/sted/Russland/Irkutsk/Irkutsk/long.html",
         "GIDROMET": "/product/weather/16283/"
-    }
+    },
+    "timeZone": "Asia/Irkutsk"
 }, {
-    "id": "112",
+    "id": 112,
     "name": "Haifa",
     "nameRus": "Хайфа",
     "routes": {
@@ -152,9 +163,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/31680413d1070d38a6c0a579b80216535507818a803351d173ccc111aaeabf22",
         "YRNO": "/sted/Israel/Haifa/Haifa/long.html",
         "GIDROMET": "/product/weather/1379/"
-    }
+    },
+    "timeZone": "Asia/Jerusalem"
 }, {
-    "id": "113",
+    "id": 113,
     "name": "Krasnaya-Polyana",
     "nameRus": "Красная Поляна",
     "routes": {
@@ -165,9 +177,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7a9b9bda04f63198bd3552354d25db2ca3be2510b191760c51d3060f4e3f7209",
         "YRNO": "/sted/Russland/Omsk/Krasnaya_Polyana/long.html",
         "GIDROMET": "/product/weather/3426/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "114",
+    "id": 114,
     "name": "Terskol",
     "nameRus": "Терскол",
     "routes": {
@@ -175,9 +188,10 @@
         "GISMETEO": "/weather-terskol-5249/10-days/",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/2c99f28a6b233081d6619dce9aafcac969967951a714eb65cf4268f27446478d",
         "YRNO": "/sted/Russland/Kabardino-Balkaria/Terskol/long.html"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "115",
+    "id": 115,
     "name": "Kolomna",
     "nameRus": "Коломна",
     "routes": {
@@ -188,9 +202,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/4c43ad36dd11207691a722bae8997488ae9ee030b2f90ac34a7b190c43efe8bf",
         "YRNO": "/sted/Russland/Moskva_fylke/Kolomna/long.html",
         "GIDROMET": "/product/weather/3472/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "116",
+    "id": 116,
     "name": "Petushki",
     "nameRus": "Петушки",
     "routes": {
@@ -200,9 +215,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/e48391d6ad28b3e40277f927b33c2dab7278a034cbed13908baef7bfc5c511c6",
         "YRNO": "/sted/Russland/Vladimir/Petusjki/long.html",
         "GIDROMET": "/product/weather/2957/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "117",
+    "id": 117,
     "name": "Saint-Petersburg",
     "nameRus": "Санкт-Петербург",
     "routes": {
@@ -213,9 +229,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/4edb4827c7f66b1542f84ce1d8d644970e9b935d45d21d4d143e87d94925a4bf",
         "YRNO": "/sted/Russland/St._Petersburg/St._Petersburg/long.html",
         "GIDROMET": "/product/weather/2821/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "118",
+    "id": 118,
     "name": "Tambov",
     "nameRus": "Тамбов",
     "routes": {
@@ -226,9 +243,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/0981f4db9bb1864d7ce3d95d6b61390e922503d5ed8c308f86a724fb02a8132f",
         "YRNO": "/sted/Russland/Tambov/Tambov/long.html",
         "GIDROMET": "/product/weather/2594/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "119",
+    "id": 119,
     "name": "Raduzhniy",
     "nameRus": "Радужный",
     "routes": {
@@ -238,9 +256,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/570746926461a8f37a89d12fbc90b223f88209ab41957593da95196d6109abd7",
         "YRNO": "/sted/Russia/Vladimir/Raduzhnyy/long.html",
         "GIDROMET": "/product/weather/7170/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "120",
+    "id": 120,
     "name": "Sobinka",
     "nameRus": "Собинка",
     "routes": {
@@ -250,9 +269,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/e1c46db0d658018b542a1dcf3336b1200551f99c779496dcb93f081810630f35",
         "YRNO": "/sted/Russland/Vladimir/Sobinka/long.html",
         "GIDROMET": "/product/weather/2718/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "121",
+    "id": 121,
     "name": "Mytischi",
     "nameRus": "Мытищи",
     "routes": {
@@ -263,9 +283,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/b1298f1daeaa71dc3bab66cd0c82414e675975acf74b70e474cd70feae325aeb",
         "YRNO": "/sted/Russland/Moskva_fylke/Mytishchi/long.html",
         "GIDROMET": "/product/weather/3181/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "122",
+    "id": 122,
     "name": "Abakan",
     "nameRus": "Абакан",
     "routes": {
@@ -276,9 +297,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/dff85cab57ca0075d8b15f7caab4c379de4a752e0000a96b8097a2300e623d63",
         "YRNO": "/sted/Russland/Khakasia/Abakan/long.html",
         "GIDROMET": "/product/weather/12320/"
-    }
+    },
+    "timeZone": "Asia/Krasnoyarsk"
 }, {
-    "id": "123",
+    "id": 123,
     "name": "Anadyr",
     "nameRus": "Анадырь",
     "routes": {
@@ -289,9 +311,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/6a8587644a3778df1775e637707e6520178552e51a3cada4704ffb6a36cd249d",
         "YRNO": "/sted/Russland/Tsjukotka/Anadyr/long.html",
         "GIDROMET": "/product/weather/16837/"
-    }
+    },
+    "timeZone": "Asia/Anadyr"
 }, {
-    "id": "124",
+    "id": 124,
     "name": "Arkhangelsk",
     "nameRus": "Архангельск",
     "routes": {
@@ -302,9 +325,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/66c9d0165ec6a1a95d6487965e73caa35fde127f2879e5c7ff3ea0355c1f5440",
         "YRNO": "/sted/Russland/Arkhangelsk/Arkhangelsk/long.html",
         "GIDROMET": "/product/weather/3959/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "125",
+    "id": 125,
     "name": "Astrakhan",
     "nameRus": "Астрахань",
     "routes": {
@@ -315,9 +339,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/5a97bb4bbca593c559795476b1611b285b37dd95e89ac6ff827563914e104951",
         "YRNO": "/sted/Russland/Astrakhan/Astrakhan/long.html",
         "GIDROMET": "/product/weather/3946/"
-    }
+    },
+    "timeZone": "Europe/Astrakhan"
 }, {
-    "id": "126",
+    "id": 126,
     "name": "Barnaul",
     "nameRus": "Барнаул",
     "routes": {
@@ -328,9 +353,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/c3221cb831f1548a2783c42d39ff78a076fe678c01736c02de72d89dc9c763bc",
         "YRNO": "/sted/Russland/Altaj-territoriet/Barnaul/long.html",
         "GIDROMET": "/product/weather/12291/"
-    }
+    },
+    "timeZone": "Asia/Barnaul"
 }, {
-    "id": "127",
+    "id": 127,
     "name": "Belgorod",
     "nameRus": "Белгород",
     "routes": {
@@ -341,9 +367,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/4dacd0cae25626c0a15d084f894d9a233e5429e784704f06892b1773fd5f9d92",
         "YRNO": "/sted/Russland/Belgorod/Belgorod/long.html",
         "GIDROMET": "/product/weather/3903/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "128",
+    "id": 128,
     "name": "Birobidgan",
     "nameRus": "Биробиджан",
     "routes": {
@@ -354,9 +381,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7b0909b6b8b7f96a62e253d27b4dde1e9cf49ac93e1302d331697d6729237f9d",
         "YRNO": "/sted/Russland/Jødiske_autonome_fylke/Birobidzjan/long.html",
         "GIDROMET": "/product/weather/16307/"
-    }
+    },
+    "timeZone": "Asia/Vladivostok"
 }, {
-    "id": "129",
+    "id": 129,
     "name": "Blagoveshchensk",
     "nameRus": "Благовещенск",
     "routes": {
@@ -367,9 +395,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/65dc85ecb2f55748343ee49e4b16863136c2713df6a8d31f548c9c2ef8a70cb0",
         "YRNO": "/sted/Russland/Amur/Blagovesjtsjensk/long.html",
         "GIDROMET": "/product/weather/3873/"
-    }
+    },
+    "timeZone": "Asia/Yakutsk"
 }, {
-    "id": "130",
+    "id": 130,
     "name": "Bryansk",
     "nameRus": "Брянск",
     "routes": {
@@ -380,9 +409,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/38ef87ac1636dcf00589ffe322132047636081c48ed73e5f1909b4c560a47507",
         "YRNO": "/sted/Russland/Brjansk/Brjansk/long.html",
         "GIDROMET": "/product/weather/3845/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "131",
+    "id": 131,
     "name": "Veliky Novgorod",
     "nameRus": "Великий-Новгород",
     "routes": {
@@ -393,9 +423,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/e4569118d4cfb7c450f50885c4ba1ba315b3042ccdf40cef72e93092bafe5881",
         "YRNO": "/sted/Russia/Novgorod/Veliky_Novgorod/long.html",
         "GIDROMET": "/product/weather/3116/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "132",
+    "id": 132,
     "name": "Vladivostok",
     "nameRus": "Владивосток",
     "routes": {
@@ -406,9 +437,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/ae2e08d50b1515ffa1e74da0e7d66730e456806e2019e9462f0f3eb144b5a964",
         "YRNO": "/sted/Russland/Primorsk/Vladivostok/long.html",
         "GIDROMET": "/product/weather/16154/"
-    }
+    },
+    "timeZone": "Asia/Vladivostok"
 }, {
-    "id": "133",
+    "id": 133,
     "name": "Vladikavkaz",
     "nameRus": "Владикавказ",
     "routes": {
@@ -419,9 +451,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/b5ce77620a6c20d733398f01242f584620008a03ce207e0723b0254bb82f95a5",
         "YRNO": "/sted/Russland/Nord-Ossetia/Vladikavkaz/long.html",
         "GIDROMET": "/product/weather/2434/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "134",
+    "id": 134,
     "name": "Volgograd",
     "nameRus": "Волгоград",
     "routes": {
@@ -432,9 +465,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7a7db3b59b35a4faed510713d410244b81583ff839704c5b758b29ab4f8bdb98",
         "YRNO": "/sted/Russland/Volgograd/Volgograd/long.html",
         "GIDROMET": "/product/weather/2426/"
-    }
+    },
+    "timeZone": "Europe/Volgograd"
 }, {
-    "id": "135",
+    "id": 135,
     "name": "Vologda",
     "nameRus": "Вологда",
     "routes": {
@@ -445,9 +479,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/f609b455f6dd8f097b1b55bb85fc8dc73163e4e0d93d6c89b21933c27ecb6013",
         "YRNO": "/sted/Russland/Vologda/Vologda/long.html",
         "GIDROMET": "/product/weather/2421/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "136",
+    "id": 136,
     "name": "Voronezh",
     "nameRus": "Воронеж",
     "routes": {
@@ -458,9 +493,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/c811fe9cc55daf06ea556004a0e9d096035e4627903ea902da1650bc856a3b79",
         "YRNO": "/sted/Russland/Voronezj/Voronezh/long.html",
         "GIDROMET": "/product/weather/2412/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "137",
+    "id": 137,
     "name": "Gorno-Altaysk",
     "nameRus": "Горно-Алтайск",
     "routes": {
@@ -471,9 +507,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/35025e43cd5c76967f920e1456f868a921aa590039fb3463d70662ff164ada53",
         "YRNO": "/sted/Russland/Altaj/Gorno-Altaysk/long.html",
         "GIDROMET": "/product/weather/12237/"
-    }
+    },
+    "timeZone": "Asia/Barnaul"
 }, {
-    "id": "138",
+    "id": 138,
     "name": "Grozniy",
     "nameRus": "Грозный",
     "routes": {
@@ -484,9 +521,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/f1a8be0d496b63aedc00b33ab61328ad12953cbae0814ffac16ff2f5acc63530",
         "YRNO": "/sted/Russland/Tsjetsjenia/Groznyj/long.html",
         "GIDROMET": "/product/weather/3651/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "139",
+    "id": 139,
     "name": "Yekaterinburg",
     "nameRus": "Екатеринбург",
     "routes": {
@@ -497,9 +535,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/bee83c0f4aa7de0d4905a612d06d3af59cc13086efe66a4db3537d88c2a46cca",
         "YRNO": "/sted/Russland/Sverdlovsk/Jekaterinburg/long.html",
         "GIDROMET": "/product/weather/11932/"
-    }
+    },
+    "timeZone": "Asia/Yekaterinburg"
 }, {
-    "id": "140",
+    "id": 140,
     "name": "Ivanovo",
     "nameRus": "Иваново",
     "routes": {
@@ -510,9 +549,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/9c038e6ef364bf938eb7ca9659855d4d5366ca8e1d1b2e6d4b63498b5899866f",
         "YRNO": "/sted/Russland/Ivanovo/Ivanovo/long.html",
         "GIDROMET": "/product/weather/3610/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "141",
+    "id": 141,
     "name": "Izhevsk",
     "nameRus": "Ижевск",
     "routes": {
@@ -523,9 +563,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/712bcab3d5cd7d032d31677f6ad2a7a8ab3772ef04a77a7b53c8999293f2408c",
         "YRNO": "/sted/Russland/Udmurtia/Izjevsk/long.html",
         "GIDROMET": "/product/weather/3603/"
-    }
+    },
+    "timeZone": "Europe/Samara"
 }, {
-    "id": "142",
+    "id": 142,
     "name": "Yoshkar-Ola",
     "nameRus": "Йошкар-Ола",
     "routes": {
@@ -536,9 +577,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/210bbc9a06e3ad3cd0a0a18271b86ebb6df8debf83b0589ef00ee7a69ddb0915",
         "YRNO": "/sted/Russland/Mari_El/Yoshkar-Ola/long.html",
         "GIDROMET": "/product/weather/2344/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "143",
+    "id": 143,
     "name": "Kazan",
     "nameRus": "Казань",
     "routes": {
@@ -549,9 +591,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/ecf0ce04af6f721cec1964ac4d797bc985953dff9b2f775037ac082cfe06d8f4",
         "YRNO": "/sted/Russland/Tatarstan/Kazan/long.html",
         "GIDROMET": "/product/weather/3538/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "144",
+    "id": 144,
     "name": "Kaliningrad",
     "nameRus": "Калининград",
     "routes": {
@@ -562,9 +605,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7c1b8e430147719615e012f8e44fde56b6ede18a211dfcd8d27160ad3a60a542",
         "YRNO": "/sted/Russland/Kaliningrad/Kaliningrad/long.html",
         "GIDROMET": "/product/weather/3591/"
-    }
+    },
+    "timeZone": "Europe/Kaliningrad"
 }, {
-    "id": "145",
+    "id": 145,
     "name": "Kaluga",
     "nameRus": "Калуга",
     "routes": {
@@ -575,9 +619,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/614b2d6e7bb8acb0f0506eeb7eec1d37515e02a3e33012e0d32ff7dc3f9ff3b3",
         "YRNO": "/sted/Russland/Kaluga/Kaluga/long.html",
         "GIDROMET": "/product/weather/3585/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "146",
+    "id": 146,
     "name": "Kemerovo",
     "nameRus": "Кемерово",
     "routes": {
@@ -588,9 +633,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/ac27b13ba7d1865e41e9c26422cc24c44e86dbad45b5b1bb4e8c5cb1ac4c5c27",
         "YRNO": "/sted/Russland/Kemerovo/Kemerovo/long.html",
         "GIDROMET": "/product/weather/12199/"
-    }
+    },
+    "timeZone": "Asia/Novokuznetsk"
 }, {
-    "id": "147",
+    "id": 147,
     "name": "Kirov",
     "nameRus": "Киров",
     "routes": {
@@ -601,9 +647,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/6c30b371ed4bb96ee358c2daab4485a4aefa69fec9c020bb24b330df6122ec7e",
         "YRNO": "/sted/Russia/Kirov/Kirov/long.html",
         "GIDROMET": "/product/weather/3501/"
-    }
+    },
+    "timeZone": "Europe/Kirov"
 }, {
-    "id": "148",
+    "id": 148,
     "name": "Kostroma",
     "nameRus": "Кострома",
     "routes": {
@@ -614,9 +661,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/b5f7008b526d47c70e964c456a3099f993d7cf5254d427b5fb12ee196ab5a6a7",
         "YRNO": "/sted/Russland/Kostroma/Kostroma/long.html",
         "GIDROMET": "/product/weather/3445/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "149",
+    "id": 149,
     "name": "Krasnodar",
     "nameRus": "Краснодар",
     "routes": {
@@ -627,9 +675,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/8a6e20ebf6d3cc2516ee08b4c3298f7f003981351f519f267f2fa181809dc8f2",
         "YRNO": "/sted/Russland/Krasnodar/Krasnodar/long.html",
         "GIDROMET": "/product/weather/3421/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "150",
+    "id": 150,
     "name": "Krasnoyarsk",
     "nameRus": "Красноярск",
     "routes": {
@@ -640,9 +689,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/bcac3a08a51c90ff7e3fb94c1bd1b4b444b183142d7602044b094dd259853913",
         "YRNO": "/sted/Russland/Krasnojarsk/Krasnojarsk/long.html",
         "GIDROMET": "/product/weather/12170/"
-    }
+    },
+    "timeZone": "Asia/Krasnoyarsk"
 }, {
-    "id": "151",
+    "id": 151,
     "name": "Kurgan",
     "nameRus": "Курган",
     "routes": {
@@ -653,9 +703,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/87488210e389cf17de63d9a13d695514eb223e02dc4ce6e0de753397b5867d25",
         "YRNO": "/sted/Russland/Kurgan/Kurgan/long.html",
         "GIDROMET": "/product/weather/12159/"
-    }
+    },
+    "timeZone": "Asia/Yekaterinburg"
 }, {
-    "id": "152",
+    "id": 152,
     "name": "Kursk",
     "nameRus": "Курск",
     "routes": {
@@ -666,9 +717,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/eeb51412dc2cb17a53f9b613006f19e6e7234a0af7528fa56a1a0b67bc0949fb",
         "YRNO": "/sted/Russland/Kursk/Kursk/long.html",
         "GIDROMET": "/product/weather/3360/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "153",
+    "id": 153,
     "name": "Kyzyl",
     "nameRus": "Кызыл",
     "routes": {
@@ -679,9 +731,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/99d31b08b305a5faefbfa743cab8c04d483c5a618afbd17d26e3ac3474987d00",
         "YRNO": "/sted/Russland/Tuva/Kyzyl/long.html",
         "GIDROMET": "/product/weather/12154/"
-    }
+    },
+    "timeZone": "Asia/Krasnoyarsk"
 }, {
-    "id": "154",
+    "id": 154,
     "name": "Lipetsk",
     "nameRus": "Липецк",
     "routes": {
@@ -692,9 +745,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/2a42e5ccd97293459dbe92666dd898f349a60ea7931b431bda77c958a05011df",
         "YRNO": "/sted/Russland/Lipetsk/Lipetsk/long.html",
         "GIDROMET": "/product/weather/3306/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "155",
+    "id": 155,
     "name": "Magadan",
     "nameRus": "Магадан",
     "routes": {
@@ -705,9 +759,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7f3c1217718a4889228956b10d39cad74d6a8837dcbeb9207662317bd31df47c",
         "YRNO": "/sted/Russland/Magadan/Magadan/long.html",
         "GIDROMET": "/product/weather/16829/"
-    }
+    },
+    "timeZone": "Asia/Magadan"
 }, {
-    "id": "156",
+    "id": 156,
     "name": "Magas",
     "nameRus": "Магас",
     "routes": {
@@ -718,9 +773,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/8fcce20fb1938a4f9c7e3bebed1e6e7a699fd1fd583fab64b3ef947524a5cbcd",
         "YRNO": "/sted/Russland/Ingusjetia/Magas/long.html",
         "GIDROMET": "/product/weather/44749/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "157",
+    "id": 157,
     "name": "Maykop",
     "nameRus": "Майкоп",
     "routes": {
@@ -731,9 +787,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/8eedf24ec2f3cdd96779e1fe64783537aa5ce5175c57a6d09e0de6417fc55899",
         "YRNO": "/sted/Russland/Adygia/Majkop/long.html",
         "GIDROMET": "/product/weather/3250/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "158",
+    "id": 158,
     "name": "Makhachkala",
     "nameRus": "Махачкала",
     "routes": {
@@ -744,9 +801,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/ef11b51ddb23ad8e43e26574f97966e0ab2fd69ed2bd4b7388356f9b1831da4c",
         "YRNO": "/sted/Russland/Dagestan/Makhatsjkala/long.html",
         "GIDROMET": "/product/weather/3272/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "159",
+    "id": 159,
     "name": "Murmansk",
     "nameRus": "Мурманск",
     "routes": {
@@ -757,9 +815,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/8796cf96edfacd0422f0f2cb331423a98c2b15cd1932b4d19436bd5f76acf512",
         "YRNO": "/sted/Russland/Murmansk/Murmansk/long.html",
         "GIDROMET": "/product/weather/3188/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "160",
+    "id": 160,
     "name": "Nalchik",
     "nameRus": "Нальчик",
     "routes": {
@@ -770,9 +829,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/a19c04e6f84d77c3b208fe03e7cd9165155932a284a7b6033b25ad767a437324",
         "YRNO": "/sted/Russland/Annet/Nalchik_Airport/long.html",
         "GIDROMET": "/product/weather/3175/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "161",
+    "id": 161,
     "name": "Naryan-Mar",
     "nameRus": "Нарьян-Мар",
     "routes": {
@@ -783,9 +843,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/f1a9daf4ad78f44a9f95929cacfcd376ed5181ca60a6787a490c698d830da526",
         "YRNO": "/sted/Russland/Nenetsk/Naryan_Mar_Airport/long.html",
         "GIDROMET": "/product/weather/3170/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "162",
+    "id": 162,
     "name": "Nizhny Novgorod",
     "nameRus": "Нижний-Новгород",
     "routes": {
@@ -796,9 +857,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/68878d7f2691bdfbe784d972c6083581d4ecc6a013e99e8410e4543bc15a5428",
         "YRNO": "/sted/Russland/Nizjnij_Novgorod/Nizjnij_Novgorod/long.html",
         "GIDROMET": "/product/weather/3128/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "163",
+    "id": 163,
     "name": "Novosibirsk",
     "nameRus": "Новосибирск",
     "routes": {
@@ -809,9 +871,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/49e03742ba04a23306057562ca075f4f84cdad1af49f8f0729b4c0bbccfa1eaa",
         "YRNO": "/sted/Russland/Novosibirsk/Novosibirsk/long.html",
         "GIDROMET": "/product/weather/12100/"
-    }
+    },
+    "timeZone": "Asia/Novosibirsk"
 }, {
-    "id": "164",
+    "id": 164,
     "name": "Omsk",
     "nameRus": "Омск",
     "routes": {
@@ -822,9 +885,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/0d1167b309d543d6716df784a83ef33c47de2d0dfbf44ff905d5b698c757cae2",
         "YRNO": "/sted/Russland/Omsk/Omsk/long.html",
         "GIDROMET": "/product/weather/12090/"
-    }
+    },
+    "timeZone": "Asia/Omsk"
 }, {
-    "id": "165",
+    "id": 165,
     "name": "Orel",
     "nameRus": "Орел",
     "routes": {
@@ -835,9 +899,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/fe0c564ada1a2cb747c32bce1b02823d52bc1a001d9ea5e214bd495f0f9d407f",
         "YRNO": "/sted/Russia//Orjol/Orjol//long.html",
         "GIDROMET": "/product/weather/3026/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "166",
+    "id": 166,
     "name": "Orenburg",
     "nameRus": "Оренбург",
     "routes": {
@@ -848,9 +913,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/71ea758e8600a3067ebec9c8fcb2be0fc9fc3e24a6c0c53a9757dbd4269015e1",
         "YRNO": "/sted/Russland/Orenburg/Orenburg/long.html",
         "GIDROMET": "/product/weather/3025/"
-    }
+    },
+    "timeZone": "Asia/Yekaterinburg"
 }, {
-    "id": "167",
+    "id": 167,
     "name": "Penza",
     "nameRus": "Пенза",
     "routes": {
@@ -861,9 +927,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/67ee1fe8c5240bf32016c83cc15f0198cff90a1f9b20ed2be78943a3d3a2026f",
         "YRNO": "/sted/Russland/Penza/Penza/long.html",
         "GIDROMET": "/product/weather/2985/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "168",
+    "id": 168,
     "name": "Perm",
     "nameRus": "Пермь",
     "routes": {
@@ -874,9 +941,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/df4ebfaa45213201f3bb25d5cd7314871442023de9dab35bc6cc5cd2f649dab5",
         "YRNO": "/sted/Russland/Perm/Perm/long.html",
         "GIDROMET": "/product/weather/2978/"
-    }
+    },
+    "timeZone": "Asia/Yekaterinburg"
 }, {
-    "id": "169",
+    "id": 169,
     "name": "Petrozavodsk",
     "nameRus": "Петрозаводск",
     "routes": {
@@ -887,9 +955,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/ce5ebdf03afaa95aa8a8f92c6b1ce048c937967edfe27c93fdb44dbe89610e83",
         "YRNO": "/sted/Russland/Karelen/Petrozavodsk/long.html",
         "GIDROMET": "/product/weather/2958/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "170",
+    "id": 170,
     "name": "Petropavlovsk",
     "nameRus": "Петропавловск",
     "routes": {
@@ -900,9 +969,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/452cbca24b48b8cefe03a14211d1fb36460285c084c647b119cc9cae5df0d51d",
         "YRNO": "/sted/Russland/Kamtsjatka/Petropavlovsk-Kamtsjatskij/long.html",
         "GIDROMET": "/product/weather/12471/"
-    }
+    },
+    "timeZone": "Asia/Kamchatka"
 }, {
-    "id": "171",
+    "id": 171,
     "name": "Pskov",
     "nameRus": "Псков",
     "routes": {
@@ -913,9 +983,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/fe75cf7cb5614cc1c708d1482e3bdb01025888c3f496a8cedd8a6f9a816edd64",
         "YRNO": "/sted/Russland/Pskov/Pskov/long.html",
         "GIDROMET": "/product/weather/2896/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "172",
+    "id": 172,
     "name": "Rostov-na-Donu",
     "nameRus": "Ростов-на-Дону",
     "routes": {
@@ -926,9 +997,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/48ac01f108144808a4f0fb6288a0802c8319e44e2de9ca943ddd5a6bb263bb17",
         "YRNO": "/sted/Russland/Rostov/Rostov-na-Donu/long.html",
         "GIDROMET": "/product/weather/2855/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "173",
+    "id": 173,
     "name": "Ryazan",
     "nameRus": "Рязань",
     "routes": {
@@ -939,9 +1011,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/0bcfa52f378b07303d9323a15f35704271c930f777e8e8b93261be77cacc3b88",
         "YRNO": "/sted/Russland/Rjazan/Rjazan/long.html",
         "GIDROMET": "/product/weather/2843/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "174",
+    "id": 174,
     "name": "Salekhard",
     "nameRus": "Салехард",
     "routes": {
@@ -952,9 +1025,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/0c9b3d192ebd740228886af6b5c62beef3b7043b172436f1690d0bbf9bea0119",
         "YRNO": "/sted/Russland/Jamalo-Nenetsk/Salekhard/long.html",
         "GIDROMET": "/product/weather/12049/"
-    }
+    },
+    "timeZone": "Asia/Yekaterinburg"
 }, {
-    "id": "175",
+    "id": 175,
     "name": "Samara",
     "nameRus": "Самара",
     "routes": {
@@ -965,9 +1039,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/bce6473a62836488cf158df036413506647bd5b2bcf410ecaf3d2c5ec992b9cd",
         "YRNO": "/sted/Russland/Samara/Samara/long.html",
         "GIDROMET": "/product/weather/2827/"
-    }
+    },
+    "timeZone": "Europe/Samara"
 }, {
-    "id": "176",
+    "id": 176,
     "name": "Saransk",
     "nameRus": "Саранск",
     "routes": {
@@ -978,9 +1053,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/bee118f56a47234d0fd63a470b5c20e1b5c1e20314ad3bb1b35c7e99389ce6e8",
         "YRNO": "/sted/Russland/Mordovia/Saransk/long.html",
         "GIDROMET": "/product/weather/2818/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "177",
+    "id": 177,
     "name": "Saratov",
     "nameRus": "Саратов",
     "routes": {
@@ -991,9 +1067,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/37ba6c8fe79400112c4d1553df1206e4da5069e7965ff466eb19031495ebfcb2",
         "YRNO": "/sted/Russland/Saratov/Saratov/long.html",
         "GIDROMET": "/product/weather/2816/"
-    }
+    },
+    "timeZone": "Europe/Saratov"
 }, {
-    "id": "178",
+    "id": 178,
     "name": "Sevastopol",
     "nameRus": "Севастополь",
     "routes": {
@@ -1004,9 +1081,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/1627d45bcbb21583ea1bef537eef41c6ea5c0364a17f2d2d059d6a059a59e2b1",
         "YRNO": "/sted/Ukraina/Sevastopol/Sevastopol/long.html",
         "GIDROMET": "/product/weather/5655/"
-    }
+    },
+    "timeZone": "Europe/Simferopol"
 }, {
-    "id": "179",
+    "id": 179,
     "name": "Simferopol",
     "nameRus": "Симферополь",
     "routes": {
@@ -1017,9 +1095,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7d122d598b863f397808fdbc6f6a11c26ca4aa9fbdca38438d7e279d83aaade9",
         "YRNO": "/sted/Ukraina/Krim/Simferopol/long.html",
         "GIDROMET": "/product/weather/5638/"
-    }
+    },
+    "timeZone": "Europe/Simferopol"
 }, {
-    "id": "180",
+    "id": 180,
     "name": "Smolensk",
     "nameRus": "Смоленск",
     "routes": {
@@ -1030,9 +1109,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/efae9a5b1f9319478081e4170aae0ac6e172987c461533915330ff409d54192b",
         "YRNO": "/sted/Russland/Smolensk/Smolensk/long.html",
         "GIDROMET": "/product/weather/2721/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "181",
+    "id": 181,
     "name": "Stavropol",
     "nameRus": "Ставрополь",
     "routes": {
@@ -1043,9 +1123,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/55d4093d4360ddb8eeeb5dba4337af963c3822594bc42aea0e6d40eedb36e595",
         "YRNO": "/sted/Russland/Stavropol/Stavropol/long.html",
         "GIDROMET": "/product/weather/2651/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "182",
+    "id": 182,
     "name": "Syktyvkar",
     "nameRus": "Сыктывкар",
     "routes": {
@@ -1056,9 +1137,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/0ee88d45224bdfaa1371ff9c77de2797663392597e24a6da9ac9d618a3b76f53",
         "YRNO": "/sted/Russland/Komi/Syktyvkar/long.html",
         "GIDROMET": "/product/weather/2606/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "183",
+    "id": 183,
     "name": "Tver",
     "nameRus": "Тверь",
     "routes": {
@@ -1069,9 +1151,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/c73b8586a7d1845437a0a7240628aaeda17f9378246f695e12b04c63a055b557",
         "YRNO": "/sted/Russland/Tver/Tver/long.html",
         "GIDROMET": "/product/weather/2526/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "184",
+    "id": 184,
     "name": "Tomsk",
     "nameRus": "Томск",
     "routes": {
@@ -1082,9 +1165,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7fd10ea6f9bc4bd86f9cb969d1eeee17657908c077325b7c4bf1e5cce5834a07",
         "YRNO": "/sted/Russland/Tomsk/Tomsk/long.html",
         "GIDROMET": "/product/weather/11990/"
-    }
+    },
+    "timeZone": "Asia/Tomsk"
 }, {
-    "id": "185",
+    "id": 185,
     "name": "Tyumen",
     "nameRus": "Тюмень",
     "routes": {
@@ -1095,9 +1179,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/6ef81334433640684b39d3adee1de7317656684a3b632040093bfdab3ea36f6a",
         "YRNO": "/sted/Russland/Tjumen/Tjumen/long.html",
         "GIDROMET": "/product/weather/11973/"
-    }
+    },
+    "timeZone": "Asia/Yekaterinburg"
 }, {
-    "id": "186",
+    "id": 186,
     "name": "Ulan-Ude",
     "nameRus": "Улан-Удэ",
     "routes": {
@@ -1108,9 +1193,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/05d94bbe4a6c89c0c66b84a02dd15053ac5900455f36c443ffe4af2736afbc2a",
         "YRNO": "/sted/Russland/Burjatia/Ulan-Ude/long.html",
         "GIDROMET": "/product/weather/16168/"
-    }
+    },
+    "timeZone": "Asia/Irkutsk"
 }, {
-    "id": "187",
+    "id": 187,
     "name": "Ulyanovsk",
     "nameRus": "Ульяновск",
     "routes": {
@@ -1121,9 +1207,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7ba47f9fcc206513b30dcf8c10eb3bb62bb117f3248efe2d5c1caae4b4ed4b95",
         "YRNO": "/sted/Russland/Uljanovsk/Ulyanovsk/long.html",
         "GIDROMET": "/product/weather/2512/"
-    }
+    },
+    "timeZone": "Europe/Ulyanovsk"
 }, {
-    "id": "188",
+    "id": 188,
     "name": "Ufa",
     "nameRus": "Уфа",
     "routes": {
@@ -1134,9 +1221,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/ecc562d6ac455484d9f5ceb6bfc963ba60bf38338297dc46e06130a48cac575d",
         "YRNO": "/sted/Russland/Basjkortostan/Ufa/long.html",
         "GIDROMET": "/product/weather/2519/"
-    }
+    },
+    "timeZone": "Asia/Yekaterinburg"
 }, {
-    "id": "189",
+    "id": 189,
     "name": "Khabarovsk",
     "nameRus": "Хабаровск",
     "routes": {
@@ -1147,9 +1235,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/fb6f3414f1bedcbc5247597d1d362a4387abcac878b65550e0a1e6cb13ee0260",
         "YRNO": "/sted/Russland/Khabarovsk/Khabarovsk/long.html",
         "GIDROMET": "/product/weather/16276/"
-    }
+    },
+    "timeZone": "Asia/Vladivostok"
 }, {
-    "id": "190",
+    "id": 190,
     "name": "Khanty-Mansiysk",
     "nameRus": "Ханты-Мансийск",
     "routes": {
@@ -1160,9 +1249,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7d0d08d4d2fa47a6fcbe989338d4f5e8f3a2215e6f98b3588fa5f6a1af5a5268",
         "YRNO": "/sted/Russland/Khanty-Mansijsk/Khanty-Mansijsk/long.html",
         "GIDROMET": "/product/weather/12196/"
-    }
+    },
+    "timeZone": "Asia/Yekaterinburg"
 }, {
-    "id": "191",
+    "id": 191,
     "name": "Cheboksary",
     "nameRus": "Чебоксары",
     "routes": {
@@ -1173,9 +1263,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/50d049288f9aeacf1cd61927f62efb24c8b79049c7ab3915e4333fe9e82f3922",
         "YRNO": "/sted/Russland/Tsjuvasjia/Tsjeboksary/long.html",
         "GIDROMET": "/product/weather/3822/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "192",
+    "id": 192,
     "name": "Chelyabinsk",
     "nameRus": "Челябинск",
     "routes": {
@@ -1186,9 +1277,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/47300995d85694c9cb21e9cbe02e56ee33288a9edce0e4c5627ecd566518a5db",
         "YRNO": "/sted/Russland/Tsjeljabinsk/Tsjeljabinsk/long.html",
         "GIDROMET": "/product/weather/12254/"
-    }
+    },
+    "timeZone": "Asia/Yekaterinburg"
 }, {
-    "id": "193",
+    "id": 193,
     "name": "Cherkessk",
     "nameRus": "Черкесск",
     "routes": {
@@ -1199,9 +1291,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/b8ff885c3f3c411d0abbf4ad6c317b331a21bf2c271b8bc759f51aa786e13997",
         "YRNO": "/sted/Russland/Karatsjajevo-Tsjerkessia/Tsjerkessk/long.html",
         "GIDROMET": "/product/weather/3808/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "194",
+    "id": 194,
     "name": "Chita",
     "nameRus": "Чита",
     "routes": {
@@ -1212,9 +1305,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/5de2a0171fd4ebe088f581af789aeb97948350db2695162f8e024501356f606f",
         "YRNO": "/sted/Russland/Transbajkal/Tsjita/long.html",
         "GIDROMET": "/product/weather/16294/"
-    }
+    },
+    "timeZone": "Asia/Chita"
 }, {
-    "id": "195",
+    "id": 195,
     "name": "Elista",
     "nameRus": "Элиста",
     "routes": {
@@ -1225,9 +1319,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/6cfa820b95d28828145234008d153ad200affe4b5b353224741ce662b40bab3e",
         "YRNO": "/sted/Russland/Kalmykia/Elista/long.html",
         "GIDROMET": "/product/weather/3717/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }, {
-    "id": "196",
+    "id": 196,
     "name": "Sakhalinsk",
     "nameRus": "Сахалинск",
     "routes": {
@@ -1238,9 +1333,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/24041d8786c975fddce536c4b09230e1706bac69a3de6cdf27d8bdc691ca6073",
         "YRNO": "/sted/Russland/Sakhalin/Juzjno-Sakhalinsk/long.html",
         "GIDROMET": "/product/weather/16809/"
-    }
+    },
+    "timeZone": "Asia/Sakhalin"
 }, {
-    "id": "197",
+    "id": 197,
     "name": "Yakutsk",
     "nameRus": "Якутск",
     "routes": {
@@ -1251,9 +1347,10 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/92440a7ac756369278e063f8d405ef0f666d6998f68980c355fd971e0dd24f8f",
         "YRNO": "/sted/Russland/Sakha/Yakutsk/long.html",
         "GIDROMET": "/product/weather/16148/"
-    }
+    },
+    "timeZone": "Asia/Yakutsk"
 }, {
-    "id": "198",
+    "id": 198,
     "name": "Yaroslavl",
     "nameRus": "Ярославль",
     "routes": {
@@ -1264,5 +1361,6 @@
         "WEATHERCOM": "/ru-RU/weather/tenday/l/985de64314fe10f1fab3e49ae41966ee39b432fd2b46ba4fb0579512408f8cb1",
         "YRNO": "/sted/Russland/Jaroslavl/Yaroslavl/long.html",
         "GIDROMET": "/product/weather/2374/"
-    }
+    },
+    "timeZone": "Europe/Moscow"
 }]

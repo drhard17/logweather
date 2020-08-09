@@ -14,6 +14,8 @@
   "pollOnce": 0,
   "locLimit": 0,
 
+  "countingHour": 14,
+
   "storing": {
     "storeTemps": 1,
     "storeSiteCode": 0,

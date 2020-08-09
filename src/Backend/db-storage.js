@@ -3,7 +3,7 @@ const fs = require('fs')
 const { getLogweatherDb } = require('./db-creator.js')
 const { TempRecord } = require('./TempRecord');
 
-const config = JSON.parse(fs.readFileSync('./config.json'))
+const config = require('../config.json')
 const { storing: { busyTimeout } } = config
 
 
@@ -12,6 +12,10 @@ function getDbDate(date) {
         throw new Error('INVALID_DATE_RECORD_FORMAT')
     }
     return Math.floor(date.getTime() / 1000)
+}
+
+function getDbHour(hour){
+    return hour < 10 ? '0' + hour : String(hour)
 }
 
 function extractParams(tempRecords) {
@@ -90,10 +94,10 @@ module.exports = {
      * @param {TempRequest} tempRequest 
      */
 
-    getTempData: async function (req, cb) {
+    getTempData: async function (req) {
         const firstDay = getDbDate(req.firstDay)
         const lastDay = getDbDate(req.lastDay)
-        const hour = String(req.hour)
+        const hour = getDbHour(req.hour)
         const locId = req.locId
         
         const db = await getLogweatherDb()

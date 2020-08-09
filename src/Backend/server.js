@@ -9,8 +9,8 @@ const logger = require('../crawler/cr-logger.js')
 const bl = require('./chart-builder.js')
 const { TempRecord } = require('./TempRecord')
 
-const config = JSON.parse(fs.readFileSync('./config.json'))
-const locations = JSON.parse(fs.readFileSync('./locations.json'))
+const config = require('../config.json')
+const locations = require('../locations.json')
 
 const hostname = config.webserver.host;
 const port = config.webserver.port;
