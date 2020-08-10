@@ -78,8 +78,15 @@ app.post('/getchartdata', asyncHandler(async(req, res) => {
 
 app.post('/getlasttemp', asyncHandler(async(req, res) => {
     res.type('json')
+    console.log(req.body.service);
     const siteTemp = await formSiteTemp(req.body.service, req.body.locId)
     res.send(JSON.stringify({temp: siteTemp}))
+}))
+
+app.post('/storesensordata', asyncHandler(async(req, res) => {
+    res.type('json')
+    console.log(req.body);
+    res.send(JSON.stringify({response: 'Hello from server!'}))
 }))
 
 app.get('/', (req, res) => {
