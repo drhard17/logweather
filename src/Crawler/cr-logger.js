@@ -8,9 +8,10 @@ const toRed = '\x1b[31m', toGreen = '\x1b[32m', resetColor = '\x1b[0m'
 module.exports = {
     logParsingError: function(err, siteData) {
         const date = siteData.requestTime.toLocaleString()
-        const msg = `${date} ${err.type}_ON_${siteData.siteName}: ${err.message}`
+        const errType = siteData.siteCode ? 'PARSE_ERROR' : 'REQUEST_ERROR'
+        const msg = `${date} ${errType}_ON_${siteData.siteName}: ${err.message}`
         const location = siteData.location
-        const url = `${siteData.siteOpts.hostname}${location.routes[siteData.siteName]}`
+        const url = `${siteData.url}${location.routes[siteData.siteName]}`
 
         fs.appendFile(logFile, `${msg}\r\n`, (err) => {
             if (err) { return console.log(err) }

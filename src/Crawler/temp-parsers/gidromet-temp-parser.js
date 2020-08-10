@@ -2,15 +2,12 @@ const {	JSDOM } = require('jsdom');
 const moment = require('moment')
 
 module.exports = {
+	id: 7,
 	name: 'GIDROMET',
-	opts: {
-		hostname: 'www.meteorf.ru',
-		path: '/product/weather/3420/',
-		port: 80,
-	},
+	url: 'http://www.meteorf.ru',
+	opts: {},
 
 	parseFunc: function (page) {
-
 		const document = new JSDOM(page).window.document;
 		const today = moment().startOf('d')
 		let currentTemp

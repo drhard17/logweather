@@ -1,21 +1,14 @@
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
+const { JSDOM } = require('jsdom');
 
 module.exports = {
+	id: 8,
 	name: 'RP5',
-	opts: {
-		hostname: 'rp5.ru',
-		path: '/Weather_in_Krasnogorsk',
-		port: 443,
-	},
+	url: 'https://rp5.ru',
+	opts: {},
 	
-	setLocation: function (location) {
-		this.opts.path = '/Weather_in_' + location
-	},
-
 	parseFunc: function(page) {
-		const dom = new JSDOM(page);
-		let results = []
+		const dom = new JSDOM(page)
+		const results = []
 		
 		const currentTemp = parseInt(
 			dom.window.document
@@ -31,7 +24,7 @@ module.exports = {
 			.querySelectorAll('td[colspan]')
 		)
 			.map(a => {
-				let day = a.querySelector('b').textContent
+				const day = a.querySelector('b').textContent
 				let cs = a.getAttribute('colspan')
 				cs = parseInt(cs, 10)
 				return {[day]: cs}

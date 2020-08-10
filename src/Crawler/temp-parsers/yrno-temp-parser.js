@@ -3,12 +3,10 @@ const moment = require('moment')
 const array = require('lodash/array');
 
 module.exports = {
+	id: 6,
 	name: 'YRNO',
-	opts: {
-		hostname: 'www.yr.no',
-		path: '/place/Russia/Moscow_oblast/Krasnogorsk/long.html',
-		port: 443,
-	},
+	url: 'https://www.yr.no',
+	opts: {},
 	parseFunc: function(page) {
 		const dateFormat = 'DD/MM/YYYY'
 		const today = moment().startOf('d')

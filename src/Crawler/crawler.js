@@ -1,7 +1,5 @@
 ﻿const schedule = require('node-schedule');
-const https = require('https');
-const http = require('http');
-const fs = require('fs');
+const got = require('got')
 
 const { TempRecord } = require('../Backend/TempRecord')
 const storage = require('../Backend/db-storage.js')
@@ -9,61 +7,55 @@ const logger = require('./cr-logger')
 
 /**
  * Gets webpage HTML code
- * @param {{hostname: string, path: string, port: number, headers: string}} opts - common HTTP request options
+ * @param {string} url - url address of a webpage
+ * @param {{headers: string}} options - common HTTP request options
  * @returns {Promise<string>}
  */
-const getSiteCode = (opts) => new Promise((resolve, reject) => {
-	const proto = opts.port === 80 ? http : https
-	const req = proto.request(opts, (res) => {
-		if (res.statusCode != 200) {
-			return reject({
-				type: 'REQUEST_ERROR',
-				message: `Recieved status code ${res.statusCode}`
-			});
-		}
-
-		let rawData = [];
-		res.on('data', (d) => rawData.push(d));
-		res.on('end', () =>	{
-			const siteCode = Buffer.concat(rawData).toString('utf8');
-			resolve(siteCode);
-		});
-	});
-
-	req.end();
-	req.on('error', (err) => {
-		reject({
-			type: 'REQUEST_ERROR',
-			message: err.message
-		});
-	});
-});
+const getSiteCode = (url, options) => new Promise((resolve, reject) => {
+	options.retry = {limit: 5}
+	const rawData = []
+	const stream = got.stream(url, options)
+    
+    stream.on('data', (chunk) => {
+        rawData.push(chunk)
+    })
+    stream.on('end', () => {
+        const siteCode = Buffer.concat(rawData).toString('utf8')
+        resolve(siteCode);
+    })
+    stream.on('error', (err) => {
+        reject(new Error(err))
+    })
+})
 
 /**
  * Gets an array of temperatures from the website
  * 
- * @param {{name: string, opts: {hostname: string, path: string, port: number, headers: string}, parseFunc: function}} site 
+ * @param {{name: string, url: string, opts: {headers: string}, parseFunc: function}} site 
  * @param {{id: number, name: string, nameRus: string, routes: {[siteName]: string}[]}} location
- * @returns {Promise<{temps: number[], requestTime: Date, siteName: string, siteOpts: {}, siteCode: string}>}
+ * @returns {Promise<{temps: number[], requestTime: Date, siteName: string, url: string, siteCode: string}>}
  */
 async function getTempFrom(site, location) {
 	const commonData = {
 		requestTime: new Date(),
 		location: location,
 		siteName: site.name,
-		siteOpts: site.opts,
+		url: site.url,
 		siteCode: null,
 	};
 
-	site.opts.path = location.routes[site.name]
-
+	const url = site.url + location.routes[site.name]
+	const options = site.opts
+		
 	try {
-		const siteCode = await getSiteCode(site.opts)
+		const siteCode = await getSiteCode(url, options)
 		commonData.siteCode = siteCode
 		const temps = site.parseFunc(siteCode)
+		if (temps.every(temp => Number.isNaN(temp))) {
+			throw new Error('Temperatures not found')
+		}
 		return { temps, ...commonData }
 	} catch (err) {
-		if (commonData.siteCode) { err.type = "PARSE_ERROR" }
 		return { err, ...commonData }
 	}
 }
@@ -100,9 +92,9 @@ function errorHandler(sitesData) {
 }
 
 async function poll(sites, locations, storingOpts) {
-	for (let location of locations) {
+	for (const location of locations) {
 		const promises = []
-		for (let site of sites) {
+		for (const site of sites) {
 			if (!Object.keys(location.routes).includes(site.name)) { continue }
 			promises.push(getTempFrom(site, location))
 		}
@@ -116,17 +108,17 @@ async function poll(sites, locations, storingOpts) {
 }
 
 function main() {
-	const config = JSON.parse(fs.readFileSync('./config.json'))
+	const config = require('../config.json')
 	const storingOpts = config.storing
 	const locLimit = config.locLimit || undefined
-	const locations = JSON.parse(fs.readFileSync('./locations.json')).slice(0, locLimit)
+	const locations = require('../locations.json').slice(0, locLimit)
 
 	const sites = Object.keys(config.sitesToPoll)
 		.filter(site => config.sitesToPoll[site])
 		.map(site => require(`./temp-parsers/${site}-temp-parser`))
 	
 	if (config.pollOnce) {
-		console.log('Logweather Crawler one-time poll...')
+		console.log('Logweather Crawler one-time poll...\r\n')
 		poll(sites, locations, storingOpts)
 		return
 	}
@@ -136,7 +128,7 @@ function main() {
 	schedule.scheduleJob(rule, () => {
 		poll(sites, locations, storingOpts)
 	})
-	console.log('Logweather Crawler running...')
+	console.log('Logweather Crawler running...\r\n')
 	console.log('Parse in minutes: ' + rule.minute)
 }
 
