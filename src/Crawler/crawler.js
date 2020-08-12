@@ -5,6 +5,10 @@ const { TempRecord } = require('../Backend/TempRecord')
 const storage = require('../Backend/db-storage.js')
 const logger = require('./cr-logger')
 
+const sleep = (ms) => new Promise(resolve => {
+    setTimeout(resolve, ms);
+});
+
 /**
  * Gets webpage HTML code
  * @param {string} url - url address of a webpage
@@ -12,10 +16,8 @@ const logger = require('./cr-logger')
  * @returns {Promise<string>}
  */
 const getSiteCode = (url, options) => new Promise((resolve, reject) => {
-	options.retry = {limit: 5}
 	const rawData = []
 	const stream = got.stream(url, options)
-    
     stream.on('data', (chunk) => {
         rawData.push(chunk)
     })
@@ -27,6 +29,28 @@ const getSiteCode = (url, options) => new Promise((resolve, reject) => {
         reject(new Error(err))
     })
 })
+
+/**
+ * "Терпеливая" функция, которая предпринимает несколько попыток выполниться
+ */
+const patientFn = (fn, repeatCount, delay) => async (...fnArgs) => {
+    if (!(repeatCount > 0)) {
+        throw new Error("Unexpected repeatCount");
+    }
+    let lastError;
+    while (repeatCount--) {
+        try {
+            return await fn(...fnArgs);
+        } catch (e) {
+            lastError = e;
+            console.log(`Failed, attempts left: ${repeatCount}`)
+            if (repeatCount) {
+                await sleep(delay);
+            }
+        }
+    }
+    throw lastError;
+}
 
 /**
  * Gets an array of temperatures from the website
@@ -43,12 +67,12 @@ async function getTempFrom(site, location) {
 		url: site.url,
 		siteCode: null,
 	};
-
 	const url = site.url + location.routes[site.name]
 	const options = site.opts
+	const patientGetSiteCode = patientFn(getSiteCode, 5, 5000)
 		
 	try {
-		const siteCode = await getSiteCode(url, options)
+		const siteCode = await patientGetSiteCode(url, options)
 		commonData.siteCode = siteCode
 		const temps = site.parseFunc(siteCode)
 		if (temps.every(temp => Number.isNaN(temp))) {
