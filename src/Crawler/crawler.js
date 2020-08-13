@@ -31,7 +31,7 @@ const getSiteCode = (url, options) => new Promise((resolve, reject) => {
 })
 
 /**
- * "Терпеливая" функция, которая предпринимает несколько попыток выполниться
+ * A "patient" function that makes multiple attempts to execute
  */
 const patientFn = (fn, repeatCount, delay) => async (...fnArgs) => {
     if (!(repeatCount > 0)) {
