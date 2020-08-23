@@ -1,7 +1,7 @@
 [{
     "id": 101,
-    "name": "Krasnogorsk",
-    "nameRus": "Красногорск",
+    "name": "Opaliha",
+    "nameRus": "Опалиха",
     "routes": {
         "YANDEX": "/pogoda/krasnogorsk/details?via=ms'",
         "GISMETEO": "/weather-krasnogorsk-11442/10-days/",
@@ -11,6 +11,7 @@
         "YRNO": "/sted/Russland/Moskva_fylke/Krasnogorsk/long.html",
         "GIDROMET": "/product/weather/3420/"
     },
+    "sensors": ["STREET"],
     "timeZone": "Europe/Moscow"
 }, {
     "id": 102,
@@ -186,7 +187,6 @@
     "routes": {
         "YANDEX": "/pogoda/terskol/details?via=ms'",
         "GISMETEO": "/weather-terskol-5249/10-days/",
-        "WEATHERCOM": "/ru-RU/weather/tenday/l/2c99f28a6b233081d6619dce9aafcac969967951a714eb65cf4268f27446478d",
         "YRNO": "/sted/Russland/Kabardino-Balkaria/Terskol/long.html"
     },
     "timeZone": "Europe/Moscow"

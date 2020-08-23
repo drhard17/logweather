@@ -2,21 +2,32 @@ const firstDayInput = document.getElementById('firstDay')
 const lastDayInput = document.getElementById('lastDay')
 const form = document.getElementById('serviceDepth')
 const addChartButton = document.getElementById('addChart')
-const locSelect = document.getElementById('citySelect')
+const citySelect = document.getElementById('citySelect')
 const depthSelect = document.getElementById('depth')
 const serviceSelect = document.getElementById('serviceSelect')
 
 let chartAdded = false
 
 const maxDepth = {
-    ACCUWEATHER: 20,
-    GIDROMET: 6,
-    GISMETEO: 9,
-    RP5: 5,
-    WEATHERCOM: 14,
-    YANDEX: 9,
-    YRNO: 8,
-    STREET: 0
+    ACCUWEATHER: [0, 20],
+    GIDROMET: [1, 6],
+    GISMETEO: [1, 9],
+    RP5: [0, 5],
+    WEATHERCOM: [1, 14],
+    YANDEX: [1, 9],
+    YRNO: [1, 8],
+    STREET: [0, 0]
+}
+
+const displayedServiceNames = {
+    STREET: "ESP8266 sensor",
+    YANDEX: "Yandex",
+    GISMETEO: "Gismeteo",
+    RP5: "RP5",
+    GIDROMET: "Rosgidromet",
+    ACCUWEATHER: "Accuweather",
+    WEATHERCOM: "Weather.com",
+    YRNO: "Yr.no"
 }
 
 const tempRequest = {
@@ -26,21 +37,25 @@ const tempRequest = {
     locId: 101
 }
 
-locSelect.onchange = function() {
+citySelect.onchange = async function() {
     const locId = parseInt(this.value, 10)
     tempRequest.locId = locId
     const locName = document.querySelector(`option[value="${locId}"]`).innerHTML
 
     getLastTemp('YANDEX', locId, (err, res) => {
         if (err) return alert(err)    
-        const temp = res.temp
+        const { temp } = res
         document.querySelector('#sTemp').innerHTML = temp
         document.querySelector('#sCity').innerHTML = locName
         removeData(myChart)
     })
+    const locServices = await getLocServices(locId)
+    const serviceOptions = formServiceSelector(locServices)
+    document.querySelector('#serviceSelect').innerHTML = serviceOptions
+    depthSelect.innerHTML = formDepthOptions(locServices.locServices[0])
 }
 
-firstDayInput.oninput = function() {
+firstDayInput.oninput = () => {
     if (chartAdded) {
         updChartDates()
     }
@@ -48,7 +63,7 @@ firstDayInput.oninput = function() {
 
 lastDayInput.oninput = firstDayInput.oninput
 
-addChartButton.onclick = function() {
+addChartButton.onclick = () => {
     const service = serviceSelect.value
     const depth = parseInt(depthSelect.value, 10)
     tempRequest.charts.push({serviceName: service, depth: depth})    
@@ -56,18 +71,27 @@ addChartButton.onclick = function() {
     updChartDates()
 }
 
-serviceSelect.onchange = function() {
-    const serviceMaxDepth = maxDepth[serviceSelect.value]
-    const depthElements = formDepthOptions(serviceMaxDepth)
-    depthSelect.innerHTML = depthElements
+serviceSelect.onchange = () => {
+    depthSelect.innerHTML = formDepthOptions(serviceSelect.value)
 }
 
-function formDepthOptions(maxDepth) {
+function formDepthOptions(serviceName) {
+    const depth = maxDepth[serviceName]
     const result = []
-    for (let i = 0; i<=maxDepth; i++) {
+    for (let i = depth[0]; i <= depth[1]; i++) {
         result.push(`<option value="${i}">${i}</option>`)
     }
     return result.join('\r\n')
+}
+
+function formServiceSelector(locServices) {
+    return [`<option disabled>Select service</option>`]
+        .concat(
+        locServices.locServices.map(service => {
+            const displayedName = displayedServiceNames[service]
+            return `<option value="${service}">${displayedName}</option>`
+        })    
+    ).join('\r\n')
 }
 
 function getChartData(tempRequest, cb) {
@@ -109,6 +133,17 @@ function getLastTemp(service, locId, cb) {
     xhr.onerror = function() {
         cb('XHR error')
     }
+}
+
+async function getLocServices(locId) {
+    const response = await fetch('/getlocservices', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({locId})
+    })
+    return await response.json()
 }
 
 function updChartDates() {

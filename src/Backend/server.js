@@ -11,14 +11,20 @@ const { TempRecord } = require('./TempRecord')
 const config = require('../config.json')
 const locations = require('../locations.json')
 
-const hostname = config.webserver.host;
-const port = config.webserver.port;
+const [ host, port ] = Object.values(config.webserver)
 
 const app = express()
 
 async function formSiteTemp(serviceName, locId) {
     const temp = await storage.getLastTemp(serviceName, locId)
     return temp > 0 ? '+' + temp : temp
+}
+
+function getLocServices(locId) {
+    const location = locations.find(location => location.id === locId)
+    const {sensors} = location
+    const forecasts = Object.keys(location.routes)
+    return sensors ? sensors.concat(forecasts) : forecasts
 }
 
 const logIP = function(req, res, next) {
@@ -67,6 +73,13 @@ app.post('/getlasttemp', asyncHandler(async(req, res) => {
     res.send(JSON.stringify({temp: siteTemp}))
 }))
 
+app.post('/getlocservices', (req, res) => {
+    res.type('json')
+    console.log(req.body);
+    const locServices = getLocServices(req.body.locId)
+    res.send(JSON.stringify({locServices}))
+})
+
 app.post('/storesensordata', asyncHandler(async(req, res) => {
     res.type('json')
     const [name, locId, temp] = Object.values(req.body)
@@ -86,8 +99,6 @@ app.get('/', (req, res) => {
     res.render('index')
 });
 
-app.listen(port, hostname, () => {
-    console.log(`Express server running at http://${hostname}:${port}/`)
+app.listen(port, host, () => {
+    console.log(`Express server running at http://${host}:${port}/`)
 });
-
-
