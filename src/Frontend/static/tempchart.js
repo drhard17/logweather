@@ -8,6 +8,13 @@ const serviceSelect = document.getElementById('serviceSelect')
 
 let chartAdded = false
 
+const postReqOptions = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+    }
+}
+
 const maxDepth = {
     ACCUWEATHER: [0, 20],
     GIDROMET: [1, 6],
@@ -41,18 +48,20 @@ citySelect.onchange = async function() {
     const locId = parseInt(this.value, 10)
     tempRequest.locId = locId
     const locName = document.querySelector(`option[value="${locId}"]`).innerHTML
+    document.querySelector('#sCity').innerHTML = locName
+    removeData(myChart)
+    try {
+        const { temp } = await getLastTemp('YANDEX', locId)
+        const { locServices } = await getLocServices(locId)
+        const serviceOptions = formServiceSelector(locServices)
 
-    getLastTemp('YANDEX', locId, (err, res) => {
-        if (err) return alert(err)    
-        const { temp } = res
         document.querySelector('#sTemp').innerHTML = temp
-        document.querySelector('#sCity').innerHTML = locName
-        removeData(myChart)
-    })
-    const locServices = await getLocServices(locId)
-    const serviceOptions = formServiceSelector(locServices)
-    document.querySelector('#serviceSelect').innerHTML = serviceOptions
-    depthSelect.innerHTML = formDepthOptions(locServices.locServices[0])
+        document.querySelector('#serviceSelect').innerHTML = serviceOptions
+        depthSelect.innerHTML = formDepthOptions(locServices[0])
+
+    } catch (err) {
+        alert(err)        
+    }
 }
 
 firstDayInput.oninput = () => {
@@ -87,61 +96,33 @@ function formDepthOptions(serviceName) {
 function formServiceSelector(locServices) {
     return [`<option disabled>Select service</option>`]
         .concat(
-        locServices.locServices.map(service => {
+        locServices.map(service => {
             const displayedName = displayedServiceNames[service]
             return `<option value="${service}">${displayedName}</option>`
         })    
     ).join('\r\n')
 }
 
-function getChartData(tempRequest, cb) {
-    let xhr = new XMLHttpRequest()
-    xhr.open('POST', '/getchartdata')
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.responseType = 'json'
-
-    const body = JSON.stringify(tempRequest)
-
-    xhr.send(body)
-    xhr.onload = function() {
-        cb(null, xhr.response)
-    }
-
-    xhr.onerror = function() {
-        cb('XHR error')
-    }
+async function getChartData(tempRequest) {
+    const response = await fetch('/getchartdata', {
+        body: JSON.stringify(tempRequest),
+        ...postReqOptions
+    })
+    return await response.json()
 }
 
-function getLastTemp(service, locId, cb) {
-    const xhr = new XMLHttpRequest()
-
-    xhr.open('POST', '/getlasttemp')
-    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.responseType = 'json'
-
-    const reqBody = {service, locId}
-
-    const body = JSON.stringify(reqBody)
-
-    xhr.send(body)
-    xhr.onload = function() {
-        cb(null, xhr.response)
-    }
-
-    xhr.onerror = function() {
-        cb('XHR error')
-    }
+async function getLastTemp(service, locId) {
+    const response = await fetch('getlasttemp', {
+        body: JSON.stringify({service, locId}),
+        ...postReqOptions
+    })
+    return await response.json()
 }
 
 async function getLocServices(locId) {
     const response = await fetch('/getlocservices', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({locId})
+        body: JSON.stringify({locId}),
+        ...postReqOptions
     })
     return await response.json()
 }
@@ -161,11 +142,13 @@ function updChartDates() {
     }
 }
 
-function updateChart() {
-    getChartData(tempRequest, (err, res) => {
-        if (err) return alert(err)
-        renderChart(myChart, res)
-    })
+async function updateChart() {
+    try {
+        const chartPoints = await getChartData(tempRequest)
+        renderChart(myChart, chartPoints)
+    } catch (err) {
+        alert(err)
+    }    
 }
 
 function renderChart(myChart, chartData) {
