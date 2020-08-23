@@ -1,4 +1,3 @@
-const fs = require('fs')
 const fsPromises = require('fs').promises
 const bodyParser = require('body-parser')
 const express = require('express')
@@ -20,20 +19,6 @@ const app = express()
 async function formSiteTemp(serviceName, locId) {
     const temp = await storage.getLastTemp(serviceName, locId)
     return temp > 0 ? '+' + temp : temp
-}
-
-const storeTemp = async function(req, res, next) {
-    const { temp } = req.query
-    if (temp) {
-        const tr = new TempRecord(new Date(), 'STREET', 101, parseInt(temp, 10))
-        try {
-            await storage.storeTempRecords(tr)
-            logger.logSuccessStoring([tr])
-        } catch (err) {
-            logger.logStorageError(err)
-        }
-    }
-    next()
 }
 
 const logIP = function(req, res, next) {
@@ -63,7 +48,6 @@ app.engine('html', async(filePath, options, cb) => {
 app.set('views', './frontend')
 app.set('view engine', 'html')
 app.use(logIP)
-app.use(storeTemp)
 app.use(bodyParser.json());
 
 app.use(express.static('./frontend/static'))
@@ -85,8 +69,17 @@ app.post('/getlasttemp', asyncHandler(async(req, res) => {
 
 app.post('/storesensordata', asyncHandler(async(req, res) => {
     res.type('json')
-    console.log(req.body);
-    res.send(JSON.stringify({response: 'Hello from server!'}))
+    const [name, locId, temp] = Object.values(req.body)
+    try {
+        const tempRecord = new TempRecord(new Date, name, locId, temp)
+        await storage.storeTempRecords(tempRecord)
+        logger.logSuccessStoring([tempRecord])
+        res.send(JSON.stringify({response: 'Success!'}))
+    } catch (err) {
+        res.send({INVALID_REQUEST: err.message})
+        res.status(422)
+        console.log(err.message);
+    }
 }))
 
 app.get('/', (req, res) => {
