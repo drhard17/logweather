@@ -51,7 +51,7 @@ citySelect.onchange = async function() {
     document.querySelector('#sCity').innerHTML = locName
     removeData(myChart)
     try {
-        const { temp } = await getLastTemp('YANDEX', locId)
+        const { temp } = await getLastTemp(locId)
         const { locServices } = await getLocServices(locId)
         const serviceOptions = formServiceSelector(locServices)
 
@@ -111,9 +111,9 @@ async function getChartData(tempRequest) {
     return await response.json()
 }
 
-async function getLastTemp(service, locId) {
-    const response = await fetch('getlasttemp', {
-        body: JSON.stringify({service, locId}),
+async function getLastTemp(locId) {
+    const response = await fetch('/getlasttemp', {
+        body: JSON.stringify({locId}),
         ...postReqOptions
     })
     return await response.json()

@@ -15,8 +15,11 @@ const [ host, port ] = Object.values(config.webserver)
 
 const app = express()
 
-async function formSiteTemp(serviceName, locId) {
+async function formSiteTemp(locId) {
+    const location = locations.find(location => location.id === locId)
+    serviceName = location.currentTempService || config.defaultForecastService
     const temp = await storage.getLastTemp(serviceName, locId)
+
     return temp > 0 ? '+' + temp : temp
 }
 
@@ -36,8 +39,7 @@ const logIP = function(req, res, next) {
 app.engine('html', async(filePath, options, cb) => {
     const content = await fsPromises.readFile(filePath, 'utf-8')
     try {
-        const siteTemp = await formSiteTemp('STREET', 101)
-        
+        const siteTemp = await formSiteTemp(101)
         const locOptions = locations.map(location => {
             return `<option value=${location.id}>${location.name}</option>`
         }).join('\r\n')
@@ -68,8 +70,7 @@ app.post('/getchartdata', asyncHandler(async(req, res) => {
 
 app.post('/getlasttemp', asyncHandler(async(req, res) => {
     res.type('json')
-    console.log(req.body.service);
-    const siteTemp = await formSiteTemp(req.body.service, req.body.locId)
+    const siteTemp = await formSiteTemp(req.body.locId)
     res.send(JSON.stringify({temp: siteTemp}))
 }))
 

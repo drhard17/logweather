@@ -11,8 +11,9 @@
         "YRNO": "/sted/Russland/Moskva_fylke/Krasnogorsk/long.html",
         "GIDROMET": "/product/weather/3420/"
     },
+    "timeZone": "Europe/Moscow",
     "sensors": ["STREET"],
-    "timeZone": "Europe/Moscow"
+    "currentTempService": "STREET"
 }, {
     "id": 102,
     "name": "Moscow",
@@ -67,7 +68,8 @@
         "YRNO": "/sted/Russland/Stavropol/Zelenokumsk/long.html",
         "GIDROMET": "/product/weather/2310/"
     },
-    "timeZone": "Europe/Moscow"
+    "timeZone": "Europe/Moscow",
+    "currentTempService": "RP5"
 }, {
     "id": 106,
     "name": "San-Francisco",
@@ -189,7 +191,8 @@
         "GISMETEO": "/weather-terskol-5249/10-days/",
         "YRNO": "/sted/Russland/Kabardino-Balkaria/Terskol/long.html"
     },
-    "timeZone": "Europe/Moscow"
+    "timeZone": "Europe/Moscow",
+    "currentTempService": "YANDEX"
 }, {
     "id": 115,
     "name": "Kolomna",
@@ -216,7 +219,8 @@
         "YRNO": "/sted/Russland/Vladimir/Petusjki/long.html",
         "GIDROMET": "/product/weather/2957/"
     },
-    "timeZone": "Europe/Moscow"
+    "timeZone": "Europe/Moscow",
+    "currentTempService": "RP5"
 }, {
     "id": 117,
     "name": "Saint-Petersburg",
