@@ -15,26 +15,15 @@ module.exports = {
 		const end = page.indexOf('</style>')
 		page = page.slice(0, start) + page.slice(-1 * (page.length - end))
 
-		const dom = new JSDOM(page);
-		let results = []
+		const { document } = new JSDOM(page).window;
 		
-		try { //first design variant
-			const tds = dom.window.document
-				.querySelector('tbody')
-				.querySelectorAll('td.temp')
-			for (const td of tds) {
-				const temp = td.querySelector('span').innerHTML
-				results.push(parseInt(temp, 10))
-			}
-		} catch (error) { //second design variant
-			const temps = Array.from(dom.window.document
-				.querySelector('div._-_-components-src-organism-DailyForecast-DailyForecast--DisclosureList--nosQS')
-				.querySelectorAll('details')
-			).filter(str => str.matches('details[data-track-string="detailsExpand"]'))
-				.map(str => str.querySelector('span').innerHTML)
-				.map(temp => parseInt(temp, 10))
-			results = [NaN].concat(temps)
-		}
-		return results;
+		const temps = Array.from(document
+			.querySelector('div._-_-node_modules--wxu-components-src-organism-DailyForecast-DailyForecast--DisclosureList--350ZO')
+			.querySelectorAll('details')
+		).filter(str => str.matches('details[data-track-string="detailsExpand"]'))
+			.map(str => str.querySelector('span').innerHTML)
+			.map(temp => parseInt(temp, 10))
+
+		return [NaN].concat(temps)
 	}
 };
