@@ -55,7 +55,7 @@ module.exports = {
 		} catch (err) {
 			console.error(err)
 		}
-        const fullName = formName(name, time)
+        const fullName = formFileName(name, time)
         fs.writeFile(`${htmlFolder}/${fullName}`, data, (err) => {
             if (err) throw err;
             console.log(`Source page saved to ${fullName}`);
@@ -63,7 +63,7 @@ module.exports = {
     }
 }
 
-function formName(name, time) {
-    const strTime = time.toLocaleString().replace(/:/g, '-').replace(' ', '_')
-    return name + '_' + strTime + '.html'
+function formFileName(name, time) {
+    const strDate = time.toLocaleDateString()
+    return name + '_' + strDate + '.html'
 }
