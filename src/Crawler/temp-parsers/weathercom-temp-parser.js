@@ -11,19 +11,13 @@ module.exports = {
 		}
 	},
 	parseFunc: function(page) {
-		const start = page.indexOf('<style')
-		const end = page.indexOf('</style>')
-		page = page.slice(0, start) + page.slice(-1 * (page.length - end))
-
 		const { document } = new JSDOM(page).window;
-		
 		const temps = Array.from(document
-			.querySelector('div._-_-node_modules--wxu-components-src-organism-DailyForecast-DailyForecast--DisclosureList--350ZO')
+			.querySelector('div._-_-node_modules-\\@wxu-components-src-organism-DailyForecast-DailyForecast--DisclosureList--350ZO')
 			.querySelectorAll('details')
 		).filter(str => str.matches('details[data-track-string="detailsExpand"]'))
 			.map(str => str.querySelector('span').innerHTML)
 			.map(temp => parseInt(temp, 10))
-
 		return [NaN].concat(temps)
 	}
 };
