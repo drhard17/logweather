@@ -1,3 +1,5 @@
+// import { remove } from 'lodash.js'
+
 const firstDayInput = document.getElementById('firstDay')
 const lastDayInput = document.getElementById('lastDay')
 const form = document.getElementById('serviceDepth')
@@ -5,6 +7,7 @@ const addChartButton = document.getElementById('addChart')
 const citySelect = document.getElementById('citySelect')
 const depthSelect = document.getElementById('depth')
 const serviceSelect = document.getElementById('serviceSelect')
+const ratingValue = document.getElementById('ratingValue')
 
 let chartAdded = false
 
@@ -142,9 +145,51 @@ function updChartDates() {
     }
 }
 
+function countRating(chartPoints) {
+    const filledPointIndexes = []
+    const referencePointsCompact = []
+    const pointsToCountCompact = []
+    
+    const allPoints = chartPoints.points.map(points => points.temps)
+    const referencePoints = allPoints[0];
+    const pointsToCount = allPoints[allPoints.length - 1]
+
+    for (let i = 0; i < referencePoints.length; i++) {
+        if (referencePoints[i] !== null && pointsToCount[i] !== null) {
+            filledPointIndexes.push(i)
+        }
+    }
+    for (const i of filledPointIndexes) {
+        referencePointsCompact.push(referencePoints[i])
+        pointsToCountCompact.push(pointsToCount[i])
+    }
+    
+    const absDeviations = referencePointsCompact.map((temp, i) => {
+        return Math.abs(temp - pointsToCountCompact[i])
+    })
+    
+    console.log('referencePointsCompact s:>> ', referencePointsCompact);
+    console.log('pointsToCountCompact :>> ', pointsToCountCompact);
+    console.log('absDeviations :>> ', absDeviations);
+
+    const avgAbsDeviation = absDeviations.reduce((a, b) => a + b) / absDeviations.length
+    const stdDeviation = absDeviations
+        .map((item, i) => Math.abs(absDeviations[i] - avgAbsDeviation))
+        .reduce((a, b) => a + b) / absDeviations.length
+    
+    const finalDeviation = (2 * avgAbsDeviation + stdDeviation) / 3
+    const rating = 10 / (finalDeviation ** 0.5)
+
+    return rating.toFixed(1)
+}
+
 async function updateChart() {
     try {
         const chartPoints = await getChartData(tempRequest)
+        if (chartPoints.points.length > 1) {
+            const rating = countRating(chartPoints)
+            ratingValue.innerHTML = rating
+        }
         renderChart(myChart, chartPoints)
     } catch (err) {
         alert(err)

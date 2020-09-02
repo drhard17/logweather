@@ -7,6 +7,7 @@
 		-->
   		<script src="moment.js"></script>
 		<script src="Chart.js"></script>
+		<!-- <script type="module" src="./static/lodash.js"></script> -->
  		
 		<link rel="icon" type="image/x-icon" href="favicon.ico" />
 		<meta charset="utf-8">
@@ -18,24 +19,18 @@
 			}
 			body {
 				text-align: center;
-				background-color: black; color: green;
+				background-color: black;
+				color: green;
 				margin-top: 0%;
 				font-family: Mina;
 			}
 			h1 {
 				position: absolute;
 				width: 700px;
-				height: 160px;
-				left: 0px;
-				top: 0px;
-				font-style: normal;
 				font-weight: normal;
 				font-size: 64px;
 				line-height: 102px;
-				align-items: center;
-				text-align: center;
 				letter-spacing: 0.2em;
-				margin-bottom: 0px;
 			}
 			h2 {
 				font-size: 40px;
@@ -47,15 +42,12 @@
 			h4 {
 				position: absolute;
 				width: 350px;
-				height: 62px;
-				left: 233px;
+				height: 25px;
+				left: 248px;
 				top: 98px;
-				font-style: normal;
 				font-weight: bold;
 				font-size: 20px;
 				line-height: 22px;
-				align-items: center;
-				text-align: right;
 				letter-spacing: 0.53em;
 			}
 			div.chart-container {
@@ -64,22 +56,50 @@
 				margin-right: auto;
 			}
 			.chartDataInput {
-				font-size: 24px
+				width: 650px;
+				font-size: 24px;
+				float: left;
+				text-align: left;
+			}
+			.rating {
+				font-size: 24px;
+				width: 60px;
+				float: left;
+				height: 80px;
+				margin-left: 20px;
+			}
+			.ratingNumber {
+				font-size: 36px;
+				font-weight: bold;
+			}
+			.ratingLabel {
+				margin-top: 3px;
+				font-size: 16px;
+			}
+			.inputAndRating {
+				width: 900px;
+				margin-left: auto;
+				margin-right: auto;
 			}
 			.header-container {
 				position: relative;
 				width: 700px;
 				height: 160px;
 				background: #000000;
-				box-sizing: border-box;
-				box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 				margin-left: auto;
 				margin-right: auto;
 			}
 			.header-container a {
-				display: block;
-				height: 100%;
 				color: green
+			}
+			button {
+				width: 70px;
+				height: 60px;
+				margin-top: 10px;
+				border-radius: 2px;
+				margin-left: 5px;
+				font-size: 14px;
+				font-family: Mina;
 			}
 		</style>
 	</head>
@@ -92,23 +112,21 @@
 		</div>
 
 		<h2 id="tempHeader">City: <span id="sCity">Opaliha</span>, now <span id="sTemp">#temp#</span>&deg;C</h2>
-		
-		<div class="chartDataInput">
-			<form id="dates">
+		<div class="inputAndRating">
+			<div class="chartDataInput">
 				<label for="firstDay">First day</label>
 				<input type="date" id="firstDay" name="firstDay" class="input">
-				<label for="lastDay" style="margin-left: 20px;">Last day</label>
-				<input type="date" id="lastDay" name="lastDay" class="input">
-			</form>
-	
-			<form id="serviceDepth">
-				<label for="citySelect">City</label>
-				<select name="city" id="citySelect">
+				
+				<label for="citySelect" style="margin-left: 166px;">City</label>
+				<select name="city" id="citySelect" style="width: 171px;">
 					<option disabled>Select city</option>
 					#locations#
 				</select>
-				<label for="serviceSelect">Service and depth</label>
-				<select name="service" size="1" id="serviceSelect" class="input">
+				<br>
+				<label for="lastDay">Last day</label>
+				<input type="date" id="lastDay" name="lastDay" class="input" style="margin-left: 3px;">
+				<label for="serviceSelect" style="margin-left: 12px;">Service and depth</label>
+				<select name="service" size="1" id="serviceSelect" class="input" style="width: 125px;">
 					<option disabled>Select service</option>
 					<option value="STREET">ESP8266 Sensor</option>
 					<option value="YANDEX">Yandex</option>
@@ -119,13 +137,17 @@
 					<option value="WEATHERCOM">Weather.com</option>
 					<option value="YRNO">Yr.no</option>
 				</select>
-				<select name="depth" id="depth" class="input">
+				<select name="depth" id="depth" class="input" style="width: 38px;">
 					<option value="0">0</option>
 				</select>
-				<button id="addChart" type='button'>Add chart</button>
-			</form>
+			</div>
+			<button id="addChart" type='button' style="float: left;">Add chart</button>
+			<div class="rating">
+				<div class="ratingLabel">Rating</div>
+				<div class="ratingNumber" id="ratingValue">n/a</div>
+			</div>
+			<button disabled id="countRating" type='button' style="float: left;">Count rating</button>
 		</div>
-
 		<div class="chart-container">
 			<canvas id="myChart" width="600" height="400">
 				<p>Chart error occured</p>
