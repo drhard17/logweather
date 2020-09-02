@@ -1,3 +1,5 @@
+// import { remove } from 'lodash.js'
+
 const firstDayInput = document.getElementById('firstDay')
 const lastDayInput = document.getElementById('lastDay')
 const form = document.getElementById('serviceDepth')
@@ -144,12 +146,32 @@ function updChartDates() {
 }
 
 function countRating(chartPoints) {
+    const filledPointIndexes = []
+    const referencePointsCompact = []
+    const pointsToCountCompact = []
+    
     const allPoints = chartPoints.points.map(points => points.temps)
-    const refPoints = allPoints[0];
-    const forecastPoints = allPoints[allPoints.length - 1]
-    const absDeviations = refPoints.map((temp, i) => {
-        return Math.abs(temp - forecastPoints[i])
+    const referencePoints = allPoints[0];
+    const pointsToCount = allPoints[allPoints.length - 1]
+
+    for (let i = 0; i < referencePoints.length; i++) {
+        if (referencePoints[i] !== null && pointsToCount[i] !== null) {
+            filledPointIndexes.push(i)
+        }
+    }
+    for (const i of filledPointIndexes) {
+        referencePointsCompact.push(referencePoints[i])
+        pointsToCountCompact.push(pointsToCount[i])
+    }
+    
+    const absDeviations = referencePointsCompact.map((temp, i) => {
+        return Math.abs(temp - pointsToCountCompact[i])
     })
+    
+    console.log('referencePointsCompact s:>> ', referencePointsCompact);
+    console.log('pointsToCountCompact :>> ', pointsToCountCompact);
+    console.log('absDeviations :>> ', absDeviations);
+
     const avgAbsDeviation = absDeviations.reduce((a, b) => a + b) / absDeviations.length
     const stdDeviation = absDeviations
         .map((item, i) => Math.abs(absDeviations[i] - avgAbsDeviation))
