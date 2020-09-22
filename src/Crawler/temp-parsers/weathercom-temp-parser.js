@@ -13,7 +13,11 @@ module.exports = {
 	parseFunc: function(page) {
 		const { document } = new JSDOM(page).window;
 		const temps = Array.from(document
-			.querySelector('div._-_-node_modules-\\@wxu-components-src-organism-DailyForecast-DailyForecast--DisclosureList--350ZO')
+			.querySelectorAll('#MainContent > div')[1]
+				.children[1]
+				.firstElementChild
+				.firstElementChild
+				.lastElementChild
 			.querySelectorAll('details')
 		).filter(str => str.matches('details[data-track-string="detailsExpand"]'))
 			.map(str => str.querySelector('span').innerHTML)
