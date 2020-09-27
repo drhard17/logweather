@@ -1,7 +1,5 @@
-const fs = require('fs')
-
 const { getLogweatherDb } = require('./db-creator.js')
-const { TempRecord } = require('./TempRecord');
+const { TempRecord } = require('./TempRecord.js');
 
 const config = require('../config.json')
 const { storing: { busyTimeout } } = config
