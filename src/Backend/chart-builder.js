@@ -2,7 +2,7 @@ const moment = require('moment-timezone');
 
 const storage = require('./db-storage.js')
 const logic = require('./chart-logic.js')
-const { TempRequest } = require('./TempRequest');
+const { TempRequest } = require('./TempRequest.js');
 const locations = require('../locations.json')
 const config = require('../config.json')
 

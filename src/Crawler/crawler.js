@@ -1,9 +1,9 @@
 ﻿const schedule = require('node-schedule');
 const got = require('got')
 
-const { TempRecord } = require('../Backend/TempRecord')
-const storage = require('../Backend/db-storage.js')
-const logger = require('./cr-logger')
+const { TempRecord } = require('../backend/TempRecord.js')
+const storage = require('../backend/db-storage.js')
+const logger = require('./cr-logger.js')
 
 const sleep = (ms) => new Promise(resolve => {
     setTimeout(resolve, ms);

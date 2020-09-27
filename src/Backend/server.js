@@ -6,7 +6,7 @@ const asyncHandler = require('express-async-handler')
 const storage = require('./db-storage.js')
 const logger = require('../crawler/cr-logger.js')
 const bl = require('./chart-builder.js')
-const { TempRecord } = require('./TempRecord')
+const { TempRecord } = require('./TempRecord.js')
 
 const config = require('../config.json')
 const locations = require('../locations.json')
