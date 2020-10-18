@@ -14,10 +14,16 @@ module.exports = {
 				const temp = maxtemp
 					.querySelectorAll('span')[0]
 					.innerHTML
-				results.push(parseInt(temp,10))
+				results.push(parseInteger(temp))
 			}
 		}
-
+		
 		return results;
 	}
+}
+
+function parseInteger(str) {
+	return parseInt(
+		str.replace(String.fromCharCode(8722), '-')
+	, 10)
 }
