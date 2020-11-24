@@ -79,7 +79,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             db.all(sql, [serviceName, locationId], (err, rows) => {
                 if (err) { reject(err) }
-                if (!rows.length) { resolve(null) }
+                if (!rows) { resolve(null) }
                 const temp = rows[0].temp
                 resolve(temp)
             })
