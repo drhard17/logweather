@@ -62,6 +62,7 @@ app.use(express.static('./frontend/static'))
 app.use(express.static('./node_modules/moment'))
 app.use(express.static('./node_modules/chart.js/dist'))
 
+
 app.post('/getchartdata', asyncHandler(async(req, res) => {
     res.type('json')
     const chartPoints = await bl.getChartPoints(req.body)
@@ -95,6 +96,10 @@ app.post('/storesensordata', asyncHandler(async(req, res) => {
         console.log(err.message);
     }
 }))
+
+app.get('/crash', (req, res) => {
+    process.exit(1)
+})
 
 app.get('/', (req, res) => {
     res.render('index')

@@ -1,5 +1,3 @@
-// import { remove } from 'lodash.js'
-
 const firstDayInput = document.getElementById('firstDay')
 const lastDayInput = document.getElementById('lastDay')
 const form = document.getElementById('serviceDepth')
@@ -81,6 +79,12 @@ addChartButton.onclick = () => {
     tempRequest.charts.push({serviceName: service, depth: depth})    
     chartAdded = true
     updChartDates()
+}
+
+testCrash.onclick = async () => {
+    await fetch('/crash', {
+        method: 'GET'
+    })
 }
 
 serviceSelect.onchange = () => {
