@@ -64,6 +64,9 @@ module.exports = {
 }
 
 function formFileName(name, time) {
-    const strDate = time.toLocaleDateString()
+    const yyyy = time.getFullYear()
+    const mm = time.getMonth() + 1
+    const dd = time.getDate()
+    const strDate = [yyyy, mm, dd].join('-')
     return name + '_' + strDate + '.html'
 }
