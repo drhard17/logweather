@@ -23,25 +23,24 @@ module.exports = {
 			.querySelector('tr.forecastDate')
 			.querySelectorAll('td[colspan]')
 		)
-			.map(a => {
-				const day = a.querySelector('b').textContent
-				let cs = a.getAttribute('colspan')
-				cs = parseInt(cs, 10)
-				return {[day]: cs}
+			.map(td => {
+				const day = td.querySelector('b')
+					.textContent
+					.split(', ')[0]
+				let colspan = td.getAttribute('colspan')
+				colspan = parseInt(colspan, 10)
+				return {[day]: colspan}
 			});
-
-		const firstTemp = (dayString[0].Today / 2) || 0
-
+		
+		const firstTempCol = (dayString[0].Today / 2) || 0
+		
 		const tempString = Array.from(
 			dom.window.document
-			.querySelector('#t_temperature')
-			.parentElement
-			.parentElement
-			.querySelectorAll('td[colspan]')
-		)
-			.map(a => a.firstElementChild.textContent)
+				.querySelector('#forecastTable > tbody > tr:nth-child(6)')
+				.querySelectorAll('td[colspan]')
+		).map(a => a.firstElementChild.textContent)
 
-		for (let i = firstTemp + 2; i < tempString.length; i += 4) {
+		for (let i = firstTempCol + 2; i < tempString.length; i += 4) {
 			const temp = tempString[i]
 			results.push(parseInt(temp, 10))
 		}
