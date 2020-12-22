@@ -1,6 +1,4 @@
 const { JSDOM } = require('jsdom');
-const moment = require('moment')
-const array = require('lodash/array');
 
 module.exports = {
 	id: 6,
@@ -8,33 +6,36 @@ module.exports = {
 	url: 'https://www.yr.no',
 	opts: {},
 	parseFunc: function(page) {
-		const dateFormat = 'DD/MM/YYYY'
-		const today = moment().startOf('d')
-		const document = new JSDOM(page).window.document
-	
-		const trs = Array.from(document.querySelectorAll('#detaljert > tbody > tr'))
-		const blocks = array.chunk(trs, 4)
-		array.remove(blocks, block => block.length < 3)
+		const { document } = new JSDOM(page).window
 
-		const tempsDates = blocks.map(block => {
-			const day = moment(
-				block[0]
-					.querySelector('th')
-					.innerHTML
-			 , dateFormat)
-			const temp = parseInt(
-				block[2]
-					.querySelectorAll('td')[2]
-					.innerHTML
-			, 10)
-			return {day, temp}
-		})
+		const dayToday = new Date().getDate()
+		const currentTemp = parseInt(
+			document
+				.querySelector('div.now-hero__next-hour-temperature-text > span')
+				.textContent
+		, 10)
 
-		const results = tempsDates
-			.filter(rec => rec.day.isAfter(today))
-			.map(rec => rec.temp)
+		const temps = Array.from(
+			document
+				.querySelectorAll('ol.daily-weather-list__intervals > li')
+		).map(li => {
+			const temp = li
+				.querySelector('span.min-max-temperature')
+				.textContent
+				.split('/')[0]
+			
+			const date = li
+				.querySelector('span.date-label > span:nth-child(3)')
+				.textContent
 
-		results.unshift(NaN)
-		return results
+			return {
+				date: parseInt(date, 10),
+				temp: parseInt(temp, 10)
+			}
+		}).filter(day => day.date !== dayToday)
+			.map(day => day.temp)
+			
+		temps.unshift(currentTemp)
+		return temps
 	}
 };
