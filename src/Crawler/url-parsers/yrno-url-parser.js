@@ -1,37 +1,38 @@
 const fs = require('fs')
 const needle = require('needle')
 
-function getLocations() {
-    const locData = fs.readFileSync('../csv/locations-eng.txt', 'utf8')
-    return locData.split('\r\n')
-}
-
-const locations = getLocations()
-
-function getUrl() {
-    loc = locations.shift()
-    const initUrl = 'https://www.yr.no/_/websvc/jsonforslagsboks.aspx?s=' + loc + '&s1t=&s1i=&s2t=&s2i='
-
-    //https://www.yr.no/_/websvc/jsonforslagsboks.aspx?s=helsinki&s1t=&s1i=&s2t=&s2i=
-
-    needle.get(initUrl, function (error, response) {
-        if (error || response.statusCode !== 200) {
-            console.log(loc.toUpperCase(), error, response.statusCode)
-            return
-        }
-
-        try {
-            const path = (response.body[1][0][1]) + 'long.html'
-            console.log(path)
-            fs.appendFileSync('../csv/locations-yrno.txt', path + '\r\n')
-        } catch (error) {
-            const str = `${loc.toUpperCase()}: reject`
-            console.log(str)            
-            fs.appendFileSync('../csv/locations-yrno.txt', str + '\r\n')
-        }
-        
-        if(locations.length) getUrl()
+function getYrnoUrl(locationName) {
+    return new Promise((resolve, reject) => {
+        const initUrl = 'https://www.yr.no/api/v0/locations/suggest?language=en&q=' + locationName
+        needle.get(initUrl, (err, res) => {
+            if (err || res.statusCode !== 200) {
+                resolve(`${locationName.toUpperCase()}: request error`)
+            }
+            let result
+            try {
+                const apiLocation = res.body._embedded.location[0]
+                result = `/en/forecast/daily-table/${apiLocation.id}/${apiLocation.urlPath}`  
+            } catch (err) {
+                result = `${locationName.toUpperCase()}: unknown location`
+            } finally {
+                resolve(result)
+            }
+        })
     })
 }
 
-getUrl()
+(async () => {
+    const locations = fs
+        .readFileSync('../csv/locations-eng.txt', 'utf8')
+        .split('\r\n')
+    const jsonPath = '../src/locations.json'
+    const locJSON = JSON.parse(fs.readFileSync(jsonPath))
+    let i = 100
+    for (const locName of locations) {
+        const result = await getYrnoUrl(locName)
+        locJSON[i - 100].routes.YRNO = result
+        console.log(i + 1, result);
+        i++  
+    }
+    fs.writeFileSync(jsonPath, JSON.stringify(locJSON))
+})()
