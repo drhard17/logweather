@@ -4,6 +4,7 @@ const got = require('got')
 const { TempRecord } = require('../backend/TempRecord.js')
 const storage = require('../backend/db-storage.js')
 const logger = require('./cr-logger.js')
+const tg = require('../backend/lw-info-bot')
 
 const sleep = (ms) => new Promise(resolve => {
     setTimeout(resolve, ms);
@@ -107,11 +108,11 @@ async function storeSiteData(opts, sitesData) {
 
 function errorHandler(sitesData) {
 	sitesData.forEach(siteData => {
-		const { siteCode, siteName, requestTime, err } = siteData
+		const { siteCode, siteName, requestTime } = siteData
 		if (siteCode != null) {
 			logger.storeSiteCode(siteName, requestTime, siteCode);
 		}
-		logger.logParsingError(err, siteData);
+		logger.logParsingError(siteData);
 	})
 }
 
@@ -154,6 +155,7 @@ function main() {
 	})
 	console.log('Logweather Crawler running...\r\n')
 	console.log('Parse in minutes: ' + rule.minute)
+	tg.sendMessage('Crawler restarted')
 }
 
 if (!module.parent) {
