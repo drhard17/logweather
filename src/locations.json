@@ -8,7 +8,7 @@
         "RP5": "/Weather_in_Krasnogorsk",
         "ACCUWEATHER": "/ru/ru/krasnogorsk/289248/daily-weather-forecast/289248",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/5dee46352b93411b346eb161aaf601f33320283181d1f8aa42afe10f700e00ff",
-        "YRNO": "/en/forecast/daily-table/2-542374/Russia/Moscow Oblast/Krasnogorsk",
+        "YRNO": "/en/forecast/daily-table/2-542374/Russia/Moscow%20Oblast/Krasnogorsk",
         "GIDROMET": "/product/weather/3420/"
     },
     "timeZone": "Europe/Moscow",
@@ -80,7 +80,7 @@
         "RP5": "/Weather_in_San_Francisco",
         "ACCUWEATHER": "/ru/ru/san-francisco/347629/daily-weather-forecast/347629",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/69bedc6a5b6e977993fb3e5344e3c06d8bc36a1fb6754c3ddfb5310a3c6d6c87",
-        "YRNO": "/en/forecast/daily-table/2-5391959/United States/California/San Francisco County/San Francisco",
+        "YRNO": "/en/forecast/daily-table/2-5391959/United%20States/California/San%20Francisco%20County/San%20Francisco",
         "GIDROMET": "/product/weather/43399/"
     },
     "timeZone": "America/Los_Angeles"
@@ -108,14 +108,14 @@
         "RP5": "/Weather_in_Turku_(airport)",
         "ACCUWEATHER": "/ru/ru/turku/134768/daily-weather-forecast/134768",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/b8d129d3c188c52cec397e5597fe24040140a2a318fb4180f7503c1c9ad72f70",
-        "YRNO": "/en/forecast/daily-table/2-633679/Finland/Southwest Finland/Turku/Turku",
+        "YRNO": "/en/forecast/daily-table/2-633679/Finland/Southwest%20Finland/Turku/Turku",
         "GIDROMET": "/product/weather/4519/"
     },
     "timeZone": "Europe/Helsinki"
 }, {
     "id": 109,
     "name": "Helsinki",
-    "nameRus": "Хелсинки",
+    "nameRus": "Хельсинки",
     "routes": {
         "YANDEX": "/pogoda/helsinki/details?via=ms'",
         "GISMETEO": "/weather-helsinki-479/10-days/",
@@ -136,7 +136,7 @@
         "RP5": "/Weather_in_Munich",
         "ACCUWEATHER": "/ru/ru/munich/178086/daily-weather-forecast/178086",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/e0c0cd4ab9873fee5066145204f7161a0c1f7468722e633345583634cff0bbd6",
-        "YRNO": "/en/forecast/daily-table/2-2867714/Germany/Bavaria/Upper Bavaria/Munich",
+        "YRNO": "/en/forecast/daily-table/2-2867714/Germany/Bavaria/Upper%20Bavaria/Munich",
         "GIDROMET": "/product/weather/24318/"
     },
     "timeZone": "Europe/Berlin"
@@ -150,7 +150,7 @@
         "RP5": "/Weather_in_Irkutsk",
         "ACCUWEATHER": "/ru/ru/irkutsk/292712/daily-weather-forecast/292712",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/d576f72d745086e9df7e85d6c2619d90c798c90daf8d2bc816334dde42b6ca55",
-        "YRNO": "/en/forecast/daily-table/2-2023469/Russia/Irkutsk Oblast/Irkutskiy Rayon/Irkutsk",
+        "YRNO": "/en/forecast/daily-table/2-2023469/Russia/Irkutsk%20Oblast/Irkutskiy%20Rayon/Irkutsk",
         "GIDROMET": "/product/weather/16283/"
     },
     "timeZone": "Asia/Irkutsk"
@@ -170,7 +170,7 @@
     "timeZone": "Asia/Jerusalem"
 }, {
     "id": 113,
-    "name": "Krasnaya-Polyana",
+    "name": "Krasnaya Polyana",
     "nameRus": "Красная Поляна",
     "routes": {
         "YANDEX": "/pogoda/krasnaya-polyana/details?via=ms'",
@@ -178,7 +178,7 @@
         "RP5": "/Weather_in_Krasnaya_Polyana",
         "ACCUWEATHER": "/ru/ru/krasnaya-polyana/288711/daily-weather-forecast/288711",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7a9b9bda04f63198bd3552354d25db2ca3be2510b191760c51d3060f4e3f7209",
-        "YRNO": "/en/forecast/daily-table/2-542681/Russia/Krasnodarskiy/Sochi City/Krasnaya Polyana",
+        "YRNO": "/en/forecast/daily-table/2-542681/Russia/Krasnodarskiy/Sochi%20City/Krasnaya%20Polyana",
         "GIDROMET": "/product/weather/3426/"
     },
     "timeZone": "Europe/Moscow"
@@ -189,7 +189,7 @@
     "routes": {
         "YANDEX": "/pogoda/terskol/details?via=ms'",
         "GISMETEO": "/weather-terskol-5249/10-days/",
-        "YRNO": "/en/forecast/daily-table/2-483269/Russia/Kabardino-Balkariya Republic/Terskol"
+        "YRNO": "/en/forecast/daily-table/2-483269/Russia/Kabardino-Balkariya%20Republic/Terskol"
     },
     "timeZone": "Europe/Moscow",
     "currentTempService": "YANDEX"
@@ -203,7 +203,7 @@
         "RP5": "/Weather_in_Kolomna",
         "ACCUWEATHER": "/ru/ru/kolomna/294015/daily-weather-forecast/294015",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/4c43ad36dd11207691a722bae8997488ae9ee030b2f90ac34a7b190c43efe8bf",
-        "YRNO": "/en/forecast/daily-table/2-546230/Russia/Moscow Oblast/Kolomna",
+        "YRNO": "/en/forecast/daily-table/2-546230/Russia/Moscow%20Oblast/Kolomna",
         "GIDROMET": "/product/weather/3472/"
     },
     "timeZone": "Europe/Moscow"
@@ -231,7 +231,7 @@
         "RP5": "/Weather_in_Saint_Petersburg,_Russia",
         "ACCUWEATHER": "/ru/ru/saint-petersburg/295212/daily-weather-forecast/295212",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/4edb4827c7f66b1542f84ce1d8d644970e9b935d45d21d4d143e87d94925a4bf",
-        "YRNO": "/en/forecast/daily-table/2-498817/Russia/St.-Petersburg/St Petersburg",
+        "YRNO": "/en/forecast/daily-table/2-498817/Russia/St.-Petersburg/St%20Petersburg",
         "GIDROMET": "/product/weather/2821/"
     },
     "timeZone": "Europe/Moscow"
@@ -251,7 +251,7 @@
     "timeZone": "Europe/Moscow"
 }, {
     "id": 119,
-    "name": "Raduzhniy",
+    "name": "Raduzhny",
     "nameRus": "Радужный",
     "routes": {
         "YANDEX": "/pogoda/raduzhniy/details?via=ms'",
@@ -285,7 +285,7 @@
         "RP5": "/Weather_in_Mytishchi",
         "ACCUWEATHER": "/ru/ru/mytishchi/289350/daily-weather-forecast/289350",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/b1298f1daeaa71dc3bab66cd0c82414e675975acf74b70e474cd70feae325aeb",
-        "YRNO": "/en/forecast/daily-table/2-523812/Russia/Moscow Oblast/Mytishchi",
+        "YRNO": "/en/forecast/daily-table/2-523812/Russia/Moscow%20Oblast/Mytishchi",
         "GIDROMET": "/product/weather/3181/"
     },
     "timeZone": "Europe/Moscow"
@@ -299,7 +299,7 @@
         "RP5": "/Weather_in_Abakan",
         "ACCUWEATHER": "/ru/ru/abakan/288447/daily-weather-forecast/288447",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/dff85cab57ca0075d8b15f7caab4c379de4a752e0000a96b8097a2300e623d63",
-        "YRNO": "/en/forecast/daily-table/2-1512236/Russia/Khakasiya Republic/Abakan",
+        "YRNO": "/en/forecast/daily-table/2-1512236/Russia/Khakasiya%20Republic/Abakan",
         "GIDROMET": "/product/weather/12320/"
     },
     "timeZone": "Asia/Krasnoyarsk"
@@ -327,7 +327,7 @@
         "RP5": "/Weather_in_Arkhangelsk",
         "ACCUWEATHER": "/ru/ru/arkhangelsk/292056/daily-weather-forecast/292056",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/66c9d0165ec6a1a95d6487965e73caa35fde127f2879e5c7ff3ea0355c1f5440",
-        "YRNO": "/en/forecast/daily-table/2-581049/Russia/Arkhangelskaya/Primorskiy Rayon/Arkhangelsk",
+        "YRNO": "/en/forecast/daily-table/2-581049/Russia/Arkhangelskaya/Primorskiy%20Rayon/Arkhangelsk",
         "GIDROMET": "/product/weather/3959/"
     },
     "timeZone": "Europe/Moscow"
@@ -355,7 +355,7 @@
         "RP5": "/Weather_in_Barnaul",
         "ACCUWEATHER": "/ru/ru/barnaul/291662/daily-weather-forecast/291662",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/c3221cb831f1548a2783c42d39ff78a076fe678c01736c02de72d89dc9c763bc",
-        "YRNO": "/en/forecast/daily-table/2-1510852/Russia/Kurgan Oblast/Barnaul",
+        "YRNO": "/en/forecast/daily-table/2-1510852/Russia/Kurgan%20Oblast/Barnaul",
         "GIDROMET": "/product/weather/12291/"
     },
     "timeZone": "Asia/Barnaul"
@@ -369,7 +369,7 @@
         "RP5": "/Weather_in_Belgorod",
         "ACCUWEATHER": "/ru/ru/belgorod/292195/daily-weather-forecast/292195",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/4dacd0cae25626c0a15d084f894d9a233e5429e784704f06892b1773fd5f9d92",
-        "YRNO": "/en/forecast/daily-table/2-578072/Russia/Belgorod Oblast/Belgorodskiy Rayon/Belgorod",
+        "YRNO": "/en/forecast/daily-table/2-578072/Russia/Belgorod%20Oblast/Belgorodskiy%20Rayon/Belgorod",
         "GIDROMET": "/product/weather/3903/"
     },
     "timeZone": "Europe/Moscow"
@@ -383,7 +383,7 @@
         "RP5": "/Weather_in_Birobidzhan",
         "ACCUWEATHER": "/ru/ru/birobidzhan/291591/daily-weather-forecast/291591",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7b0909b6b8b7f96a62e253d27b4dde1e9cf49ac93e1302d331697d6729237f9d",
-        "YRNO": "/en/forecast/daily-table/2-2026643/Russia/Yevrey (Jewish) Autonomous Oblast/Birobidzhan",
+        "YRNO": "/en/forecast/daily-table/2-2026643/Russia/Yevrey%20(Jewish) Autonomous%20Oblast/Birobidzhan",
         "GIDROMET": "/product/weather/16307/"
     },
     "timeZone": "Asia/Vladivostok"
@@ -397,7 +397,7 @@
         "RP5": "/Weather_in_Blagoveshchensk",
         "ACCUWEATHER": "/ru/ru/blagoveshchensk/286867/daily-weather-forecast/286867",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/65dc85ecb2f55748343ee49e4b16863136c2713df6a8d31f548c9c2ef8a70cb0",
-        "YRNO": "/en/forecast/daily-table/2-2026609/Russia/Amur Oblast/Blagoveshchensk",
+        "YRNO": "/en/forecast/daily-table/2-2026609/Russia/Amur%20Oblast/Blagoveshchensk",
         "GIDROMET": "/product/weather/3873/"
     },
     "timeZone": "Asia/Yakutsk"
@@ -411,21 +411,21 @@
         "RP5": "/Weather_in_Bryansk",
         "ACCUWEATHER": "/ru/ru/bryansk/292254/daily-weather-forecast/292254",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/38ef87ac1636dcf00589ffe322132047636081c48ed73e5f1909b4c560a47507",
-        "YRNO": "/en/forecast/daily-table/2-571476/Russia/Bryansk Oblast/Bryanskiy Rayon/Bryansk",
+        "YRNO": "/en/forecast/daily-table/2-571476/Russia/Bryansk%20Oblast/Bryanskiy%20Rayon/Bryansk",
         "GIDROMET": "/product/weather/3845/"
     },
     "timeZone": "Europe/Moscow"
 }, {
     "id": 131,
     "name": "Veliky Novgorod",
-    "nameRus": "Великий-Новгород",
+    "nameRus": "Великий Новгород",
     "routes": {
         "YANDEX": "/pogoda/veliky-novgorod/details?via=ms'",
         "GISMETEO": "/weather-veliky-novgorod-4090/10-days/",
         "RP5": "/Weather_in_Velikiy_Novgorode",
         "ACCUWEATHER": "/ru/ru/veliky-novgorod/294457/daily-weather-forecast/294457",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/e4569118d4cfb7c450f50885c4ba1ba315b3042ccdf40cef72e93092bafe5881",
-        "YRNO": "/en/forecast/daily-table/2-519336/Russia/Novgorod Oblast/Veliky Novgorod",
+        "YRNO": "/en/forecast/daily-table/2-519336/Russia/Novgorod%20Oblast/Veliky%20Novgorod",
         "GIDROMET": "/product/weather/3116/"
     },
     "timeZone": "Europe/Moscow"
@@ -439,7 +439,7 @@
         "RP5": "/Weather_in_Vladivostok",
         "ACCUWEATHER": "/ru/ru/vladivostok/294927/daily-weather-forecast/294927",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/ae2e08d50b1515ffa1e74da0e7d66730e456806e2019e9462f0f3eb144b5a964",
-        "YRNO": "/en/forecast/daily-table/2-2013348/Russia/Primorskiy (Maritime) Kray/Vladivostok",
+        "YRNO": "/en/forecast/daily-table/2-2013348/Russia/Primorskiy%20(Maritime) Kray/Vladivostok",
         "GIDROMET": "/product/weather/16154/"
     },
     "timeZone": "Asia/Vladivostok"
@@ -453,7 +453,7 @@
         "RP5": "/Weather_in_Vladikavkaz",
         "ACCUWEATHER": "/ru/ru/vladikavkaz/294391/daily-weather-forecast/294391",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/b5ce77620a6c20d733398f01242f584620008a03ce207e0723b0254bb82f95a5",
-        "YRNO": "/en/forecast/daily-table/2-473249/Russia/North Ossetia/Vladikavkaz",
+        "YRNO": "/en/forecast/daily-table/2-473249/Russia/North%20Ossetia/Vladikavkaz",
         "GIDROMET": "/product/weather/2434/"
     },
     "timeZone": "Europe/Moscow"
@@ -467,7 +467,7 @@
         "RP5": "/Weather_in_Volgograd",
         "ACCUWEATHER": "/ru/ru/volgograd/296363/daily-weather-forecast/296363",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7a7db3b59b35a4faed510713d410244b81583ff839704c5b758b29ab4f8bdb98",
-        "YRNO": "/en/forecast/daily-table/2-472757/Russia/Volgograd Oblast/Volgograd",
+        "YRNO": "/en/forecast/daily-table/2-472757/Russia/Volgograd%20Oblast/Volgograd",
         "GIDROMET": "/product/weather/2426/"
     },
     "timeZone": "Europe/Volgograd"
@@ -509,7 +509,7 @@
         "RP5": "/Weather_in_Gorno-Altaysk",
         "ACCUWEATHER": "/ru/ru/gorno-altaysk/286861/daily-weather-forecast/286861",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/35025e43cd5c76967f920e1456f868a921aa590039fb3463d70662ff164ada53",
-        "YRNO": "/en/forecast/daily-table/2-1506271/Russia/Altai Republic/Gorno-Altaysk Urban Okrug/Gorno-Altaysk",
+        "YRNO": "/en/forecast/daily-table/2-1506271/Russia/Altai%20Republic/Gorno-Altaysk%20Urban%20Okrug/Gorno-Altaysk",
         "GIDROMET": "/product/weather/12237/"
     },
     "timeZone": "Asia/Barnaul"
@@ -523,7 +523,7 @@
         "RP5": "/Weather_in_Grozny",
         "ACCUWEATHER": "/ru/ru/grozny/292293/daily-weather-forecast/292293",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/f1a8be0d496b63aedc00b33ab61328ad12953cbae0814ffac16ff2f5acc63530",
-        "YRNO": "/en/forecast/daily-table/2-558418/Russia/Chechnya/Grozny Urban Okrug/Grozny",
+        "YRNO": "/en/forecast/daily-table/2-558418/Russia/Chechnya/Grozny%20Urban%20Okrug/Grozny",
         "GIDROMET": "/product/weather/3651/"
     },
     "timeZone": "Europe/Moscow"
@@ -551,7 +551,7 @@
         "RP5": "/Weather_in_Ivanovo",
         "ACCUWEATHER": "/ru/ru/ivanovo/288066/daily-weather-forecast/288066",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/9c038e6ef364bf938eb7ca9659855d4d5366ca8e1d1b2e6d4b63498b5899866f",
-        "YRNO": "/en/forecast/daily-table/2-555312/Russia/Ivanovo/Gorod Ivanovo/Ivanovo",
+        "YRNO": "/en/forecast/daily-table/2-555312/Russia/Ivanovo/Gorod%20Ivanovo/Ivanovo",
         "GIDROMET": "/product/weather/3610/"
     },
     "timeZone": "Europe/Moscow"
@@ -565,7 +565,7 @@
         "RP5": "/Weather_in_Izhevsk",
         "ACCUWEATHER": "/ru/ru/izhevsk/296181/daily-weather-forecast/296181",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/712bcab3d5cd7d032d31677f6ad2a7a8ab3772ef04a77a7b53c8999293f2408c",
-        "YRNO": "/en/forecast/daily-table/2-554840/Russia/Udmurtiya Republic/Izhevsk",
+        "YRNO": "/en/forecast/daily-table/2-554840/Russia/Udmurtiya%20Republic/Izhevsk",
         "GIDROMET": "/product/weather/3603/"
     },
     "timeZone": "Europe/Samara"
@@ -579,7 +579,7 @@
         "RP5": "/Weather_in_Yoshkar-Ola",
         "ACCUWEATHER": "/ru/ru/yoshkar-ola/289162/daily-weather-forecast/289162",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/210bbc9a06e3ad3cd0a0a18271b86ebb6df8debf83b0589ef00ee7a69ddb0915",
-        "YRNO": "/en/forecast/daily-table/2-466806/Russia/Mariy-El Republic/Yoshkar-Ola",
+        "YRNO": "/en/forecast/daily-table/2-466806/Russia/Mariy-El%20Republic/Yoshkar-Ola",
         "GIDROMET": "/product/weather/2344/"
     },
     "timeZone": "Europe/Moscow"
@@ -593,7 +593,7 @@
         "RP5": "/Weather_in_Kazan",
         "ACCUWEATHER": "/ru/ru/kazan/295954/daily-weather-forecast/295954",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/ecf0ce04af6f721cec1964ac4d797bc985953dff9b2f775037ac082cfe06d8f4",
-        "YRNO": "/en/forecast/daily-table/2-551487/Russia/Tatarstan Republic/Gorod Kazan’/Kazan’",
+        "YRNO": "/en/forecast/daily-table/2-551487/Russia/Tatarstan%20Republic/Gorod%20Kazan’/Kazan’",
         "GIDROMET": "/product/weather/3538/"
     },
     "timeZone": "Europe/Moscow"
@@ -607,7 +607,7 @@
         "RP5": "/Weather_in_Kaliningrad",
         "ACCUWEATHER": "/ru/ru/kaliningrad/292922/daily-weather-forecast/292922",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7c1b8e430147719615e012f8e44fde56b6ede18a211dfcd8d27160ad3a60a542",
-        "YRNO": "/en/forecast/daily-table/2-554234/Russia/Kaliningrad/Gorod Kaliningrad/Kaliningrad",
+        "YRNO": "/en/forecast/daily-table/2-554234/Russia/Kaliningrad/Gorod%20Kaliningrad/Kaliningrad",
         "GIDROMET": "/product/weather/3591/"
     },
     "timeZone": "Europe/Kaliningrad"
@@ -635,7 +635,7 @@
         "RP5": "/Weather_in_Kemerovo",
         "ACCUWEATHER": "/ru/ru/kemerovo/293142/daily-weather-forecast/293142",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/ac27b13ba7d1865e41e9c26422cc24c44e86dbad45b5b1bb4e8c5cb1ac4c5c27",
-        "YRNO": "/en/forecast/daily-table/2-1503901/Russia/Kemerovo Oblast/Kemerovo",
+        "YRNO": "/en/forecast/daily-table/2-1503901/Russia/Kemerovo%20Oblast/Kemerovo",
         "GIDROMET": "/product/weather/12199/"
     },
     "timeZone": "Asia/Novokuznetsk"
@@ -649,7 +649,7 @@
         "RP5": "/Weather_in_Kirov",
         "ACCUWEATHER": "/ru/ru/kirovo-chyepyetsk/288508/daily-weather-forecast/288508",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/6c30b371ed4bb96ee358c2daab4485a4aefa69fec9c020bb24b330df6122ec7e",
-        "YRNO": "/en/forecast/daily-table/2-548408/Russia/Kirov/Kirovo-Chepetskiy Rayon/Kirov",
+        "YRNO": "/en/forecast/daily-table/2-548408/Russia/Kirov/Kirovo-Chepetskiy%20Rayon/Kirov",
         "GIDROMET": "/product/weather/3501/"
     },
     "timeZone": "Europe/Kirov"
@@ -663,7 +663,7 @@
         "RP5": "/Weather_in_Kostroma",
         "ACCUWEATHER": "/ru/ru/kostroma/293552/daily-weather-forecast/293552",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/b5f7008b526d47c70e964c456a3099f993d7cf5254d427b5fb12ee196ab5a6a7",
-        "YRNO": "/en/forecast/daily-table/2-543878/Russia/Kostroma Oblast/Kostromskoy Rayon/Kostroma",
+        "YRNO": "/en/forecast/daily-table/2-543878/Russia/Kostroma%20Oblast/Kostromskoy%20Rayon/Kostroma",
         "GIDROMET": "/product/weather/3445/"
     },
     "timeZone": "Europe/Moscow"
@@ -705,7 +705,7 @@
         "RP5": "/Weather_in_Kurgan",
         "ACCUWEATHER": "/ru/ru/kurgan/288879/daily-weather-forecast/288879",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/87488210e389cf17de63d9a13d695514eb223e02dc4ce6e0de753397b5867d25",
-        "YRNO": "/en/forecast/daily-table/2-1501321/Russia/Kurgan Oblast/Kurgan",
+        "YRNO": "/en/forecast/daily-table/2-1501321/Russia/Kurgan%20Oblast/Kurgan",
         "GIDROMET": "/product/weather/12159/"
     },
     "timeZone": "Asia/Yekaterinburg"
@@ -733,7 +733,7 @@
         "RP5": "/Weather_in_Kyzyl",
         "ACCUWEATHER": "/ru/ru/kyzyl/291128/daily-weather-forecast/291128",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/99d31b08b305a5faefbfa743cab8c04d483c5a618afbd17d26e3ac3474987d00",
-        "YRNO": "/en/forecast/daily-table/2-1500973/Russia/Republic of Tyva/Kyzyl",
+        "YRNO": "/en/forecast/daily-table/2-1500973/Russia/Republic%20of%20Tyva/Kyzyl",
         "GIDROMET": "/product/weather/12154/"
     },
     "timeZone": "Asia/Krasnoyarsk"
@@ -747,7 +747,7 @@
         "RP5": "/Weather_in_Lipetsk",
         "ACCUWEATHER": "/ru/ru/lipetsk/293886/daily-weather-forecast/293886",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/2a42e5ccd97293459dbe92666dd898f349a60ea7931b431bda77c958a05011df",
-        "YRNO": "/en/forecast/daily-table/2-535121/Russia/Lipetsk Oblast/Lipetsk",
+        "YRNO": "/en/forecast/daily-table/2-535121/Russia/Lipetsk%20Oblast/Lipetsk",
         "GIDROMET": "/product/weather/3306/"
     },
     "timeZone": "Europe/Moscow"
@@ -761,7 +761,7 @@
         "RP5": "/Weather_in_Magadan",
         "ACCUWEATHER": "/ru/ru/magadan/289119/daily-weather-forecast/289119",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7f3c1217718a4889228956b10d39cad74d6a8837dcbeb9207662317bd31df47c",
-        "YRNO": "/en/forecast/daily-table/2-2123628/Russia/Magadan Oblast/Magadan",
+        "YRNO": "/en/forecast/daily-table/2-2123628/Russia/Magadan%20Oblast/Magadan",
         "GIDROMET": "/product/weather/16829/"
     },
     "timeZone": "Asia/Magadan"
@@ -775,7 +775,7 @@
         "RP5": "/Weather_in_Magas",
         "ACCUWEATHER": "/ru/ru/magas/1934859/weather-forecast/1934859",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/8fcce20fb1938a4f9c7e3bebed1e6e7a699fd1fd583fab64b3ef947524a5cbcd",
-        "YRNO": "/en/forecast/daily-table/2-6313621/Russia/Ingushetiya Republic/Magas",
+        "YRNO": "/en/forecast/daily-table/2-6313621/Russia/Ingushetiya%20Republic/Magas",
         "GIDROMET": "/product/weather/44749/"
     },
     "timeZone": "Europe/Moscow"
@@ -789,7 +789,7 @@
         "RP5": "/Weather_in_Maykop",
         "ACCUWEATHER": "/ru/ru/maykop/291658/daily-weather-forecast/291658",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/8eedf24ec2f3cdd96779e1fe64783537aa5ce5175c57a6d09e0de6417fc55899",
-        "YRNO": "/en/forecast/daily-table/2-528293/Russia/Adygeya Republic/Maykop Republican Urban Okrug/Maykop",
+        "YRNO": "/en/forecast/daily-table/2-528293/Russia/Adygeya%20Republic/Maykop%20Republican%20Urban%20Okrug/Maykop",
         "GIDROMET": "/product/weather/3250/"
     },
     "timeZone": "Europe/Moscow"
@@ -831,7 +831,7 @@
         "RP5": "/Weather_in_Nalchik_(airport)",
         "ACCUWEATHER": "/ru/ru/nalchik/292758/daily-weather-forecast/292758",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/a19c04e6f84d77c3b208fe03e7cd9165155932a284a7b6033b25ad767a437324",
-        "YRNO": "/en/forecast/daily-table/2-6300992/Russia/Kabardino-Balkariya Republic/Nalchik",
+        "YRNO": "/en/forecast/daily-table/2-6300992/Russia/Kabardino-Balkariya%20Republic/Nalchik",
         "GIDROMET": "/product/weather/3175/"
     },
     "timeZone": "Europe/Moscow"
@@ -852,14 +852,14 @@
 }, {
     "id": 162,
     "name": "Nizhny Novgorod",
-    "nameRus": "Нижний-Новгород",
+    "nameRus": "Нижний Новгород",
     "routes": {
         "YANDEX": "/pogoda/nizhny-novgorod/details?via=ms'",
         "GISMETEO": "/weather-nizhny-novgorod-4355/10-days/",
         "RP5": "/Weather_in_Nizhny_Novgorod",
         "ACCUWEATHER": "/ru/ru/nizhny-novgorod/294199/daily-weather-forecast/294199",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/68878d7f2691bdfbe784d972c6083581d4ecc6a013e99e8410e4543bc15a5428",
-        "YRNO": "/en/forecast/daily-table/2-520555/Russia/Nizhny Novgorod Oblast/Nizhny Novgorod",
+        "YRNO": "/en/forecast/daily-table/2-520555/Russia/Nizhny%20Novgorod%20Oblast/Nizhny%20Novgorod",
         "GIDROMET": "/product/weather/3128/"
     },
     "timeZone": "Europe/Moscow"
@@ -873,7 +873,7 @@
         "RP5": "/Weather_in_Novosibirsk",
         "ACCUWEATHER": "/ru/ru/novosibirsk/294459/daily-weather-forecast/294459",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/49e03742ba04a23306057562ca075f4f84cdad1af49f8f0729b4c0bbccfa1eaa",
-        "YRNO": "/en/forecast/daily-table/2-1496747/Russia/Novosibirsk Oblast/Novosibirskiy Rayon/Novosibirsk",
+        "YRNO": "/en/forecast/daily-table/2-1496747/Russia/Novosibirsk%20Oblast/Novosibirskiy%20Rayon/Novosibirsk",
         "GIDROMET": "/product/weather/12100/"
     },
     "timeZone": "Asia/Novosibirsk"
@@ -901,7 +901,7 @@
         "RP5": "/Weather_in_Orel",
         "ACCUWEATHER": "/ru/ru/orellana/261825/daily-weather-forecast/261825",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/fe0c564ada1a2cb747c32bce1b02823d52bc1a001d9ea5e214bd495f0f9d407f",
-        "YRNO": "/en/forecast/daily-table/2-515012/Russia/Orel Oblast/Oryol",
+        "YRNO": "/en/forecast/daily-table/2-515012/Russia/Orel%20Oblast/Oryol",
         "GIDROMET": "/product/weather/3026/"
     },
     "timeZone": "Europe/Moscow"
@@ -915,7 +915,7 @@
         "RP5": "/Weather_in_Orenburg",
         "ACCUWEATHER": "/ru/ru/orenburg/294535/daily-weather-forecast/294535",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/71ea758e8600a3067ebec9c8fcb2be0fc9fc3e24a6c0c53a9757dbd4269015e1",
-        "YRNO": "/en/forecast/daily-table/2-515003/Russia/Orenburg Oblast/Orenburg",
+        "YRNO": "/en/forecast/daily-table/2-515003/Russia/Orenburg%20Oblast/Orenburg",
         "GIDROMET": "/product/weather/3025/"
     },
     "timeZone": "Asia/Yekaterinburg"
@@ -985,7 +985,7 @@
         "RP5": "/Weather_in_Pskov",
         "ACCUWEATHER": "/ru/ru/pskov/295031/daily-weather-forecast/295031",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/fe75cf7cb5614cc1c708d1482e3bdb01025888c3f496a8cedd8a6f9a816edd64",
-        "YRNO": "/en/forecast/daily-table/2-504341/Russia/Pskov Oblast/Pskov",
+        "YRNO": "/en/forecast/daily-table/2-504341/Russia/Pskov%20Oblast/Pskov",
         "GIDROMET": "/product/weather/2896/"
     },
     "timeZone": "Europe/Moscow"
@@ -999,7 +999,7 @@
         "RP5": "/Weather_in_Rostov-on-Don",
         "ACCUWEATHER": "/ru/ru/rostov-on-don/295146/daily-weather-forecast/295146",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/48ac01f108144808a4f0fb6288a0802c8319e44e2de9ca943ddd5a6bb263bb17",
-        "YRNO": "/en/forecast/daily-table/2-501175/Russia/Rostov Oblast/Rostov-on-Don",
+        "YRNO": "/en/forecast/daily-table/2-501175/Russia/Rostov%20Oblast/Rostov-on-Don",
         "GIDROMET": "/product/weather/2855/"
     },
     "timeZone": "Europe/Moscow"
@@ -1013,7 +1013,7 @@
         "RP5": "/Weather_in_Ryazan",
         "ACCUWEATHER": "/ru/ru/ryazan/295190/daily-weather-forecast/295190",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/0bcfa52f378b07303d9323a15f35704271c930f777e8e8b93261be77cacc3b88",
-        "YRNO": "/en/forecast/daily-table/2-500096/Russia/Ryazan Oblast/Ryazan",
+        "YRNO": "/en/forecast/daily-table/2-500096/Russia/Ryazan%20Oblast/Ryazan",
         "GIDROMET": "/product/weather/2843/"
     },
     "timeZone": "Europe/Moscow"
@@ -1041,7 +1041,7 @@
         "RP5": "/Weather_in_Samara",
         "ACCUWEATHER": "/ru/ru/samara/290396/daily-weather-forecast/290396",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/bce6473a62836488cf158df036413506647bd5b2bcf410ecaf3d2c5ec992b9cd",
-        "YRNO": "/en/forecast/daily-table/2-499099/Russia/Samara Oblast/Samara",
+        "YRNO": "/en/forecast/daily-table/2-499099/Russia/Samara%20Oblast/Samara",
         "GIDROMET": "/product/weather/2827/"
     },
     "timeZone": "Europe/Samara"
@@ -1055,7 +1055,7 @@
         "RP5": "/Weather_in_Saransk",
         "ACCUWEATHER": "/ru/ru/saransk/293970/daily-weather-forecast/293970",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/bee118f56a47234d0fd63a470b5c20e1b5c1e20314ad3bb1b35c7e99389ce6e8",
-        "YRNO": "/en/forecast/daily-table/2-498698/Russia/Mordoviya Republic/Saransk",
+        "YRNO": "/en/forecast/daily-table/2-498698/Russia/Mordoviya%20Republic/Saransk",
         "GIDROMET": "/product/weather/2818/"
     },
     "timeZone": "Europe/Moscow"
@@ -1069,7 +1069,7 @@
         "RP5": "/Weather_in_Saratov,_Saratov_region",
         "ACCUWEATHER": "/ru/ru/saratov/295382/daily-weather-forecast/295382",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/37ba6c8fe79400112c4d1553df1206e4da5069e7965ff466eb19031495ebfcb2",
-        "YRNO": "/en/forecast/daily-table/2-498677/Russia/Saratovskaya Oblast/Saratovskiy Rayon/Saratov",
+        "YRNO": "/en/forecast/daily-table/2-498677/Russia/Saratovskaya%20Oblast/Saratovskiy%20Rayon/Saratov",
         "GIDROMET": "/product/weather/2816/"
     },
     "timeZone": "Europe/Saratov"
@@ -1083,7 +1083,7 @@
         "RP5": "/Weather_in_Sevastopol",
         "ACCUWEATHER": "/ru/ru/sevastopol/6120/daily-weather-forecast/6120",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/1627d45bcbb21583ea1bef537eef41c6ea5c0364a17f2d2d059d6a059a59e2b1",
-        "YRNO": "/en/forecast/daily-table/2-694423/Ukraine/Sebastopol City/Sevastopol",
+        "YRNO": "/en/forecast/daily-table/2-694423/Ukraine/Sebastopol%20City/Sevastopol",
         "GIDROMET": "/product/weather/5655/"
     },
     "timeZone": "Europe/Simferopol"
@@ -1097,7 +1097,7 @@
         "RP5": "/Weather_in_Simferopol",
         "ACCUWEATHER": "/ru/ru/simferopol/322464/daily-weather-forecast/322464",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7d122d598b863f397808fdbc6f6a11c26ca4aa9fbdca38438d7e279d83aaade9",
-        "YRNO": "/en/forecast/daily-table/2-693805/Ukraine/Crimea/Simferopol municipality/Simferopol",
+        "YRNO": "/en/forecast/daily-table/2-693805/Ukraine/Crimea/Simferopol%20municipality/Simferopol",
         "GIDROMET": "/product/weather/5638/"
     },
     "timeZone": "Europe/Simferopol"
@@ -1139,7 +1139,7 @@
         "RP5": "/Weather_in_Syktyvkar",
         "ACCUWEATHER": "/ru/ru/syktyvkar/288559/daily-weather-forecast/288559",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/0ee88d45224bdfaa1371ff9c77de2797663392597e24a6da9ac9d618a3b76f53",
-        "YRNO": "/en/forecast/daily-table/2-485239/Russia/Komi/Syktyvdinskiy Rayon/Syktyvkar",
+        "YRNO": "/en/forecast/daily-table/2-485239/Russia/Komi/Syktyvdinskiy%20Rayon/Syktyvkar",
         "GIDROMET": "/product/weather/2606/"
     },
     "timeZone": "Europe/Moscow"
@@ -1167,7 +1167,7 @@
         "RP5": "/Weather_in_Tomsk",
         "ACCUWEATHER": "/ru/ru/tomsk/290868/daily-weather-forecast/290868",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7fd10ea6f9bc4bd86f9cb969d1eeee17657908c077325b7c4bf1e5cce5834a07",
-        "YRNO": "/en/forecast/daily-table/2-1489425/Russia/Tomsk Oblast/Tomskiy Rayon/Tomsk",
+        "YRNO": "/en/forecast/daily-table/2-1489425/Russia/Tomsk%20Oblast/Tomskiy%20Rayon/Tomsk",
         "GIDROMET": "/product/weather/11990/"
     },
     "timeZone": "Asia/Tomsk"
@@ -1195,7 +1195,7 @@
         "RP5": "/Weather_in_Ulan-Ude",
         "ACCUWEATHER": "/ru/ru/ulan-ude/287431/daily-weather-forecast/287431",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/05d94bbe4a6c89c0c66b84a02dd15053ac5900455f36c443ffe4af2736afbc2a",
-        "YRNO": "/en/forecast/daily-table/2-2014407/Russia/Buryatiya Republic/Ivolginskiy Rayon/Ulan-Ude",
+        "YRNO": "/en/forecast/daily-table/2-2014407/Russia/Buryatiya%20Republic/Ivolginskiy%20Rayon/Ulan-Ude",
         "GIDROMET": "/product/weather/16168/"
     },
     "timeZone": "Asia/Irkutsk"
@@ -1209,7 +1209,7 @@
         "RP5": "/Weather_in_Ulyanovsk",
         "ACCUWEATHER": "/ru/ru/ulyanovsk/296217/daily-weather-forecast/296217",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/7ba47f9fcc206513b30dcf8c10eb3bb62bb117f3248efe2d5c1caae4b4ed4b95",
-        "YRNO": "/en/forecast/daily-table/2-479123/Russia/Ulyanovsk/Ulyanovsky District/Ulyanovsk",
+        "YRNO": "/en/forecast/daily-table/2-479123/Russia/Ulyanovsk/Ulyanovsky%20District/Ulyanovsk",
         "GIDROMET": "/product/weather/2512/"
     },
     "timeZone": "Europe/Ulyanovsk"
@@ -1223,7 +1223,7 @@
         "RP5": "/Weather_in_Ufa",
         "ACCUWEATHER": "/ru/ru/ufa/292177/daily-weather-forecast/292177",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/ecc562d6ac455484d9f5ceb6bfc963ba60bf38338297dc46e06130a48cac575d",
-        "YRNO": "/en/forecast/daily-table/2-479561/Russia/Bashkortostan Republic/Ufa",
+        "YRNO": "/en/forecast/daily-table/2-479561/Russia/Bashkortostan%20Republic/Ufa",
         "GIDROMET": "/product/weather/2519/"
     },
     "timeZone": "Asia/Yekaterinburg"
@@ -1237,7 +1237,7 @@
         "RP5": "/Weather_in_Khabarovsk",
         "ACCUWEATHER": "/ru/ru/khabarovsk/293149/daily-weather-forecast/293149",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/fb6f3414f1bedcbc5247597d1d362a4387abcac878b65550e0a1e6cb13ee0260",
-        "YRNO": "/en/forecast/daily-table/2-2022890/Russia/Khabarovsk/Khabarovskiy Rayon/Khabarovsk",
+        "YRNO": "/en/forecast/daily-table/2-2022890/Russia/Khabarovsk/Khabarovskiy%20Rayon/Khabarovsk",
         "GIDROMET": "/product/weather/16276/"
     },
     "timeZone": "Asia/Vladivostok"
@@ -1265,7 +1265,7 @@
         "RP5": "/Weather_in_Cheboksary",
         "ACCUWEATHER": "/ru/ru/cheboksary/287676/daily-weather-forecast/287676",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/50d049288f9aeacf1cd61927f62efb24c8b79049c7ab3915e4333fe9e82f3922",
-        "YRNO": "/en/forecast/daily-table/2-569696/Russia/Chuvashia/Cheboksarskiy Rayon/Cheboksary",
+        "YRNO": "/en/forecast/daily-table/2-569696/Russia/Chuvashia/Cheboksarskiy%20Rayon/Cheboksary",
         "GIDROMET": "/product/weather/3822/"
     },
     "timeZone": "Europe/Moscow"
@@ -1279,7 +1279,7 @@
         "RP5": "/Weather_in_Chelyabinsk",
         "ACCUWEATHER": "/ru/ru/chelyabinsk/292332/daily-weather-forecast/292332",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/47300995d85694c9cb21e9cbe02e56ee33288a9edce0e4c5627ecd566518a5db",
-        "YRNO": "/en/forecast/daily-table/2-1508291/Russia/Chelyabinsk/Gorod Chelyabinsk/Chelyabinsk",
+        "YRNO": "/en/forecast/daily-table/2-1508291/Russia/Chelyabinsk/Gorod%20Chelyabinsk/Chelyabinsk",
         "GIDROMET": "/product/weather/12254/"
     },
     "timeZone": "Asia/Yekaterinburg"
@@ -1293,7 +1293,7 @@
         "RP5": "/Weather_in_Cherkessk",
         "ACCUWEATHER": "/ru/ru/cherkessk/288291/daily-weather-forecast/288291",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/b8ff885c3f3c411d0abbf4ad6c317b331a21bf2c271b8bc759f51aa786e13997",
-        "YRNO": "/en/forecast/daily-table/2-569154/Russia/Karachayevo-Cherkesiya Republic/Cherkessk",
+        "YRNO": "/en/forecast/daily-table/2-569154/Russia/Karachayevo-Cherkesiya%20Republic/Cherkessk",
         "GIDROMET": "/product/weather/3808/"
     },
     "timeZone": "Europe/Moscow"
@@ -1307,7 +1307,7 @@
         "RP5": "/Weather_in_Chita,_Japan",
         "ACCUWEATHER": "/ru/ru/chita/291605/daily-weather-forecast/291605",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/5de2a0171fd4ebe088f581af789aeb97948350db2695162f8e024501356f606f",
-        "YRNO": "/en/forecast/daily-table/2-2025339/Russia/Transbaikal Territory/Chita",
+        "YRNO": "/en/forecast/daily-table/2-2025339/Russia/Transbaikal%20Territory/Chita",
         "GIDROMET": "/product/weather/16294/"
     },
     "timeZone": "Asia/Chita"
@@ -1321,7 +1321,7 @@
         "RP5": "/Weather_in_Elista",
         "ACCUWEATHER": "/ru/ru/elista/288166/daily-weather-forecast/288166",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/6cfa820b95d28828145234008d153ad200affe4b5b353224741ce662b40bab3e",
-        "YRNO": "/en/forecast/daily-table/2-563514/Russia/Kalmykiya Republic/Elista",
+        "YRNO": "/en/forecast/daily-table/2-563514/Russia/Kalmykiya%20Republic/Elista",
         "GIDROMET": "/product/weather/3717/"
     },
     "timeZone": "Europe/Moscow"
@@ -1335,7 +1335,7 @@
         "RP5": "/Weather_in_Yuzhno-Sakhalinsk",
         "ACCUWEATHER": "/ru/ru/yuzhno-sakhalinsk/290280/daily-weather-forecast/290280",
         "WEATHERCOM": "/ru-RU/weather/tenday/l/24041d8786c975fddce536c4b09230e1706bac69a3de6cdf27d8bdc691ca6073",
-        "YRNO": "/en/forecast/daily-table/2-2119441/Russia/Sakhalin Oblast/Yuzhno-Sakhalinsk",
+        "YRNO": "/en/forecast/daily-table/2-2119441/Russia/Sakhalin%20Oblast/Yuzhno-Sakhalinsk",
         "GIDROMET": "/product/weather/16809/"
     },
     "timeZone": "Asia/Sakhalin"
