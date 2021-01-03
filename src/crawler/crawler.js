@@ -118,7 +118,6 @@ function errorHandler(sitesData) {
 }
 
 async function poll(sites, locations, storingOpts) {
-	
 	for (const location of locations) {
 		const promises = []
 		for (const site of sites) {
