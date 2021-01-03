@@ -117,11 +117,12 @@ function errorHandler(sitesData) {
 }
 
 async function poll(sites, locations, storingOpts) {
+	const patientGetTempFrom = patientFn(getTempFrom, 5, 5000)
 	for (const location of locations) {
 		const promises = []
 		for (const site of sites) {
 			if (!Object.keys(location.routes).includes(site.name)) { continue }
-			promises.push(getTempFrom(site, location))
+			promises.push(patientGetTempFrom(site, location))
 		}
 		const allSiteData = await Promise.all(promises)
 		const errData = allSiteData.filter(siteData => siteData.err)
