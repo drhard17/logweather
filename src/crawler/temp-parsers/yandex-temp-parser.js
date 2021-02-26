@@ -13,12 +13,12 @@ module.exports = {
 		const results = [];
 		
 		for (const card of cards){ 
-			if (card.childNodes.length === 2) { //пропускаем рекламные карточки
+			if (card.querySelector('tbody')) { //пропускаем рекламные карточки
 				//days.push(card) 
 				const temps = card //идем по дереву DOM
 					.querySelectorAll('tr')[2]
 					.querySelector('td')
-					.querySelector('div')
+ 					.querySelector('div')
 					.querySelectorAll('div')[1]
 					.querySelectorAll('span.temp__value')
 					
