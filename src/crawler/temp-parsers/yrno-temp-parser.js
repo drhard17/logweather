@@ -14,10 +14,8 @@ module.exports = {
 				.querySelector('div.now-hero__next-hour-temperature-text > span')
 				.textContent
 		, 10)
-
 		const temps = Array.from(
-			document
-				.querySelectorAll('ol.daily-weather-list__intervals > li')
+			document.querySelectorAll('ol.daily-weather-list__intervals > li')
 		).map(li => {
 			const temp = li
 				.querySelector('span.min-max-temperature')
@@ -25,7 +23,7 @@ module.exports = {
 				.split('/')[0]
 			
 			const date = li
-				.querySelector('span.date-label > span:nth-child(3)')
+				.querySelector('time')
 				.textContent
 
 			return {
