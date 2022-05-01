@@ -8,8 +8,7 @@ module.exports = {
 
 	parseFunc: function(page) {
 		const dom = new JSDOM(page);
-		const cards = dom.window.document.querySelectorAll('div.card'); //парсим карточки с прогнозами для 10 дней
-
+		const cards = dom.window.document.querySelectorAll('article.card'); //парсим карточки с прогнозами для 10 дней
 		const results = [];
 		
 		for (const card of cards){ 
@@ -21,7 +20,6 @@ module.exports = {
  					.querySelector('div')
 					.querySelectorAll('div')[1]
 					.querySelectorAll('span.temp__value')
-					
 				let tempSum = 0; //иногда в прогнозе пишут диапазон температур от... до..., вычисляем среднее
 				temps.forEach((temp) => {
 					temp = temp.innerHTML.replace(String.fromCharCode(8722), '-')
