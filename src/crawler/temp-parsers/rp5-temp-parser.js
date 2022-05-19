@@ -36,11 +36,8 @@ module.exports = {
 		const tempString = Array.from(
 			dom.window.document
 				.querySelector('#forecastTable > tbody')
-				.querySelectorAll('a.t_temperature')[0]
-				.parentElement
-				.parentElement
-				.querySelectorAll('td[colspan]')
-		).map(td => td.firstElementChild.textContent)
+				.querySelectorAll('div.t_0')
+		).map(div => div.textContent)
 
 		for (let i = firstTempCol + 2; i < tempString.length; i += 4) {
 			const temp = tempString[i]
