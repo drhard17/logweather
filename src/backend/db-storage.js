@@ -68,7 +68,7 @@ module.exports = {
         })
     },
 
-    getLastTemp: async function(serviceName, locId) {
+    getLastTempData: async function(serviceName, locId) {
         db = await getLogweatherDb()
         const sql = `SELECT MAX(datetime) AS datetime, service_id, location_id, temp FROM forecasts
                         WHERE service_id = (SELECT id FROM services WHERE name = ?)
@@ -81,7 +81,8 @@ module.exports = {
                 if (err) { reject(err) }
                 if (!rows) { resolve(null) }
                 const temp = rows[0].temp
-                resolve(temp)
+                const datetime = new Date(rows[0].datetime * 1000)
+                resolve( {temp, datetime} )
             })
             db.close()
         })

@@ -1,5 +1,3 @@
-// import { remove } from 'lodash.js'
-
 const firstDayInput = document.getElementById('firstDay')
 const lastDayInput = document.getElementById('lastDay')
 const form = document.getElementById('serviceDepth')
@@ -54,11 +52,12 @@ citySelect.onchange = async function() {
     document.querySelector('#sCity').innerHTML = locName
     removeData(myChart)
     try {
-        const { temp } = await getLastTemp(locId)
+        const tempData = await getLastTempData(locId)
         const { locServices } = await getLocServices(locId)
         const serviceOptions = formServiceSelector(locServices)
 
-        document.querySelector('#sTemp').innerHTML = temp
+        document.querySelector('#sTemp').innerHTML = tempData.temp
+        document.querySelector('#sDate').innerHTML = tempData.datetime
         document.querySelector('#serviceSelect').innerHTML = serviceOptions
         depthSelect.innerHTML = formDepthOptions(locServices[0])
 
@@ -114,7 +113,7 @@ async function getChartData(tempRequest) {
     return await response.json()
 }
 
-async function getLastTemp(locId) {
+async function getLastTempData(locId) {
     const response = await fetch('/getlasttemp', {
         body: JSON.stringify({locId}),
         ...postReqOptions

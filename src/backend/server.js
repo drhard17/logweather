@@ -2,6 +2,7 @@ const fsPromises = require('fs').promises
 const bodyParser = require('body-parser')
 const express = require('express')
 const asyncHandler = require('express-async-handler')
+const moment = require('moment-timezone');
 
 const storage = require('./db-storage.js')
 const logger = require('../crawler/cr-logger.js')
@@ -15,12 +16,16 @@ const [ host, port ] = Object.values(config.webserver)
 
 const app = express()
 
-async function formSiteTemp(locId) {
+async function formSiteTempData(locId) {
     const location = locations.find(location => location.id === locId)
     serviceName = location.currentTempService || config.defaultForecastService
-    const temp = await storage.getLastTemp(serviceName, locId)
+    const tempData = await storage.getLastTempData(serviceName, locId)
+    
+    const tempValue = tempData.temp
+    const temp = tempValue > 0 ? '+' + tempValue : tempValue
+    const datetime = moment(tempData.datetime).format('D/M/yy H:mm')
 
-    return temp > 0 ? '+' + temp : temp
+    return {temp, datetime}
 }
 
 function getLocServices(locId) {
@@ -39,13 +44,14 @@ const logIP = function(req, res, next) {
 app.engine('html', async(filePath, options, cb) => {
     const content = await fsPromises.readFile(filePath, 'utf-8')
     try {
-        const siteTemp = await formSiteTemp(101)
+        const siteTemp = await formSiteTempData(101)
         const locOptions = locations.map(location => {
             return `<option value=${location.id}>${location.name}</option>`
         }).join('\r\n')
 
         const rendered = content.toString()
-            .replace('#temp#', siteTemp)
+            .replace('#temp#', siteTemp.temp)
+            .replace('#tempdatetime#', siteTemp.datetime)
             .replace('#locations#', locOptions)
         return cb(null, rendered)
     } catch (err) {
@@ -70,8 +76,8 @@ app.post('/getchartdata', asyncHandler(async(req, res) => {
 
 app.post('/getlasttemp', asyncHandler(async(req, res) => {
     res.type('json')
-    const siteTemp = await formSiteTemp(req.body.locId)
-    res.send(JSON.stringify({temp: siteTemp}))
+    const siteTempData = await formSiteTempData(req.body.locId)
+    res.send(JSON.stringify({temp: siteTempData.temp, datetime: siteTempData.datetime}))
 }))
 
 app.post('/getlocservices', (req, res) => {
@@ -88,7 +94,7 @@ app.post('/storesensordata', asyncHandler(async(req, res) => {
         const tempRecord = new TempRecord(new Date, name, locId, temp)
         await storage.storeTempRecords(tempRecord)
         logger.logSuccessStoring([tempRecord])
-        res.send(JSON.stringify({response: 'Success!'}))
+        res.send(JSON.stringify({response: 'Sensor data stored'}))
     } catch (err) {
         res.send({INVALID_REQUEST: err.message})
         res.status(422)
