@@ -138,7 +138,8 @@ function main() {
 	const config = require('../config.json')
 	const storingOpts = config.storing
 	const locLimit = config.locLimit || undefined
-	const locations = require('../locations.json').slice(0, locLimit)
+	const firstLocId = config.locOnlyId - 1
+	const locations = require('../locations.json').slice(firstLocId, locLimit)
 
 	const sites = Object.keys(config.sitesToPoll)
 		.filter(site => config.sitesToPoll[site])
