@@ -9,11 +9,11 @@ module.exports = {
 		const { document } = new JSDOM(page).window
 
 		const dayToday = new Date().getDate()
-		const currentTemp = parseInt(
-			document
-				.querySelector('div.now-hero__next-hour-temperature-text > span')
-				.textContent
-		, 10)
+		// const currentTemp = parseInt(
+		// 	document
+		// 		.querySelector('div.now-hero__next-hour-temperature-text > span')
+		// 		.textContent
+		// , 10)
 		const temps = Array.from(
 			document.querySelectorAll('ol.daily-weather-list__intervals > li')
 		).map(li => {
@@ -33,7 +33,7 @@ module.exports = {
 		}).filter(day => day.date !== dayToday)
 			.map(day => day.temp)
 			
-		temps.unshift(currentTemp)
+		// temps.unshift(currentTemp)
 		return temps
 	}
 };
