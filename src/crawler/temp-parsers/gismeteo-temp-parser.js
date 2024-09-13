@@ -8,12 +8,12 @@ module.exports = {
 		const dom = new JSDOM(page);
 		const results = []
 		const maxtemps = dom.window.document.querySelectorAll('div.maxt')
-
+		
 		for (const maxtemp of maxtemps) {
-			if (maxtemp.childNodes.length === 2){
+			if (maxtemp.firstChild.tagName == 'TEMPERATURE-VALUE'){
 				const temp = maxtemp
-					.querySelectorAll('span')[0]
-					.innerHTML
+					.firstChild
+					.getAttribute('value')
 				results.push(parseInteger(temp))
 			}
 		}
